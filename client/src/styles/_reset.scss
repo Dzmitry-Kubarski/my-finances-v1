@@ -1,0 +1,43 @@
+
+/*------------------
+    1. RESET
+------------------*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  display: block;
+}
+
+html, 
+body {
+    overflow-x: hidden;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  outline: 0;
+}
+
+select {
+  appearance: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

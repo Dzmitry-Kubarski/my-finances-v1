@@ -1,0 +1,42 @@
+/*-----------------------
+    4. TAB SWITCH
+-----------------------*/
+.tab-switch {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .tab-switch .tab-switch-button:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+  
+  .tab-switch .tab-switch-button:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+
+/*---------------------------
+    5. TAB SWITCH BUTTON
+---------------------------*/
+.tab-switch-button {
+    width: 180px;
+    height: 54px;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 54px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+  }
+  
+  .tab-switch-button.active {
+    color: #3e3f5e;
+    background-color: #fff;
+    cursor: auto;
+  }
+
+ 
