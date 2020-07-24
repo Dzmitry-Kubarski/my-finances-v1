@@ -10,11 +10,15 @@ const router = Router()
 // /api/auth/register
 router.post(
   '/register',
+
   [
     check('email', 'Некорректный email').isEmail(),
+    check('username', 'Минимальная длина имени 6 символов')
+      .isLength({ min: 6 }),
     check('password', 'Минимальная длина пароля 6 символов')
       .isLength({ min: 6 })
   ],
+
   async (req, res) => {
     try {
       const errors = validationResult(req)
@@ -26,7 +30,7 @@ router.post(
         })
       }
 
-      const { email, password } = req.body
+      const { email, username, password } = req.body
 
       const candidate = await User.findOne({ email })
 
@@ -35,7 +39,7 @@ router.post(
       }
 
       const hashedPassword = await bcrypt.hash(password, 12)
-      const user = new User({ email, password: hashedPassword })
+      const user = new User({ email, username, password: hashedPassword })
 
       await user.save()
 
@@ -60,13 +64,14 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: 'Некорректный данные при входе в систему'
+          message: 'Некорректные данные при входе в систему'
         })
       }
 
       const { email, password } = req.body
 
       const user = await User.findOne({ email })
+
 
       if (!user) {
         return res.status(400).json({ message: 'Пользователь не найден' })
@@ -83,6 +88,9 @@ router.post(
         config.get('jwtSecret'),
         { expiresIn: '1h' }
       )
+
+      // console.log(user.username); 
+      // тут работает
 
       res.json({ token, userId: user.id })
 

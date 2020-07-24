@@ -51,6 +51,8 @@ export const Header = () => {
                 </div>
             </div> */}
 
+            <div></div>
+
             <div className="header-actions">
                 <div className="action-item-wrap">
                     <a className='logout' href="/" onClick={logoutHandler}>Выйти</a>

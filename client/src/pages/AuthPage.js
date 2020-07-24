@@ -43,7 +43,7 @@ export const AuthPage = () => {
 
                     {
                         tabs.map((tab, index) => (
-                            <p key='tab.name'
+                            <p key={`${tab.name}-${index}`}
                                 className={activeTab === index
                                     ? 'tab-switch-button login-register-form-trigger active'
                                     : 'tab-switch-button login-register-form-trigger'}

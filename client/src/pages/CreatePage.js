@@ -14,9 +14,25 @@ export const CreatePage = () => {
     const [popupSources, setPopupSources] = useState(false);
     const [popupCategory, setPopupCategory] = useState(false);
 
+    const [operation, setOperation] = useState('');
+    const [source, setSource] = useState('');
+    const [sum, setSum] = useState('');
+    const [category, setCategory] = useState('');
+    const [date, setDate] = useState('23.07.2020');
+    const [comment, setComment] = useState(' ');
+
+    const newTransaction = {
+        operation,
+        source,
+        sum,
+        category,
+        date,
+        comment,
+    }
+
     // const history = useHistory()
-    // const auth = useContext(AuthContext)
-    // const { request } = useHttp()
+    const auth = useContext(AuthContext)
+    const { request } = useHttp()
     // const [link, setLink] = useState('')
 
     // useEffect(() => {
@@ -34,6 +50,15 @@ export const CreatePage = () => {
     //     }
     // }
 
+
+
+    const pressHandler = () => {
+        const data = request('/api/link/add', 'POST', { ...newTransaction }, {
+            Authorization: `Bearer ${auth.token}`
+        })
+    }
+
+
     const tooglePopupType = () => {
         setPopupType(!popupType)
     }
@@ -44,6 +69,29 @@ export const CreatePage = () => {
 
     const tooglePopupCategory = () => {
         setPopupCategory(!popupCategory)
+    }
+
+    const operations = ['расходы', 'доходы', 'перевод между счетами'];
+    const selectPperations = (name) => {
+        setOperation(name)
+    }
+
+    const sources = ['наличные', 'заначка', 'карта МТБанка', 'карта Халва', 'яндекс деньги'];
+    const selectSources = (name) => {
+        setSource(name)
+    }
+
+    const categorys = ['спорт', 'еда', 'кредит', 'одежда', 'авто', 'интернет', 'телефон'];
+    const selectCategory = (name) => {
+        setCategory(name)
+    }
+
+    const sumChangeHadler = (event) => {
+        setSum(event.target.value)
+    }
+
+    const commentChangeHadler = (event) => {
+        setComment(event.target.value)
     }
 
     return (
@@ -72,18 +120,33 @@ export const CreatePage = () => {
                     <h4 className='new-transaction__title'>Тип операции:</h4>
 
                     <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>расходы</span>
+                        <span className='new-transaction__value'>{operation}</span>
+
                         <button onClick={tooglePopupType} className='new-transaction__btn'>
                             <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
                         </button>
                     </div>
 
                     {popupType && <ul className='new-transaction__popup-list'>
-                        <li className='new-transaction__popup-item'>
+
+                        {/* <li className='new-transaction__popup-item'>
                             <button className='new-transaction__popup-btn'>расходы</button>
-                            <button className='new-transaction__popup-btn'>доходы</button>
-                            <button className='new-transaction__popup-btn'>перевод между счетами</button>
                         </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>доходы</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>перевод между счетами</button>
+                        </li> */}
+
+                        {operations.map((name, index) => (
+                            <li key={`${name}_${index}`} className='new-transaction__popup-item'>
+                                <button onClick={() => { selectPperations(name) }} className='new-transaction__popup-btn'>{name}</button>
+                            </li>
+                        ))}
+
                     </ul>}
                 </div>
 
@@ -91,7 +154,7 @@ export const CreatePage = () => {
                     <h4 className='new-transaction__title'>Счёт:</h4>
 
                     <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>наличные</span>
+                        <span className='new-transaction__value'>{source}</span>
 
                         <button onClick={tooglePopupSources} className='new-transaction__btn'>
                             <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
@@ -99,36 +162,85 @@ export const CreatePage = () => {
                     </div>
 
                     {popupSources && <ul className='new-transaction__popup-list'>
-                        <li className='new-transaction__popup-item'>
+
+                        {/* <li className='new-transaction__popup-item'>
                             <button className='new-transaction__popup-btn'>наличные</button>
-                            <button className='new-transaction__popup-btn'>заначка</button>
-                            <button className='new-transaction__popup-btn'>карта МТБанка</button>
-                            <button className='new-transaction__popup-btn'>карта Халва</button>
-                            <button className='new-transaction__popup-btn'>яндекс деньги</button>
                         </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>заначка</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>карта МТБанка</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>карта Халва</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>яндекс деньги</button>
+                        </li>     */}
+
+                        {sources.map((name, index) => (
+                            <li key={`${name}_${index}`} className='new-transaction__popup-item'>
+                                <button onClick={() => { selectSources(name) }} className='new-transaction__popup-btn'>{name}</button>
+                            </li>
+                        ))}
+
                     </ul>}
+
+
+
                 </div>
 
                 <div className='new-transaction__row'>
                     <h4 className='new-transaction__title'>Категория:</h4>
 
                     <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>одежда</span>
+                        <span className='new-transaction__value'>{category}</span>
                         <button onClick={tooglePopupCategory} className='new-transaction__btn'>
                             <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
                         </button>
                     </div>
 
                     {popupCategory && <ul className='new-transaction__popup-list'>
-                        <li className='new-transaction__popup-item'>
+
+                        {/* <li className='new-transaction__popup-item'>
                             <button className='new-transaction__popup-btn'>спорт</button>
-                            <button className='new-transaction__popup-btn'>еда</button>
-                            <button className='new-transaction__popup-btn'>кредит</button>
-                            <button className='new-transaction__popup-btn'>одежда</button>
-                            <button className='new-transaction__popup-btn'>авто</button>
-                            <button className='new-transaction__popup-btn'>интернет</button>
-                            <button className='new-transaction__popup-btn'>телефон</button>
                         </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>еда</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>кредит</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>одежда</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>авто</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>интернет</button>
+                        </li>
+
+                        <li className='new-transaction__popup-item'>
+                            <button className='new-transaction__popup-btn'>телефон</button>
+                        </li> */}
+
+                        {categorys.map((name, index) => (
+                            <li key={`${name}_${index}`} className='new-transaction__popup-item'>
+                                <button onClick={() => { selectCategory(name) }} className='new-transaction__popup-btn'>{name}</button>
+                            </li>
+                        ))}
+
                     </ul>}
                 </div>
 
@@ -144,14 +256,14 @@ export const CreatePage = () => {
 
                 <div className='new-transaction__row'>
                     <h4 className='new-transaction__title'>Комментарий</h4>
-                    <textarea placeholder='Описание' />
+                    <textarea onChange={commentChangeHadler} placeholder='Описание' value={comment} />
                 </div>
 
                 <div className='new-transaction__row'>
                     <h4 className='new-transaction__title'>Сумма:</h4>
                     <div className='new-transaction__col'>
-                        <input type='text' placeholder='сумма' />
-                        <button className='new-transaction__submit' type='button'>Подтвердить</button>
+                        <input onChange={sumChangeHadler} type='text' placeholder='сумма' value={sum} />
+                        <button onClick={pressHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
                     </div>
 
                 </div>

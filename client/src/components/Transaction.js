@@ -5,10 +5,10 @@ import cardSvg from '../images/card.svg';
 
 const Transaction = ({ items }) => {
 
-    const transactionsJsx = items.map(({ price, title, expenses, category, sources, date }) => (
-        <li key={date} className='transaction-item'>
+    const transactionsJsx = items.map(({ sum, comment, operation, category, source, date, _id }) => (
+        <li key={_id} className='transaction-item'>
             <div>
-                {expenses ?
+                {operation === 'расходы' ?
                     <img className='transaction-item__arrow' src={arrowDownSvg} alt="" />
                     :
                     <img className='transaction-item__arrow' src={arrowUpSvg} alt="" />
@@ -17,18 +17,17 @@ const Transaction = ({ items }) => {
 
             <div className='transaction-item__col'>
                 <p className='transaction-item__date'>{date}</p>
-                <p className='transaction-item__title'>{title}</p>
+                <p className='transaction-item__title'>{comment}</p>
             </div>
-
             <div className='transaction-item__col'>
-                {expenses ?
-                    <p className='transaction-item__price'>{price}</p>
+                {operation === 'расходы' ?
+                    <p className='transaction-item__price'>-{sum}</p>
                     :
-                    <p className='transaction-item__price  green'>{price}</p>
+                    <p className='transaction-item__price  green'>+{sum}</p>
                 }
 
                 <p className='transaction-item__category'>#{category}</p>
-                <p className='transaction-item__sources'>{sources}</p>
+                <p className='transaction-item__sources'>{source}</p>
             </div>
         </li>
     ))

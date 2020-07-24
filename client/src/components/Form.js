@@ -9,15 +9,17 @@ const Form = ({ activeForm }) => {
     const { loading, request, error, clearError } = useHttp();
 
     const [form, setForm] = useState({
-        email: '', password: ''
+        email: '', username: '', password: ''
     })
 
     useEffect(() => {
         message(error);
+        console.log(error);
         clearError();
     }, [error, message, clearError])
 
     // useEffect(() => {
+
     //     window.M.updateTextFields();
     // }, [])
 
@@ -29,6 +31,7 @@ const Form = ({ activeForm }) => {
         try {
             const data = await request('/api/auth/register', 'POST', { ...form });
             message(data.message);
+            console.log(data.message);
         } catch (e) { }
     }
 
@@ -41,6 +44,7 @@ const Form = ({ activeForm }) => {
 
     return (
         <>
+
             {activeForm === 'loginForm' && (
                 <div className="landing-form">
                     <div className="form-box login-register-form-element" style={{ display: 'block' }}>
