@@ -30,7 +30,7 @@ export const CreatePage = () => {
         comment,
     }
 
-    // const history = useHistory()
+    const history = useHistory()
     const auth = useContext(AuthContext)
     const { request } = useHttp()
     // const [link, setLink] = useState('')
@@ -56,6 +56,7 @@ export const CreatePage = () => {
         const data = request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
+        history.push(`/home/`)
     }
 
 
@@ -129,18 +130,6 @@ export const CreatePage = () => {
 
                     {popupType && <ul className='new-transaction__popup-list'>
 
-                        {/* <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>расходы</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>доходы</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>перевод между счетами</button>
-                        </li> */}
-
                         {operations.map((name, index) => (
                             <li key={`${name}_${index}`} className='new-transaction__popup-item'>
                                 <button onClick={() => { selectPperations(name) }} className='new-transaction__popup-btn'>{name}</button>
@@ -163,26 +152,6 @@ export const CreatePage = () => {
 
                     {popupSources && <ul className='new-transaction__popup-list'>
 
-                        {/* <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>наличные</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>заначка</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>карта МТБанка</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>карта Халва</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>яндекс деньги</button>
-                        </li>     */}
-
                         {sources.map((name, index) => (
                             <li key={`${name}_${index}`} className='new-transaction__popup-item'>
                                 <button onClick={() => { selectSources(name) }} className='new-transaction__popup-btn'>{name}</button>
@@ -190,9 +159,6 @@ export const CreatePage = () => {
                         ))}
 
                     </ul>}
-
-
-
                 </div>
 
                 <div className='new-transaction__row'>
@@ -206,34 +172,6 @@ export const CreatePage = () => {
                     </div>
 
                     {popupCategory && <ul className='new-transaction__popup-list'>
-
-                        {/* <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>спорт</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>еда</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>кредит</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>одежда</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>авто</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>интернет</button>
-                        </li>
-
-                        <li className='new-transaction__popup-item'>
-                            <button className='new-transaction__popup-btn'>телефон</button>
-                        </li> */}
 
                         {categorys.map((name, index) => (
                             <li key={`${name}_${index}`} className='new-transaction__popup-item'>
@@ -269,7 +207,6 @@ export const CreatePage = () => {
                 </div>
             </div>
 
-            {/* <button className='new-transaction__submit' type='button'>Подтвердить</button> */}
         </div>
     )
 }
