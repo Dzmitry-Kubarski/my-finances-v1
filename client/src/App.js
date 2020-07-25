@@ -8,9 +8,11 @@ import { Header } from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
-    const { token, login, logout, userId, ready } = useAuth();
+    const { token, login, logout, userId, ready, email } = useAuth();
     const isAuthenticated = !!token;
     const routes = useRoutes(isAuthenticated);
+
+    console.log('app-email', email)
 
     if (!ready) {
         return <Loader />
@@ -18,7 +20,7 @@ function App() {
 
     return (
         <AuthContext.Provider value={{
-            token, login, logout, userId, isAuthenticated
+            token, login, logout, userId, isAuthenticated, email
         }}>
             <Router>
                 {isAuthenticated && <Header />}
