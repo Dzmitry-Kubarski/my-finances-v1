@@ -89,10 +89,7 @@ router.post(
         { expiresIn: '1h' }
       )
 
-      // console.log(user.username); 
-      // тут работает
-
-      res.json({ token, userId: user.id })
+      res.json({ token, userId: user.id, email: user.email })
 
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })

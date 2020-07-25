@@ -8,6 +8,8 @@ export const Header = () => {
     const history = useHistory()
     const auth = useContext(AuthContext)
 
+    console.log('header', auth);
+
     const logoutHandler = event => {
         event.preventDefault()
         auth.logout()
@@ -51,7 +53,7 @@ export const Header = () => {
                 </div>
             </div> */}
 
-            <div></div>
+            <div className='header__email'>{auth.email}</div>
 
             <div className="header-actions">
                 <div className="action-item-wrap">
