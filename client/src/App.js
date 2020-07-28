@@ -12,8 +12,6 @@ function App() {
     const isAuthenticated = !!token;
     const routes = useRoutes(isAuthenticated);
 
-    console.log('app-email', email)
-
     if (!ready) {
         return <Loader />
     }
@@ -25,8 +23,10 @@ function App() {
             <Router>
                 {isAuthenticated && <Header />}
 
-                <div className="container">
-                    {routes}
+                <div className='app'>
+                    <div className="container">
+                        {routes}
+                    </div>
                 </div>
 
                 <Footer />

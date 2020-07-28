@@ -4,12 +4,15 @@ import { AuthContext } from '../context/AuthContext'
 import { Loader } from '../components/Loader'
 import { LinksList } from '../components/LinksList'
 import TransactionsList from './../components/TransactionsList';
+import SourcesList from './../components/SourcesList';
 
 export const HomePage = () => {
   const [links, setLinks] = useState([])
   const { loading, request } = useHttp()
   const { token } = useContext(AuthContext)
 
+  const [sources, setSources] = useState([])
+  const [transactions, setTransactions] = useState([])
 
 
   // const fetchLinks = useCallback(async () => {
@@ -29,39 +32,53 @@ export const HomePage = () => {
   //   return <Loader />
   // }
 
-  const [items, setItems] = useState([])
 
-  const fetchLinks = useCallback(async () => {
-    try {
-      const fetched = await request('/api/link', 'GET', null, {
-        Authorization: `Bearer ${token}`
-      })
-      setItems(fetched)
-
-    } catch (e) { }
-  }, [token, request])
-
+  // получаем транзакции
   useEffect(() => {
+
+    const fetchLinks = async () => {
+      try {
+        const fetched = await request('/api/link', 'GET', null, {
+          Authorization: `Bearer ${token}`
+        })
+        setTransactions(fetched)
+      } catch (e) { }
+    }
+
     fetchLinks()
-  }, [fetchLinks])
 
-  if (loading) {
-    return <Loader />
-  }
+  }, [])
 
 
-  // const items = [
-  //   { price: '-1200', title: 'купил хлеб', expenses: true, category: 'еда', sources: 'наличные', date: '12.07.2020  16:45' },
-  //   { price: -'2400', title: 'тренировка', expenses: true, category: 'спорт', sources: 'заначка', date: '05.03.2020  18:25' },
-  //   { price: -'3800', title: 'хлеб, молоко, кефир, печеньки, яйца, мука, курица, хлебцы', expenses: true, category: 'транспорт', sources: 'наличные', date: '18.01.2020  11:30' },
-  //   { price: '+4500', title: 'зарплата', expenses: false, category: 'еда', sources: 'карта МТБанк', date: '19.02.2020  14:15' },
-  // ]
+  // получаем счета
+  // const fetchSources = useCallback(async () => {
+  //   try {
+  //     const fetched = await request('/api/sources', 'GET', null, {
+  //       Authorization: `Bearer ${token}`
+  //     })
+  //     // setSources(fetched)
+  //     if (!cleanupFunction) setSources(fetched)
+
+  //   } catch (e) { }
+  // }, [token, request])
+
+  // useEffect(() => {
+
+  //   fetchSources()
+  //   fetchLinks()
+
+  //   
+  // }, [])
+
+
+
 
   return (
-    <>
+    <div className='homePage'>
       {/* {!loading && <LinksList links={links} />} */}
 
-      <TransactionsList items={items} />
-    </>
+      <TransactionsList transactions={transactions} />
+      <SourcesList sources={[]} />
+    </div>
   )
 }

@@ -1,13 +1,18 @@
 import React from 'react';
 import Transaction from './Transaction';
 
-const TransactionsList = ({ items }) => {
+const TransactionsList = ({ transactions }) => {
     return (
         <div className='transaction-wrap'>
-            <h2 className='transaction__title'>Последние транзакции</h2>
+            <div className='transaction__title-wrap'>
+                <h2 className='transaction__title'>Последние транзакции</h2>
+                <button className='sources__btn-add' type='button'>+</button>
+            </div>
 
-            <ul className='table-body same-color-rows'>
-                <Transaction items={items} />
+            {/* <h2 className='transaction__title'>Последние транзакции</h2> */}
+
+            <ul className='transaction__list'>
+                <Transaction transactions={transactions} />
             </ul>
         </div>
     );

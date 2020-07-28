@@ -71,7 +71,7 @@ router.post('/add', auth, async (req, res) => {
 
 
 
-// новая версия
+// моя версия
 // =============
 
 router.get('/', auth, async (req, res) => {
@@ -92,13 +92,19 @@ router.get('/', auth, async (req, res) => {
 
 
 
-router.get('/:id', auth, async (req, res) => {
-  try {
-    const link = await Link.findById(req.params.id)
-    res.json(link)
-  } catch (e) {
-    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
-  }
-})
+
+
+
+
+
+// оригинальная версия
+// router.get('/:id', auth, async (req, res) => {
+//   try {
+//     const link = await Link.findById(req.params.id)
+//     res.json(link)
+//   } catch (e) {
+//     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+//   }
+// })
 
 module.exports = router

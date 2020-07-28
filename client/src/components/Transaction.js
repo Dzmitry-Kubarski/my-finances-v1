@@ -3,9 +3,9 @@ import arrowDownSvg from '../images/arrow-down.png';
 import arrowUpSvg from '../images/arrow-up.png';
 import cardSvg from '../images/card.svg';
 
-const Transaction = ({ items }) => {
+const Transaction = ({ transactions }) => {
 
-    const transactionsJsx = items.map(({ sum, comment, operation, category, source, date, _id }) => (
+    const transactionsJsx = transactions.map(({ sum, comment, operation, category, source, date, _id }) => (
         <li key={_id} className='transaction-item'>
             <div>
                 {operation === 'расходы' ?
