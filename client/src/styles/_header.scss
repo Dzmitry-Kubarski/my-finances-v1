@@ -8,9 +8,9 @@
     1. HEADER
 -----------------*/
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
   width: 100%;
   height: 80px;
   background-color: $color-secondary;
@@ -18,7 +18,7 @@
   // top: 0;
   // left: 0;
   // z-index: 10000;
-  padding: 0 25px;
+  // padding: 0 25px;
 
   .header-actions {
     display: flex;
@@ -199,6 +199,13 @@
 .header__email {
   color: $white;
   font-family: $font-secondary;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
 }
 
 /*--------------------

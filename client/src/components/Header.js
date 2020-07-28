@@ -8,8 +8,6 @@ export const Header = () => {
     const history = useHistory()
     const auth = useContext(AuthContext)
 
-    console.log('header', auth);
-
     const logoutHandler = event => {
         event.preventDefault()
         auth.logout()
@@ -32,16 +30,18 @@ export const Header = () => {
 
 
         <header className="header">
-            <div className="header-actions">
-                <div className="header-brand">
-                    <div className="logo">
-                        <img src={logoSvg} alt="logo" />
+            <div className='container'>
+                <div className='header__inner'>
+                    <div className="header-actions">
+                        <div className="header-brand">
+                            <div className="logo">
+                                <img src={logoSvg} alt="logo" />
+                            </div>
+                            <h1 className="header-brand-text">Finance</h1>
+                        </div>
                     </div>
-                    <h1 className="header-brand-text">Finance</h1>
-                </div>
-            </div>
 
-            {/* <div className="header-actions search-bar">
+                    {/* <div className="header-actions search-bar">
                 <div className="interactive-input dark">
                     <input type="text" id="search-main" name="search_main" placeholder="Поиск транзакций" />
                     <div className="interactive-input-icon-wrap">
@@ -53,11 +53,13 @@ export const Header = () => {
                 </div>
             </div> */}
 
-            <div className='header__email'>{auth.email}</div>
+                    <div className='header__email'>{auth.email}</div>
 
-            <div className="header-actions">
-                <div className="action-item-wrap">
-                    <a className='logout' href="/" onClick={logoutHandler}>Выйти</a>
+                    <div className="header-actions">
+                        <div className="action-item-wrap">
+                            <a className='logout' href="/" onClick={logoutHandler}>Выйти</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>

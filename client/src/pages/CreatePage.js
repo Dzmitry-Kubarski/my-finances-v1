@@ -30,9 +30,8 @@ export const CreatePage = () => {
         comment,
     }
 
-    const history = useHistory()
     const auth = useContext(AuthContext)
-    const { request } = useHttp()
+    const { request, error } = useHttp()
     // const [link, setLink] = useState('')
 
     // useEffect(() => {
@@ -52,10 +51,13 @@ export const CreatePage = () => {
 
 
 
-    const pressHandler = () => {
+    const history = useHistory()
+
+    const createTransactionHandler = () => {
         const data = request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
+
         history.push(`/home/`)
     }
 
@@ -201,7 +203,7 @@ export const CreatePage = () => {
                     <h4 className='new-transaction__title'>Сумма:</h4>
                     <div className='new-transaction__col'>
                         <input onChange={sumChangeHadler} type='text' placeholder='сумма' value={sum} />
-                        <button onClick={pressHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
+                        <button onClick={createTransactionHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
                     </div>
 
                 </div>
