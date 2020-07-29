@@ -75,6 +75,7 @@ router.post('/add', auth, async (req, res) => {
 // =============
 
 router.get('/', auth, async (req, res) => {
+
   try {
     const transactions = await Transaction.find({ owner: req.user.userId })
     res.json(transactions)
@@ -83,11 +84,6 @@ router.get('/', auth, async (req, res) => {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
   }
 })
-
-
-
-
-
 
 
 

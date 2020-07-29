@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
-import logoSvg from '../images/logo.svg';
+import logoSvg from '../../images/logo.svg';
 
 export const Header = () => {
     const history = useHistory()

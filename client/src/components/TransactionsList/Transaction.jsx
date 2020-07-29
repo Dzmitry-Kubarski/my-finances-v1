@@ -1,7 +1,7 @@
 import React from 'react';
-import arrowDownSvg from '../images/arrow-down.png';
-import arrowUpSvg from '../images/arrow-up.png';
-import cardSvg from '../images/card.svg';
+import arrowDownSvg from '../../images/arrow-down.png';
+import arrowUpSvg from '../../images/arrow-up.png';
+import cardSvg from '../../images/card.svg';
 
 const Transaction = ({ transactions }) => {
 
@@ -31,6 +31,8 @@ const Transaction = ({ transactions }) => {
             </div>
         </li>
     ))
+
+
 
     return (
         <>

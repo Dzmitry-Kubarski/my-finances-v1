@@ -1,6 +1,6 @@
 import React from 'react';
-import sourcesSvg from '../images/money2.svg';
-import ellipsisHorizontalSvg from '../images/ellipsis-horizontal.svg'
+import sourcesSvg from '../../images/money2.svg';
+import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg'
 
 const SourceItem = ({ sources }) => {
 
