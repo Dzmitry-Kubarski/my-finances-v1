@@ -1,13 +1,12 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
-import {useHttp} from '../hooks/http.hook'
-import {AuthContext} from '../context/AuthContext'
-import {Loader} from '../components/Loader'
-import {LinkCard} from '../components/LinkCard'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useHttp } from '../hooks/http.hook'
+import { AuthContext } from '../context/AuthContext'
+import { LinkCard } from '../components/LinkCard'
 
 export const DetailPage = () => {
-  const {token} = useContext(AuthContext)
-  const {request, loading} = useHttp()
+  const { token } = useContext(AuthContext)
+  const { request, loading } = useHttp()
   const [link, setLink] = useState(null)
   const linkId = useParams().id
 
@@ -17,20 +16,20 @@ export const DetailPage = () => {
         Authorization: `Bearer ${token}`
       })
       setLink(fetched)
-    } catch (e) {}
+    } catch (e) { }
   }, [token, linkId, request])
 
   useEffect(() => {
     getLink()
   }, [getLink])
 
-  if (loading) {
-    return <Loader />
-  }
+  // if (loading) {
+  //   return <Loader />
+  // }
 
   return (
     <>
-      { !loading && link && <LinkCard link={link} /> }
+      {!loading && link && <LinkCard link={link} />}
     </>
   )
 }

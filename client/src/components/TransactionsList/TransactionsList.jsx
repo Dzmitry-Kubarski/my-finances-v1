@@ -1,7 +1,15 @@
 import React from 'react';
 import Transaction from './Transaction';
+import useTransactions from './useTransactions'
 
-const TransactionsList = ({ transactions }) => {
+const TransactionsList = () => {
+
+    const { data, isLoading, error } = useTransactions()
+
+    if (isLoading) return 'Loading...'
+
+    if (error) return 'Ошибка при получении транзакций: ' + error.message
+
     return (
         <div className='transaction-wrap'>
             <div className='transaction__title-wrap'>
@@ -9,10 +17,8 @@ const TransactionsList = ({ transactions }) => {
                 <button className='sources__btn-add' type='button'>+</button>
             </div>
 
-            {/* <h2 className='transaction__title'>Последние транзакции</h2> */}
-
             <ul className='transaction__list'>
-                <Transaction transactions={transactions} />
+                <Transaction transactions={data} />
             </ul>
         </div>
     );
