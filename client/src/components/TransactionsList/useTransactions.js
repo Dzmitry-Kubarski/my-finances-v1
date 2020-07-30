@@ -6,10 +6,18 @@ import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 
 export default function useTransactions() {
-    const { token } = React.useContext(AuthContext)
+    const { token, logout } = React.useContext(AuthContext)
 
     return useQuery('transactions', () =>
-        axios.get('/api/link', { headers: { Authorization: `Bearer ${token}` } }).then((res) => res.data)
+        axios.get('/api/link', { headers: { Authorization: `Bearer ${token}` } })
+            .then((res) => res.data)
+
+            .catch(e => {
+
+                if (e.response.status === 401) logout();
+
+                throw new Error(e)
+            })
     )
 }
 
