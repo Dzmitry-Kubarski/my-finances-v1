@@ -5,6 +5,9 @@ import { CreatePage } from './pages/CreatePage'
 import { DetailPage } from './pages/DetailPage'
 import { AuthPage } from './pages/AuthPage'
 import CreateSource from './pages/CreateSource';
+import CategoriesPage from './pages/CategoriesPage';
+import CreateCategories from './pages/CreateCategories';
+import TestCategoriesPage from './pages/TestCategoriesPage';
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -20,6 +23,18 @@ export const useRoutes = isAuthenticated => {
 
                 <Route path="/create-source">
                     <CreateSource />
+                </Route>
+
+                <Route path="/create-category">
+                    <CreateCategories />
+                </Route>
+
+                <Route path="/test">
+                    <TestCategoriesPage />
+                </Route>
+
+                <Route path="/categories">
+                    <CategoriesPage />
                 </Route>
 
                 <Route path="/detail/:id">

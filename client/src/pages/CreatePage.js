@@ -3,22 +3,38 @@ import { useHttp } from '../hooks/http.hook';
 import { AuthContext } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
-import ellipsisHorizontalSvg from '../images/ellipsis-horizontal.svg'
-import appsSvg from '../images/apps.svg'
-import plusSvg from '../images/plus.svg'
 import chevronDownSvg from '../images/chevron-down.svg'
 import penSvg from '../images/pen.svg'
+import useCategories from '../components/Categories/useCategories';
+import useSources from './../components/SourcesList/useSources';
+
+
+//date picker
+import DatePicker, { registerLocale } from "react-datepicker";
+import ru from "date-fns/locale/ru"; // the locale you want
+registerLocale("ru", ru); // register it with the name you want
+
 
 export const CreatePage = () => {
     const [popupType, setPopupType] = useState(false);
     const [popupSources, setPopupSources] = useState(false);
     const [popupCategory, setPopupCategory] = useState(false);
+    const [editDateModal, setEditDateModal] = useState(false);
 
     const [operation, setOperation] = useState('');
     const [source, setSource] = useState('');
     const [sum, setSum] = useState('');
     const [category, setCategory] = useState('');
-    const [date, setDate] = useState('23.07.2020');
+    const [date, setDate] = useState(
+        // new Date().toLocaleString('ru', {
+        //     year: 'numeric',
+        //     month: 'long',
+        //     day: 'numeric',
+        //     // hour: 'numeric',
+        //     // minute: 'numeric'
+        // })
+        new Date().toLocaleDateString()
+    );
     const [comment, setComment] = useState(' ');
 
     const newTransaction = {
@@ -30,36 +46,32 @@ export const CreatePage = () => {
         comment,
     }
 
+
+    //data picker
+    // const [startDate, setStartDate] = useState(new Date());
+
     const auth = useContext(AuthContext)
     const { request, error } = useHttp()
-    // const [link, setLink] = useState('')
-
-    // useEffect(() => {
-    //   window.M.updateTextFields()
-    // }, [])
-
-    // const pressHandler = async event => {
-    //     if (event.key === 'Enter') {
-    //         try {
-    //             const data = await request('/api/link/generate', 'POST', { from: link }, {
-    //                 Authorization: `Bearer ${auth.token}`
-    //             })
-    //             history.push(`/detail/${data.link._id}`)
-    //         } catch (e) { }
-    //     }
-    // }
-
-
-
     const history = useHistory()
 
     const createTransactionHandler = () => {
         const data = request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
-
-        history.push(`/home/`)
     }
+
+
+    //hooks
+    const { data: categories, isLoading, error: errorCategories } = useCategories()
+    const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources()
+
+
+    if (isLoading) return 'Loading...'
+    if (sourcesLoading) return 'Loading...'
+
+    if (errorCategories) return 'Ошибка при получении счетов: ' + errorCategories.message
+    if (errorSources) return 'Ошибка при получении счетов: ' + errorSources.message
+
 
 
     const tooglePopupType = () => {
@@ -79,14 +91,12 @@ export const CreatePage = () => {
         setOperation(name)
     }
 
-    const sources = ['наличные', 'заначка', 'карта МТБанка', 'карта Халва', 'яндекс деньги'];
     const selectSources = (name) => {
         setSource(name)
     }
 
-    const categorys = ['спорт', 'еда', 'кредит', 'одежда', 'авто', 'интернет', 'телефон'];
-    const selectCategory = (name) => {
-        setCategory(name)
+    const selectCategory = (title) => {
+        setCategory(title)
     }
 
     const sumChangeHadler = (event) => {
@@ -97,24 +107,17 @@ export const CreatePage = () => {
         setComment(event.target.value)
     }
 
+    const toogleEditDateModal = () => {
+        setEditDateModal(!editDateModal)
+    }
+
+
+    const changeDateHandler = event => {
+        setDate(event.target.value);
+    }
+
+
     return (
-        // <div className="row">
-        //     <div className="col s8 offset-s2" style={{ paddingTop: '2rem' }}>
-        //         <div className="input-field">
-        //             <input
-        //                 placeholder="Вставьте ссылку"
-        //                 id="link"
-        //                 type="text"
-        //                 value={link}
-        //                 onChange={e => setLink(e.target.value)}
-        //                 onKeyPress={pressHandler}
-        //             />
-        //             <label htmlFor="link">Введите ссылку</label>
-        //         </div>
-        //     </div>            
-        // </div>
-
-
         <div className='createPage'>
             <h2 className='createPage__title'>Новая транзакция</h2>
 
@@ -154,9 +157,9 @@ export const CreatePage = () => {
 
                     {popupSources && <ul className='new-transaction__popup-list'>
 
-                        {sources.map((name, index) => (
-                            <li key={`${name}_${index}`} className='new-transaction__popup-item'>
-                                <button onClick={() => { selectSources(name) }} className='new-transaction__popup-btn'>{name}</button>
+                        {sources.map(({ title }, index) => (
+                            <li key={`${title}_${index}`} className='new-transaction__popup-item'>
+                                <button onClick={() => { selectSources(title) }} className='new-transaction__popup-btn'>{title}</button>
                             </li>
                         ))}
 
@@ -175,29 +178,44 @@ export const CreatePage = () => {
 
                     {popupCategory && <ul className='new-transaction__popup-list'>
 
-                        {categorys.map((name, index) => (
-                            <li key={`${name}_${index}`} className='new-transaction__popup-item'>
-                                <button onClick={() => { selectCategory(name) }} className='new-transaction__popup-btn'>{name}</button>
+                        {categories.map((item, index) => (
+                            <li key={`${item.title}_${index}`} className='new-transaction__popup-item'>
+                                <button onClick={() => { selectCategory(item.title) }} className='new-transaction__popup-btn'>{item.title}</button>
                             </li>
                         ))}
-
                     </ul>}
                 </div>
+
 
                 <div className='new-transaction__row'>
                     <h4 className='new-transaction__title'>Дата:</h4>
                     <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>12.07.2020 13:45</span>
-                        <button className='new-transaction__btn'>
-                            <img className='new-transaction__icon' src={penSvg} alt='' />
-                        </button>
+
+                        {!editDateModal
+                            ? <span className='new-transaction__value'>{date} </span>
+                            : <input type='text' placeholder={date} value={date} onChange={changeDateHandler} />
+                        }
+
+                        {!editDateModal
+                            ?
+                            <button onClick={toogleEditDateModal} className='new-transaction__btn'>
+                                <img className='new-transaction__icon' src={penSvg} alt='' />
+                            </button>
+                            :
+                            <button onClick={toogleEditDateModal} className='new-transaction__btn'>
+                                {/* <img className='new-transaction__icon' src={penSvg} alt='' /> */}
+                                ok
+                            </button>
+                        }
                     </div>
                 </div>
+
 
                 <div className='new-transaction__row'>
                     <h4 className='new-transaction__title'>Комментарий</h4>
                     <textarea onChange={commentChangeHadler} placeholder='Описание' value={comment} />
                 </div>
+
 
                 <div className='new-transaction__row'>
                     <h4 className='new-transaction__title'>Сумма:</h4>
@@ -205,10 +223,8 @@ export const CreatePage = () => {
                         <input onChange={sumChangeHadler} type='text' placeholder='сумма' value={sum} />
                         <button onClick={createTransactionHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
                     </div>
-
                 </div>
             </div>
-
         </div>
     )
 }

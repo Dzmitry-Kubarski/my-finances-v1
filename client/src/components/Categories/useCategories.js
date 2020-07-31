@@ -1,19 +1,20 @@
-
 import React from 'react';
-
 import { useQuery } from 'react-query'
+import { queryCache } from 'react-query'
+
 import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 
-export default function useSources() {
+export default function useCategories() {
     const { token } = React.useContext(AuthContext)
 
-    return useQuery('sources', () =>
-        axios.get('/api/sources', { headers: { Authorization: `Bearer ${token}` } }).then((res) => res.data)
+    return useQuery('categories', () =>
+        axios.get('/api/categories', { headers: { Authorization: `Bearer ${token}` } }).then((res) => res.data)
 
             .catch(e => {
                 throw new Error(e)
             })
     )
+
 }
 

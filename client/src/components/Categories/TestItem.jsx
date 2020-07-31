@@ -1,16 +1,16 @@
 import React from 'react';
 import sourcesSvg from '../../images/money2.svg';
 import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg'
+import tagSvg from '../../images/tag.svg';
 
-const SourceItem = ({ sources }) => {
 
-    const sourcesJsx = sources && sources.map(({ title, total, _id }) => (
+const TestItem = ({ categories }) => {
+
+    const categoriesJsx = categories.map(({ title, _id }) => (
         <li key={_id} className='sources-item'>
-            <img className='sources-item__icon' src={sourcesSvg} alt="" />
+            <img className='sources-item__icon' src={tagSvg} alt="" />
 
             <h4 className='sources-item__title'>{title}</h4>
-
-            <div className='sources-item__total'>{total} руб</div>
 
             <button className='new-transaction__btn'>
                 <img className='new-transaction__icon' src={ellipsisHorizontalSvg} alt='' />
@@ -18,7 +18,7 @@ const SourceItem = ({ sources }) => {
         </li>
     ))
 
-    if (!sources) {
+    if (categories.length === 0) {
         return (
             <p>ничего нет</p>
         )
@@ -26,9 +26,10 @@ const SourceItem = ({ sources }) => {
 
     return (
         <>
-            {sourcesJsx}
+            {categoriesJsx}
+
         </>
     );
 };
 
-export default SourceItem;
+export default TestItem;
