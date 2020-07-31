@@ -8,8 +8,8 @@ const Footer = () => {
                 <div className='footer__inner'>
                     <div className='footer__btns'>
                         <NavLink className='footer__btn' to="/home">H</NavLink>
-                        <span className='footer__btn'>M</span>
-                        <span className='footer__btn'>A</span>
+                        <NavLink className='footer__btn' to="/categories">К</NavLink>
+                        {/* <NavLink className='footer__btn' to="/test">тест</NavLink> */}
                     </div>
 
                     <NavLink className='footer__create-btn' to="/create">+</NavLink>

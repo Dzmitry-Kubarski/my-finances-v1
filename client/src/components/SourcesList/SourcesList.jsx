@@ -9,7 +9,7 @@ const SourcesList = () => {
 
     if (isLoading) return 'Loading...'
 
-    if (error) return 'Ошибка при получении транзакций: ' + error.message
+    if (error) return 'Ошибка при получении счетов: ' + error.message
 
     return (
         <div className='sources'>

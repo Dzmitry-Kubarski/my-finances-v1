@@ -6,7 +6,7 @@ const schema = new Schema({
   password: { type: String, required: true },
   transactions: [{ type: Types.ObjectId, ref: 'transaction' }],
   sources: [{ type: Types.ObjectId, ref: 'source' }],
-  categorys: [{ type: Types.ObjectId, ref: 'category' }],
+  categories: [{ type: Types.ObjectId, ref: 'category' }],
 })
 
 module.exports = model('User', schema)
