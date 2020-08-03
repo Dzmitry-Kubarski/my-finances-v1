@@ -2,26 +2,38 @@ import React from 'react';
 import Transaction from '../components/TransactionsList/Transaction';
 import useAllTransactions from './useAllTransactions'
 import { Filter } from './../components/Flter/Flter';
-import useTransactionsCategory from './useTransactionsCategory';
-import { useQuery } from 'react-query'
+import { AuthContext } from '../../src/context/AuthContext'
+import axios from 'axios'
+
 
 const AllTransactionsPage = () => {
-    const [isOpenFilterList, setIsOpenFilterList] = React.useState(true)
-
-    const [params, setParams] = React.useState({})
-
-    console.log('AllTransactionsPage', params)
-
+    const [isOpenFilterList, setIsOpenFilterList] = React.useState(false)
+    const [filtres, setFiltres] = React.useState([])
     const { data, isLoading, error } = useAllTransactions()
-    const { data: filtres, isLoading: isLoadingFiltres, error: errorFiltres } = useTransactionsCategory(params)
+    const { token, logout } = React.useContext(AuthContext);
 
+    const fetchLinks = async (params) => {
+        try {
+
+            const entries = Object.entries(params).filter(([key, value]) => value !== '')
+            const newParams = Object.fromEntries(entries)
+
+            const paramsUrl = Object.keys(newParams).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(newParams[key])}`).join('&')
+
+            const response = await axios.get('/api/link/category/?' + paramsUrl, { headers: { Authorization: `Bearer ${token}` } })
+
+            const data = await response.data
+
+            setFiltres(data)
+
+        } catch (e) {
+
+            throw new Error(e)
+        }
+    }
 
     if (isLoading) return 'Loading...'
-    if (isLoadingFiltres) return 'Loading Filtres...'
-
     if (error) return 'Ошибка при получении всех транзакций: ' + error.message
-    if (errorFiltres) return 'Ошибка при фильтрации: ' + error.message
-
 
     return (
         <div className='allTransactionsPage'>
@@ -53,7 +65,7 @@ const AllTransactionsPage = () => {
                     <h2 className="transaction__title">Фильтры</h2>
                 </div>
 
-                <Filter setIsOpenFilterList={setIsOpenFilterList} setParams={setParams} />
+                <Filter setIsOpenFilterList={setIsOpenFilterList} fetchLinks={fetchLinks} />
             </div>
 
         </div>

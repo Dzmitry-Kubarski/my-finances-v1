@@ -27,7 +27,7 @@ router.post('/add', auth, async (req, res) => {
 router.get('/', auth, async (req, res) => {
 
   try {
-    const transactions = await Transaction.find({ owner: req.user.userId }).limit(3).lean()
+    const transactions = await Transaction.find({ owner: req.user.userId }).limit(5).lean()
     res.json(transactions)
 
   } catch (e) {
@@ -51,11 +51,10 @@ router.get('/all/', auth, async (req, res) => {
 })
 
 
-// все транзакции по какой-либо категории
+// транзакции, которыми управляет фильтр
 router.get('/category/', auth, async (req, res) => {
 
   try {
-    console.log('страница отфильтрованного', req.query)
     const queryObj = { ...req.query }
 
     const transactionsCategory = await Transaction.find(queryObj).limit(50).lean()

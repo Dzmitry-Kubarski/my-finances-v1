@@ -325,6 +325,7 @@
     padding: 20px;
     margin: 0 auto;
     margin-bottom: 15px;
+    
 }
 
 .new-transaction__row {
@@ -473,6 +474,16 @@
 
         .new-transaction__col {
             width: 100%;
+        }  
+        
+        &.filter-btns {
+            flex-direction: row;
+        }
+
+        .new-transaction__submit {
+            &:first-child {
+                margin-right: 15px;
+            }
         }
     }
 

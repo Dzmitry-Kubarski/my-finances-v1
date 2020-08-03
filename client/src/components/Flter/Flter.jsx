@@ -18,7 +18,7 @@ import ru from "date-fns/locale/ru"; // the locale you want
 registerLocale("ru", ru); // register it with the name you want
 
 
-export const Filter = ({ setIsOpenFilterList, setParams }) => {
+export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
     const [popupType, setPopupType] = useState(false);
     const [popupSources, setPopupSources] = useState(false);
     const [popupCategory, setPopupCategory] = useState(false);
@@ -26,31 +26,34 @@ export const Filter = ({ setIsOpenFilterList, setParams }) => {
 
     const [operation, setOperation] = useState('');
     const [source, setSource] = useState('');
-    const [sum, setSum] = useState('');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState('');
-    const [comment, setComment] = useState(' ');
 
     const query = {
-        category: 'Спорт'
+        operation,
+        source,
+        category,
     }
 
-    // const auth = useContext(AuthContext)
-    // const { request, error } = useHttp()
-    const { token, logout } = React.useContext(AuthContext);
-
+    const reset = {}
 
     //hooks
     const { data: categories, isLoading, error: errorCategories } = useCategories()
     const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources()
 
-
-
-    const testHelperFilter = () => {
-        setParams(query)
+    const fetchFilterListHandler = () => {
+        setIsOpenFilterList(true)
+        fetchLinks(query)
     }
 
-
+    const resetFilterListHandler = () => {
+        setIsOpenFilterList(true)
+        fetchLinks(reset)
+        setOperation('')
+        setSource('')
+        setCategory('')
+        setDate('')
+    }
 
     const tooglePopupType = () => {
         setPopupType(!popupType)
@@ -182,8 +185,9 @@ export const Filter = ({ setIsOpenFilterList, setParams }) => {
             </div>
 
 
-            <div className='new-transaction__row'>
-                <button onClick={testHelperFilter} className='new-transaction__submit' type='button'>Показать</button>
+            <div className='new-transaction__row  filter-btns'>
+                <button onClick={resetFilterListHandler} className='new-transaction__submit' type='button'>Очистить</button>
+                <button onClick={fetchFilterListHandler} className='new-transaction__submit' type='button'>Показать</button>
             </div>
         </div>
     )
