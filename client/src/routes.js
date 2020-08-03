@@ -7,7 +7,8 @@ import { AuthPage } from './pages/AuthPage'
 import CreateSource from './pages/CreateSource';
 import CategoriesPage from './pages/CategoriesPage';
 import CreateCategories from './pages/CreateCategories';
-import TestCategoriesPage from './pages/TestCategoriesPage';
+import StatisticsPage from './pages/StatisticsPage';
+import AllTransactionsPage from './pages/AllTransactionsPage';
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -29,8 +30,12 @@ export const useRoutes = isAuthenticated => {
                     <CreateCategories />
                 </Route>
 
-                <Route path="/test">
-                    <TestCategoriesPage />
+                <Route path="/statistics">
+                    <StatisticsPage />
+                </Route>
+
+                <Route path="/transactions">
+                    <AllTransactionsPage />
                 </Route>
 
                 <Route path="/categories">

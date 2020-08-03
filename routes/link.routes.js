@@ -1,40 +1,11 @@
 const { Router } = require('express')
-const config = require('config')
-const shortid = require('shortid')
 const Link = require('../models/Link')
 const Transaction = require('../models/Transaction')
 const auth = require('../middleware/auth.middleware')
 const router = Router()
 
-// router.post('/generate', auth, async (req, res) => {
-//   try {
-//     const baseUrl = config.get('baseUrl')
-//     const {from} = req.body
 
-//     const code = shortid.generate()
-
-//     const existing = await Link.findOne({ from })
-
-//     if (existing) {
-//       return res.json({ link: existing })
-//     }
-
-//     const to = baseUrl + '/t/' + code
-
-// const link = new Link({
-//   code, to, from, owner: req.user.userId
-// })
-
-//     await link.save()
-
-//     res.status(201).json({ link })
-//   } catch (e) {
-//     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
-//   }
-// })
-
-
-
+// новая транзакция
 router.post('/add', auth, async (req, res) => {
   try {
     const { operation, source, sum, category, date, comment } = req.body
@@ -48,46 +19,52 @@ router.post('/add', auth, async (req, res) => {
     res.status(201).json({ transaction })
 
   } catch (e) {
-    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    res.status(500).json({ message: 'Что-то пошло не так...' })
   }
 })
 
-
-
-// ==================
-// оригинал
-// =================
-
-// router.get('/', auth, async (req, res) => {
-//   try {
-//     const links = await Link.find({ owner: req.user.userId })
-//     res.json(links)
-
-//   } catch (e) {
-//     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
-//   }
-// })
-
-
-
-
-// моя версия
-// =============
-
+// все транзакции (страница HOME)
 router.get('/', auth, async (req, res) => {
 
   try {
-    const transactions = await Transaction.find({ owner: req.user.userId })
+    const transactions = await Transaction.find({ owner: req.user.userId }).limit(3).lean()
     res.json(transactions)
 
   } catch (e) {
-    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    res.status(500).json({ message: 'Что-то пошло не так...' })
   }
 })
 
 
+// все транзакции (страница AllTransaction)
+router.get('/all/', auth, async (req, res) => {
+
+  try {
+    const queryObj = { ...req.query }
+
+    const transactionsFiltres = await Transaction.find(queryObj).limit(50).lean()
+    res.json(transactionsFiltres)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
 
 
+// все транзакции по какой-либо категории
+router.get('/category/', auth, async (req, res) => {
+
+  try {
+    console.log('страница отфильтрованного', req.query)
+    const queryObj = { ...req.query }
+
+    const transactionsCategory = await Transaction.find(queryObj).limit(50).lean()
+    res.json(transactionsCategory)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
 
 
 

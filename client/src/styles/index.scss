@@ -18,6 +18,9 @@
 @import '../styles/header';
 
 
+@import '../styles/AllTransactionsPage';
+
+
 .container {
     width: 100%;
     max-width: 1220px;
@@ -33,8 +36,18 @@
 .transaction-wrap {
     width: 100%;
     max-width: 580px;
-
     margin-right: 100px;
+
+    .form-item {
+        padding: 20px;
+        width: 100%;
+
+        a {
+            width: 100%;
+            display: block;
+            height: 60px;
+        }
+    }  
 }
 
 .transaction__list {
@@ -43,10 +56,7 @@
     overflow: hidden;
     overflow-y: scroll;
     padding: 20px;
-    padding-top: 0;
-
-    // display: flex;
-    // flex-direction: column-reverse;
+    padding-top: 0;    
 }
 
 .transaction__title-wrap {
@@ -716,4 +726,16 @@ new-transaction__popup
 }
 
 
+/*-----------------------
+        StatisticsPage
+-----------------------*/
+.statisticsPage {
+    input {
+        margin-bottom: 15px;
+    }
 
+    button {
+        min-height: 55px;
+        cursor: pointer;
+    }
+}

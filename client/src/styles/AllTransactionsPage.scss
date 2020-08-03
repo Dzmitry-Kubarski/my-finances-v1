@@ -1,0 +1,21 @@
+.allTransactionsPage {
+    display: flex;
+    justify-content: space-between;
+
+    .transaction__list {
+        padding-left: 0;
+    }
+
+    .new-transaction {
+        margin: 0;
+    }
+}
+
+
+.all-transactions {
+    width: 48%;
+}
+
+.allTransactionsPage__filter-wrap {
+    width: 48%;
+}
