@@ -7,6 +7,7 @@ const schema = new Schema({
     category: { type: String, required: true },
     date: { type: String, required: true },
     comment: { type: String, required: true },
+    creationDate: { type: Date, default: Date.now },
     owner: { type: Types.ObjectId, ref: 'User' }
 })
 

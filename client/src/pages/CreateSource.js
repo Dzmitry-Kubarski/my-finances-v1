@@ -1,16 +1,13 @@
 import React from 'react';
 import { useHttp } from '../hooks/http.hook';
 import { AuthContext } from '../context/AuthContext';
-import { useHistory } from 'react-router-dom';
 
 import sourcesSvg from '../images/money2.svg';
 
 
 const CreateSource = () => {
     const auth = React.useContext(AuthContext);
-    const { loading, request, error, clearError } = useHttp();
-
-    const history = useHistory()
+    const { request, } = useHttp();
 
     const [form, setForm] = React.useState({
         title: '', total: ''
@@ -24,7 +21,6 @@ const CreateSource = () => {
         const data = request('/api/sources/add', 'POST', { ...form }, {
             Authorization: `Bearer ${auth.token}`
         })
-        history.push(`/home/`)
     }
 
     return (

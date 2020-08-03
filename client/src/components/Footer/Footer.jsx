@@ -9,7 +9,7 @@ const Footer = () => {
                     <div className='footer__btns'>
                         <NavLink className='footer__btn' to="/home">H</NavLink>
                         <NavLink className='footer__btn' to="/categories">К</NavLink>
-                        {/* <NavLink className='footer__btn' to="/test">тест</NavLink> */}
+                        <NavLink className='footer__btn' to="/statistics">Стат-ка</NavLink>
                     </div>
 
                     <NavLink className='footer__create-btn' to="/create">+</NavLink>
