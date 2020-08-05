@@ -1,29 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHttp } from '../hooks/http.hook';
 import { AuthContext } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
 import tagSvg from '../images/tag.svg';
+import chevronDownSvg from '../images/chevron-down.svg'
+
 
 
 const CreateCategories = () => {
     const auth = React.useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
 
-    const history = useHistory()
+    const [popupType, setPopupType] = useState(false);
+    const [operation, setOperation] = useState('');
+    const [title, setTitle] = useState('');
 
-    const [form, setForm] = React.useState({
-        title: ''
-    })
 
-    const changeHandler = event => {
-        setForm({ ...form, [event.target.name]: event.target.value });
+    const newCategory = {
+        title,
+        operation
     }
 
-    const addSourceHandler = () => {
-        const data = request('/api/categories/add', 'POST', { ...form }, {
+    console.log('CreateCategories', newCategory)
+
+    const changeHandler = event => {
+        setTitle(event.target.value);
+    }
+
+    const addOperationHandler = () => {
+        const data = request('/api/categories/add', 'POST', { ...newCategory }, {
             Authorization: `Bearer ${auth.token}`
         })
+    }
+
+
+    const operations = ['расходы', 'доходы'];
+
+    const tooglePopupType = () => {
+        setPopupType(!popupType)
+    }
+
+    const selectOperations = (name) => {
+        setOperation(name)
     }
 
     return (
@@ -38,7 +57,31 @@ const CreateCategories = () => {
                 <div className='new-transaction__row'>
                     <div className='new-transaction__col'>
                         <input onChange={changeHandler} type='text' placeholder='Название категории' name='title' />
-                        <button onClick={addSourceHandler} className='new-transaction__submit' type='button'>Добавить категорию</button>
+
+
+                        <div className='create-sources__row'>
+                            <h4 className='new-transaction__title'>Тип операции:</h4>
+
+                            <div className='create-sources__col'>
+                                <span className='new-transaction__value'>{operation}</span>
+
+                                <button onClick={tooglePopupType} className='new-transaction__btn'>
+                                    <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
+                                </button>
+                            </div>
+
+                            {popupType && <ul className='new-transaction__popup-list'>
+
+                                {operations.map((name, index) => (
+                                    <li key={`${name}_${index}`} className='new-transaction__popup-item'>
+                                        <button onClick={() => { selectOperations(name) }} className='new-transaction__popup-btn'>{name}</button>
+                                    </li>
+                                ))}
+
+                            </ul>}
+                        </div>
+
+                        <button onClick={addOperationHandler} className='new-transaction__submit' type='button'>Добавить категорию</button>
                     </div>
                 </div>
             </div>
