@@ -1,7 +1,13 @@
+//core
 import React from 'react';
+
+//hooks
 import { useHttp } from '../hooks/http.hook';
+
+//context
 import { AuthContext } from '../context/AuthContext';
 
+//images
 import sourcesSvg from '../images/money2.svg';
 
 

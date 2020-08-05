@@ -1,7 +1,13 @@
+//core
 import React, { useContext, useEffect, useState } from 'react';
+
+//hooks
 import { useHttp } from '../hooks/http.hook';
 import { useMessage } from '../hooks/message.hook';
+
+//context
 import { AuthContext } from '../context/AuthContext';
+
 
 const Form = ({ activeForm }) => {
     const auth = useContext(AuthContext);
@@ -18,10 +24,6 @@ const Form = ({ activeForm }) => {
         clearError();
     }, [error, message, clearError])
 
-    // useEffect(() => {
-
-    //     window.M.updateTextFields();
-    // }, [])
 
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -44,7 +46,6 @@ const Form = ({ activeForm }) => {
 
     return (
         <>
-
             {activeForm === 'loginForm' && (
                 <div className="landing-form">
                     <div className="form-box login-register-form-element" style={{ display: 'block' }}>
@@ -54,7 +55,6 @@ const Form = ({ activeForm }) => {
                             <div className="form-row">
                                 <div className="form-item">
                                     <div className="form-input">
-                                        {/* <label htmlFor="login-username">Email</label> */}
                                         <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
                                     </div>
                                 </div>
@@ -63,7 +63,6 @@ const Form = ({ activeForm }) => {
                             <div className="form-row">
                                 <div className="form-item">
                                     <div className="form-input">
-                                        {/* <label htmlFor="login-password">Password</label> */}
                                         <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
                                     </div>
                                 </div>
@@ -89,7 +88,6 @@ const Form = ({ activeForm }) => {
                             <div className="form-row">
                                 <div className="form-item">
                                     <div className="form-input">
-                                        {/* <label htmlFor="login-username">Email</label> */}
                                         <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
                                     </div>
                                 </div>
@@ -98,7 +96,6 @@ const Form = ({ activeForm }) => {
                             <div className="form-row">
                                 <div className="form-item">
                                     <div className="form-input">
-                                        {/* <label htmlFor="register-username">Email</label> */}
                                         <input type="text" id="register-username" name="username" placeholder='Ваше имя' onChange={changeHandler} />
                                     </div>
                                 </div>
@@ -107,7 +104,6 @@ const Form = ({ activeForm }) => {
                             <div className="form-row">
                                 <div className="form-item">
                                     <div className="form-input">
-                                        {/* <label htmlFor="login-password">Password</label> */}
                                         <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
                                     </div>
                                 </div>

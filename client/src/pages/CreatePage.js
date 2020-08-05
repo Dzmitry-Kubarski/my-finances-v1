@@ -1,21 +1,26 @@
+//core
 import React, { useContext, useState } from 'react';
-import { useHttp } from '../hooks/http.hook';
-import { AuthContext } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 
-import chevronDownSvg from '../images/chevron-down.svg'
-import penSvg from '../images/pen.svg'
+//hooks
+import { useHttp } from '../hooks/http.hook';
+
+//context
+import { AuthContext } from '../context/AuthContext';
+
+//components
 import useCategories from '../components/Categories/useCategories';
 import useSources from './../components/SourcesList/useSources';
 
-
-//date picker
-import DatePicker, { registerLocale } from "react-datepicker";
-import ru from "date-fns/locale/ru"; // the locale you want
-registerLocale("ru", ru); // register it with the name you want
+//images
+import chevronDownSvg from '../images/chevron-down.svg';
+import penSvg from '../images/pen.svg';
 
 
 export const CreatePage = () => {
+    const auth = useContext(AuthContext)
+    const { request, error } = useHttp()
+
     const [popupType, setPopupType] = useState(false);
     const [popupSources, setPopupSources] = useState(false);
     const [popupCategory, setPopupCategory] = useState(false);
@@ -25,17 +30,11 @@ export const CreatePage = () => {
     const [source, setSource] = useState('');
     const [sum, setSum] = useState('');
     const [category, setCategory] = useState('');
-    const [date, setDate] = useState(
-        // new Date().toLocaleString('ru', {
-        //     year: 'numeric',
-        //     month: 'long',
-        //     day: 'numeric',
-        //     // hour: 'numeric',
-        //     // minute: 'numeric'
-        // })
-        new Date().toLocaleDateString()
-    );
+    const [date, setDate] = useState(new Date().toLocaleDateString());
     const [comment, setComment] = useState(' ');
+
+    const { data: categories, isLoading, error: errorCategories } = useCategories();
+    const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources();
 
     const newTransaction = {
         operation,
@@ -46,33 +45,11 @@ export const CreatePage = () => {
         comment,
     }
 
-
-    //data picker
-    // const [startDate, setStartDate] = useState(new Date());
-
-    const auth = useContext(AuthContext)
-    const { request, error } = useHttp()
-    const history = useHistory()
-
     const createTransactionHandler = () => {
         const data = request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
     }
-
-
-    //hooks
-    const { data: categories, isLoading, error: errorCategories } = useCategories()
-    const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources()
-
-
-    if (isLoading) return 'Loading...'
-    if (sourcesLoading) return 'Loading...'
-
-    if (errorCategories) return 'Ошибка при получении счетов: ' + errorCategories.message
-    if (errorSources) return 'Ошибка при получении счетов: ' + errorSources.message
-
-
 
     const tooglePopupType = () => {
         setPopupType(!popupType)
@@ -114,10 +91,15 @@ export const CreatePage = () => {
         setEditDateModal(!editDateModal)
     }
 
-
     const changeDateHandler = event => {
         setDate(event.target.value);
     }
+
+    if (isLoading) return 'Loading...'
+    if (sourcesLoading) return 'Loading...'
+
+    if (errorCategories) return 'Ошибка при получении счетов: ' + errorCategories.message
+    if (errorSources) return 'Ошибка при получении счетов: ' + errorSources.message
 
 
     return (
@@ -206,7 +188,6 @@ export const CreatePage = () => {
                             </button>
                             :
                             <button onClick={toogleEditDateModal} className='new-transaction__btn'>
-                                {/* <img className='new-transaction__icon' src={penSvg} alt='' /> */}
                                 ok
                             </button>
                         }

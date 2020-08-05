@@ -1,6 +1,11 @@
+//core
 import React from 'react';
+
+//charts
 import ExampleChart from './../charts/ExampleChart';
 import CategoryStatistics from './../charts/CategoryStatistics';
+
+//hooks
 import useStatistics from './useStatistics';
 
 

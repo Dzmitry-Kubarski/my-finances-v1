@@ -1,16 +1,19 @@
+//core
 import React from 'react';
-import Transaction from './Transaction';
-import useTransactions from './useTransactions'
 import { NavLink } from 'react-router-dom';
 
-const TransactionsList = () => {
+//components
+import Transaction from './Transaction';
 
+//hooks
+import useTransactions from './useTransactions'
+
+
+const TransactionsList = () => {
     const { data, isLoading, error } = useTransactions()
 
     if (isLoading) return 'Loading...'
-
     if (error) return 'Ошибка при получении транзакций: ' + error.message
-
 
     return (
         <div className='transaction-wrap'>

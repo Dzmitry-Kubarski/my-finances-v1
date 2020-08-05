@@ -1,11 +1,12 @@
+//core
 import React from 'react';
-import sourcesSvg from '../../images/money2.svg';
-import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg'
+
+//images
+import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg';
 import tagSvg from '../../images/tag.svg';
 
 
 const CategoriesItem = ({ categories }) => {
-
     const categoriesJsx = categories.map(({ title, _id }) => (
         <li key={_id} className='sources-item'>
             <img className='sources-item__icon' src={tagSvg} alt="" />
@@ -27,7 +28,6 @@ const CategoriesItem = ({ categories }) => {
     return (
         <>
             {categoriesJsx}
-
         </>
     );
 };

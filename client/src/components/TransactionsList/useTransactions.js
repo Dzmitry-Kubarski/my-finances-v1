@@ -1,9 +1,11 @@
-
+//core
 import React from 'react';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
-import { useQuery } from 'react-query'
-import axios from 'axios'
-import { AuthContext } from '../../context/AuthContext'
+//context
+import { AuthContext } from '../../context/AuthContext';
+
 
 export default function useTransactions() {
     const { token, logout } = React.useContext(AuthContext)

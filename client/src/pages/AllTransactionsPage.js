@@ -1,16 +1,23 @@
+//core
 import React from 'react';
+import axios from 'axios';
+
+//components
 import Transaction from '../components/TransactionsList/Transaction';
-import useAllTransactions from './useAllTransactions'
 import { Filter } from './../components/Flter/Flter';
+
+//hooks
+import useAllTransactions from './useAllTransactions'
+
+//context
 import { AuthContext } from '../../src/context/AuthContext'
-import axios from 'axios'
 
 
 const AllTransactionsPage = () => {
     const [isOpenFilterList, setIsOpenFilterList] = React.useState(false)
     const [filtres, setFiltres] = React.useState([])
     const { data, isLoading, error } = useAllTransactions()
-    const { token, logout } = React.useContext(AuthContext);
+    const { token } = React.useContext(AuthContext);
 
     const fetchLinks = async (params) => {
         try {
@@ -23,7 +30,6 @@ const AllTransactionsPage = () => {
             const response = await axios.get('/api/link/category/?' + paramsUrl, { headers: { Authorization: `Bearer ${token}` } })
 
             const data = await response.data
-
             setFiltres(data)
 
         } catch (e) {

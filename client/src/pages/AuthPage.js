@@ -1,5 +1,9 @@
+//core
 import React, { useState } from 'react';
+
+//components
 import Form from './../components/Form';
+
 
 export const AuthPage = () => {
     const [activeForm, setActiveForm] = useState('loginForm');

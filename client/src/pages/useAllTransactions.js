@@ -1,12 +1,13 @@
-
+//core
 import React from 'react';
-import { useQuery } from 'react-query'
-import axios from 'axios'
+import { useQuery } from 'react-query';
+import axios from 'axios';
+
+//context
 import { AuthContext } from '../../src/context/AuthContext'
 
 
 export default function useTransactionsCategory() {
-
     const { token, logout } = React.useContext(AuthContext);
 
     return useQuery('transactions-all', () =>

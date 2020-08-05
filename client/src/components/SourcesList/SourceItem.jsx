@@ -1,9 +1,12 @@
+//core
 import React from 'react';
+
+//images
 import sourcesSvg from '../../images/money2.svg';
 import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg'
 
-const SourceItem = ({ sources }) => {
 
+const SourceItem = ({ sources }) => {
     const sourcesJsx = sources && sources.map(({ title, total, _id }) => (
         <li key={_id} className='sources-item'>
             <img className='sources-item__icon' src={sourcesSvg} alt="" />

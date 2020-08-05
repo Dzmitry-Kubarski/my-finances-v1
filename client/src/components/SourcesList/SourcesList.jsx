@@ -1,14 +1,17 @@
+//core
 import React from 'react';
-import SourceItem from './SourceItem';
 import { NavLink } from 'react-router-dom';
+
+//components
+import SourceItem from './SourceItem';
+
+//hooks
 import useSources from './useSources'
 
 const SourcesList = () => {
-
     const { data, isLoading, error } = useSources()
 
     if (isLoading) return 'Loading...'
-
     if (error) return 'Ошибка при получении счетов: ' + error.message
 
     return (

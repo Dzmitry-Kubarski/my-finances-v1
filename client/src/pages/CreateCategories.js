@@ -1,11 +1,15 @@
+//core
 import React, { useState } from 'react';
+
+//hooks
 import { useHttp } from '../hooks/http.hook';
+
+//context
 import { AuthContext } from '../context/AuthContext';
-import { useHistory } from 'react-router-dom';
 
+//images
 import tagSvg from '../images/tag.svg';
-import chevronDownSvg from '../images/chevron-down.svg'
-
+import chevronDownSvg from '../images/chevron-down.svg';
 
 
 const CreateCategories = () => {
@@ -16,13 +20,10 @@ const CreateCategories = () => {
     const [operation, setOperation] = useState('');
     const [title, setTitle] = useState('');
 
-
     const newCategory = {
         title,
         operation
     }
-
-    console.log('CreateCategories', newCategory)
 
     const changeHandler = event => {
         setTitle(event.target.value);
@@ -33,7 +34,6 @@ const CreateCategories = () => {
             Authorization: `Bearer ${auth.token}`
         })
     }
-
 
     const operations = ['расходы', 'доходы'];
 

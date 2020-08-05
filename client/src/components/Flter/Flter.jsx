@@ -1,21 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useHttp } from '../../hooks/http.hook';
-import { AuthContext } from '../../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+//core
+import React, { useState } from 'react';
 
-import { useQuery } from 'react-query'
-import axios from 'axios'
-
-import chevronDownSvg from '../../images/chevron-down.svg'
-import penSvg from '../../images/pen.svg'
+//hooks
 import useCategories from '../Categories/useCategories';
 import useSources from './../SourcesList/useSources';
 
-
-//date picker
-import DatePicker, { registerLocale } from "react-datepicker";
-import ru from "date-fns/locale/ru"; // the locale you want
-registerLocale("ru", ru); // register it with the name you want
+//images
+import chevronDownSvg from '../../images/chevron-down.svg';
+import penSvg from '../../images/pen.svg';
 
 
 export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
@@ -37,7 +29,6 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
 
     const reset = {}
 
-    //hooks
     const { data: categories, isLoading, error: errorCategories } = useCategories()
     const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources()
 
@@ -70,14 +61,17 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
     const operations = ['расходы', 'доходы', 'перевод между счетами'];
     const selectPperations = (name) => {
         setOperation(name)
+        setPopupType(!popupType)
     }
 
     const selectSources = (name) => {
         setSource(name)
+        setPopupSources(!popupSources)
     }
 
     const selectCategory = (title) => {
         setCategory(title)
+        setPopupCategory(!popupCategory)
     }
 
     const toogleEditDateModal = () => {
