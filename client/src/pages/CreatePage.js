@@ -89,14 +89,17 @@ export const CreatePage = () => {
     const operations = ['расходы', 'доходы', 'перевод между счетами'];
     const selectPperations = (name) => {
         setOperation(name)
+        setPopupType(!popupType)
     }
 
     const selectSources = (name) => {
         setSource(name)
+        setPopupSources(!popupSources)
     }
 
     const selectCategory = (title) => {
         setCategory(title)
+        setPopupCategory(!popupCategory)
     }
 
     const sumChangeHadler = (event) => {

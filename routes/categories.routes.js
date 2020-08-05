@@ -8,10 +8,10 @@ const router = Router()
 
 router.post('/add', auth, async (req, res) => {
   try {
-    const { title } = req.body
+    const { title, operation } = req.body
 
     const category = new Category({
-      title, owner: req.user.userId
+      title, operation, owner: req.user.userId
     })
 
     await category.save()

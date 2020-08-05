@@ -710,9 +710,12 @@ new-transaction__popup
 .create-sources {
     .new-transaction__col {
         flex-direction: column;
+        align-items: flex-end;
     }
 
     .new-transaction__row {
+        width: 100%;
+
         input {
             max-width: 100%;
             margin-right: 0;
@@ -733,7 +736,20 @@ new-transaction__popup
         width: 100px;
         height: 100px;
         text-align: center;
-    }
+    }   
+}
+
+.create-sources__row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.create-sources__col {
+    display: flex;
+    align-items: center;
 }
 
 

@@ -66,6 +66,22 @@ router.get('/category/', auth, async (req, res) => {
 })
 
 
+// транзакции для статистики (тест)
+router.get('/statistics/', auth, async (req, res) => {
+
+  try {
+    const transactionsStatistics = await Transaction.aggregate([
+      { $match: { operation: 'расходы' } },
+      { $group: { _id: '$category', sum: { $sum: '$sum' } } }
+    ]).limit(50)
+    res.json(transactionsStatistics)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
+
+
 
 
 

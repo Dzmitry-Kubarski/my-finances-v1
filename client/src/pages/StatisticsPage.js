@@ -1,41 +1,23 @@
 import React from 'react';
-import useTransactionsCategory from './useTransactionsCategory';
-import { useHttp } from './../hooks/http.hook';
-import { AuthContext } from './../context/AuthContext';
-
+import ExampleChart from './../charts/ExampleChart';
+import CategoryStatistics from './../charts/CategoryStatistics';
+import useStatistics from './useStatistics';
 
 
 const StatisticsPage = () => {
-    const [form, setForm] = React.useState({
-        title: ''
-    })
-
-    const { data, isLoading, error } = useTransactionsCategory()
+    const { data, isLoading, error } = useStatistics()
 
     if (isLoading) return 'Loading...'
-
-    if (error) return 'Ошибка при получении транзакций: ' + error.message
-
-
-    const changeHandler = event => {
-        setForm({ ...form, [event.target.name]: event.target.value });
-    }
-
+    if (error) return 'Ошибка при получении всех транзакций: ' + error.message
 
     return (
-
         <div className='statisticsPage  page'>
             <h1>Статистика</h1>
 
-            <div>
-                <input onChange={changeHandler} type='text' />
-                <button type='button'>получить по категории</button>
-            </div>
+            {/* <ExampleChart /> */}
+            <CategoryStatistics data={data} />
         </div>
-
     );
-
-
 };
 
 export default StatisticsPage;
