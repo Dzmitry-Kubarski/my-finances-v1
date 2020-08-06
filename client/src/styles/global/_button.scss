@@ -170,3 +170,19 @@
     align-items: center;
   }
 }
+
+
+// ====================
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #23d2e2;
+  box-shadow: 4px 7px 12px 0 rgba(35,210,226,.2);
+
+  height: 50px;
+  width: 50px;
+  border-radius: 12px;
+}

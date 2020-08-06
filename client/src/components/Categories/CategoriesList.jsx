@@ -17,9 +17,9 @@ const CategoriesList = () => {
 
     return (
         <div className='sources'>
-            <div className='transaction__title-wrap'>
+            <div className='title-wrap'>
                 <h2 className='transaction__title'>Ваши категории</h2>
-                <NavLink className='sources__btn-add' to="/create-category">+</NavLink>
+                <NavLink className='btn-add' to="/create-category">+</NavLink>
             </div>
 
             <ul className='sources__list'>

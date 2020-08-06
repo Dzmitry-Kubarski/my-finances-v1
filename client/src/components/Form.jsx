@@ -47,31 +47,29 @@ const Form = ({ activeForm }) => {
     return (
         <>
             {activeForm === 'loginForm' && (
-                <div className="landing-form">
-                    <div className="form-box login-register-form-element" style={{ display: 'block' }}>
-                        <h2 className="form-box-title">Вход в аккаунт</h2>
+                <div className="form-box">
+                    <h2 className="form-box__title">Вход в аккаунт</h2>
 
-                        <div className="form">
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <div className="form-input">
-                                        <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
-                                    </div>
+                    <div className="form">
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <div className="form-input">
-                                        <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
-                                    </div>
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <button onClick={loginHandler} className="button medium secondary">Войти в аккаунт</button>
-                                </div>
+                        <div className="form__row">
+                            <div className="form__item">
+                                <button onClick={loginHandler} className="button medium secondary">Войти в аккаунт</button>
                             </div>
                         </div>
                     </div>
@@ -80,39 +78,37 @@ const Form = ({ activeForm }) => {
 
 
             {activeForm === 'registerForm' && (
-                <div className="landing-form">
-                    <div className="form-box login-register-form-element" style={{ display: 'block' }}>
-                        <h2 className="form-box-title">Регистрация</h2>
+                <div className="form-box" style={{ display: 'block' }}>
+                    <h2 className="form-box__title">Регистрация</h2>
 
-                        <div className="form">
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <div className="form-input">
-                                        <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
-                                    </div>
+                    <div className="form">
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <div className="form-input">
-                                        <input type="text" id="register-username" name="username" placeholder='Ваше имя' onChange={changeHandler} />
-                                    </div>
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="text" id="register-username" name="username" placeholder='Ваше имя' onChange={changeHandler} />
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <div className="form-input">
-                                        <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
-                                    </div>
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="form-row">
-                                <div className="form-item">
-                                    <button onClick={registerHandler} className="button medium secondary">Зарегестрироваться</button>
-                                </div>
+                        <div className="form__row">
+                            <div className="form__item">
+                                <button onClick={registerHandler} className="button medium secondary">Зарегестрироваться</button>
                             </div>
                         </div>
                     </div>

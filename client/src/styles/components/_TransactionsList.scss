@@ -1,0 +1,23 @@
+.transactions {
+    width: 100%;
+    max-width: 580px;
+    margin-right: 100px;
+
+    .form__item {
+        width: 100%;
+
+        a {
+            width: 100%;
+            display: block;
+            height: 60px;
+        }
+    }  
+}
+
+.transactions__list {
+    max-height: 585px;
+    max-height: 640px;
+    // overflow: hidden;
+    // overflow-y: scroll;
+    // padding-top: 0;    
+}

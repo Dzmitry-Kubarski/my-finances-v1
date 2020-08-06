@@ -1,0 +1,125 @@
+/*-----------------------
+    transaction-item
+-----------------------*/
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    min-height: 85px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94,92,154,.06);
+    background-color: $white;
+    margin-bottom: 15px;
+    padding: 15px;  
+
+    &:last-child {
+        margin-bottom: 0;
+    }   
+}
+
+.transaction-item__inner {
+    width: 100%;
+}
+
+.transaction-item__info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.transaction-item__title {
+    position: relative;
+    color: #3e3f5e;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.1428571429em;
+    width: 100%;
+    max-width: 250px;
+    padding-left: 30px;
+
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: url('../../images/comment.svg');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.transaction-item__col {   
+
+    &:last-child {
+        margin-left: auto;
+        min-width: 140px;
+    }
+}
+
+.transaction-item__price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: red;    
+
+    &.green {
+        color: #20c997;
+    }  
+}
+
+.transaction-item__category {
+    position: relative;
+    font-size: .875rem;    
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding-left: 30px;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: url('../../images/label.svg');
+        background-size: cover;
+    }
+}
+
+.transaction-item__sources {
+    position: relative;
+    font-size: .875rem;
+    padding-left: 30px;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: url('../../images/sources.svg');
+        background-size: cover;
+    }
+}
+
+.transaction-item__arrow {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.transaction-item__date {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}

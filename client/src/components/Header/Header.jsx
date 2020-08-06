@@ -23,20 +23,17 @@ export const Header = () => {
         <header className="header">
             <div className='container'>
                 <div className='header__inner'>
-                    <div className="header-actions">
-                        <div className="header-brand">
-                            <div className="logo">
-                                <img src={logoSvg} alt="logo" />
-                            </div>
-                            <h1 className="header-brand-text">Finance</h1>
-                        </div>
+
+                    <div className="logo  header__logo">
+                        <img className='logo__img' src={logoSvg} alt="logo" />
+                        <h1 className="logo__text">Finance</h1>
                     </div>
 
                     <div className='header__email'>{auth.email}</div>
 
-                    <div className="header-actions">
-                        <div className="action-item-wrap">
-                            <a className='logout' href="/" onClick={logoutHandler}>Выйти</a>
+                    <div className="header__actions">
+                        <div className="header__actions-item">
+                            <a className='header__logout' href="/" onClick={logoutHandler}>Выйти</a>
                         </div>
                     </div>
                 </div>

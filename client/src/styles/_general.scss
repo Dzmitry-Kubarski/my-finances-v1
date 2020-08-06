@@ -1,15 +1,63 @@
-/*------------------------------------------------------------------
-[Table of contents]
+label,
+input[type="text"],
+input[type="password"],
+textarea,
+select,
+button {
+  font-family: $font-primary;
+}
 
-1. GENERAL
--------------------------------------------------------------------*/
-/*-----------------
-    1. GENERAL
------------------*/
-* {
-  &::selection {
-    color: $white;
-    background-color: $color-text-selection;
+label {
+  display: block;
+  margin: 0;
+  color: $color-text;
+  line-height: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select,
+button {
+  width: 100%;
+  border-radius: 12px;
+  font-size: $fs-16;
+  font-weight: $weight-bold;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+  background-color: $color-box-background;
+  border: 1px solid $color-border;
+  color: $color-text;
+  transition: border-color .2s ease-in-out;
+
+  &:focus {
+    border-color: $color-secondary;
+  }
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 54px;
+  padding: 0 18px;
+
+  &::placeholder {
+    color: $color-input-placeholder;
+    font-size: $fs-14;
+    font-weight: $weight-medium;
+  }
+}
+
+textarea {
+  padding: 14px 18px;
+  resize: none;
+
+  &::placeholder {
+    color: $color-input-placeholder;
+    font-weight: $weight-semibold;
   }
 }
 
@@ -57,18 +105,51 @@ a {
   }
 }
 
-figure {
-  & > img {
-    width: 100%;
-    height: 100%;
-  }
+
+.container {
+  width: 100%;
+  max-width: 1490px;
+  margin: 0 auto;
+  padding: 0 25px;
 }
 
-/*--------------------
-    MEDIA QUERIES 
---------------------*/
-@media screen and (max-width: 480px) {
-  .hide-text-mobile {
-    display: none;
-  }
+.app {
+  min-height: calc(100vh - 160px);
+}
+
+.title-wrap {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+::-webkit-scrollbar-button {
+  background-repeat:no-repeat;
+  width:5px;
+  height:0px
+}
+  
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+  
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 0px;
+  border-radius: 6px;
+  background-color:#23d2e2;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+  background-color:#23d2e2;
+}
+  
+::-webkit-resizer {
+  background-repeat:no-repeat;
+  width:4px;
+  height:0px
+}
+  
+::-webkit-scrollbar {
+  width: 6px;
 }

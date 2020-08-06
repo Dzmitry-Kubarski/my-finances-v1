@@ -16,11 +16,15 @@ const StatisticsPage = () => {
     if (error) return 'Ошибка при получении всех транзакций: ' + error.message
 
     return (
-        <div className='statisticsPage  page'>
-            <h1>Статистика</h1>
+        <div className='page  statisticsPage'>
+            <div className='container'>
+                <h1 className='page__title'>Статистика</h1>
 
-            {/* <ExampleChart /> */}
-            <CategoryStatistics data={data} />
+                <div className='page__inner'>
+                    {/* <ExampleChart /> */}
+                    <CategoryStatistics data={data} />
+                </div>
+            </div>
         </div>
     );
 };

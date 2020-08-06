@@ -1,16 +1,19 @@
 .allTransactionsPage {
-    display: flex;
-    justify-content: space-between;
+   .page__inner {
+       justify-content: space-between;
+   }
 
-    .transaction__list {
+    .transactions__list {
         padding-left: 0;
+        overflow: hidden;
+        overflow-y: scroll;
+        padding-top: 0;  
     }
 
     .new-transaction {
         margin: 0;
     }
 }
-
 
 .all-transactions {
     width: 48%;
@@ -19,4 +22,3 @@
 .allTransactionsPage__filter-wrap {
     width: 48%;
 }
-

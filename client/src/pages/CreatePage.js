@@ -103,112 +103,118 @@ export const CreatePage = () => {
 
 
     return (
-        <div className='createPage'>
+        <div className='page  createPage'>
             <h2 className='createPage__title'>Новая транзакция</h2>
 
-            <div className='new-transaction'>
-                <div className='new-transaction__row'>
-                    <h4 className='new-transaction__title'>Тип операции:</h4>
+            <div className='container'>
+                <div className='page__inner'>
 
-                    <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>{operation}</span>
+                    <div className='new-transaction'>
+                        <div className='new-transaction__row'>
+                            <h4 className='new-transaction__title'>Тип операции:</h4>
 
-                        <button onClick={tooglePopupType} className='new-transaction__btn'>
-                            <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
-                        </button>
-                    </div>
+                            <div className='new-transaction__col'>
+                                <span className='new-transaction__value'>{operation}</span>
 
-                    {popupType && <ul className='new-transaction__popup-list'>
+                                <button onClick={tooglePopupType} className='new-transaction__btn'>
+                                    <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
+                                </button>
+                            </div>
 
-                        {operations.map((name, index) => (
-                            <li key={`${name}_${index}`} className='new-transaction__popup-item'>
-                                <button onClick={() => { selectPperations(name) }} className='new-transaction__popup-btn'>{name}</button>
-                            </li>
-                        ))}
+                            {popupType && <ul className='new-transaction__popup-list'>
 
-                    </ul>}
-                </div>
+                                {operations.map((name, index) => (
+                                    <li key={`${name}_${index}`} className='new-transaction__popup-item'>
+                                        <button onClick={() => { selectPperations(name) }} className='new-transaction__popup-btn'>{name}</button>
+                                    </li>
+                                ))}
 
-                <div className='new-transaction__row'>
-                    <h4 className='new-transaction__title'>Счёт:</h4>
+                            </ul>}
+                        </div>
 
-                    <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>{source}</span>
+                        <div className='new-transaction__row'>
+                            <h4 className='new-transaction__title'>Счёт:</h4>
 
-                        <button onClick={tooglePopupSources} className='new-transaction__btn'>
-                            <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
-                        </button>
-                    </div>
+                            <div className='new-transaction__col'>
+                                <span className='new-transaction__value'>{source}</span>
 
-                    {popupSources && <ul className='new-transaction__popup-list'>
+                                <button onClick={tooglePopupSources} className='new-transaction__btn'>
+                                    <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
+                                </button>
+                            </div>
 
-                        {sources.map(({ title }, index) => (
-                            <li key={`${title}_${index}`} className='new-transaction__popup-item'>
-                                <button onClick={() => { selectSources(title) }} className='new-transaction__popup-btn'>{title}</button>
-                            </li>
-                        ))}
+                            {popupSources && <ul className='new-transaction__popup-list'>
 
-                    </ul>}
-                </div>
+                                {sources.map(({ title }, index) => (
+                                    <li key={`${title}_${index}`} className='new-transaction__popup-item'>
+                                        <button onClick={() => { selectSources(title) }} className='new-transaction__popup-btn'>{title}</button>
+                                    </li>
+                                ))}
 
-                <div className='new-transaction__row'>
-                    <h4 className='new-transaction__title'>Категория:</h4>
+                            </ul>}
+                        </div>
 
-                    <div className='new-transaction__col'>
-                        <span className='new-transaction__value'>{category}</span>
-                        <button onClick={tooglePopupCategory} className='new-transaction__btn'>
-                            <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
-                        </button>
-                    </div>
+                        <div className='new-transaction__row'>
+                            <h4 className='new-transaction__title'>Категория:</h4>
 
-                    {popupCategory && <ul className='new-transaction__popup-list'>
+                            <div className='new-transaction__col'>
+                                <span className='new-transaction__value'>{category}</span>
+                                <button onClick={tooglePopupCategory} className='new-transaction__btn'>
+                                    <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
+                                </button>
+                            </div>
 
-                        {categories.map((item, index) => (
-                            <li key={`${item.title}_${index}`} className='new-transaction__popup-item'>
-                                <button onClick={() => { selectCategory(item.title) }} className='new-transaction__popup-btn'>{item.title}</button>
-                            </li>
-                        ))}
-                    </ul>}
-                </div>
+                            {popupCategory && <ul className='new-transaction__popup-list'>
+
+                                {categories.map((item, index) => (
+                                    <li key={`${item.title}_${index}`} className='new-transaction__popup-item'>
+                                        <button onClick={() => { selectCategory(item.title) }} className='new-transaction__popup-btn'>{item.title}</button>
+                                    </li>
+                                ))}
+                            </ul>}
+                        </div>
 
 
-                <div className='new-transaction__row'>
-                    <h4 className='new-transaction__title'>Дата:</h4>
-                    <div className='new-transaction__col'>
+                        <div className='new-transaction__row'>
+                            <h4 className='new-transaction__title'>Дата:</h4>
+                            <div className='new-transaction__col'>
 
-                        {!editDateModal
-                            ? <span className='new-transaction__value'>{date} </span>
-                            : <input type='text' placeholder={date} value={date} onChange={changeDateHandler} />
-                        }
+                                {!editDateModal
+                                    ? <span className='new-transaction__value'>{date} </span>
+                                    : <input type='text' placeholder={date} value={date} onChange={changeDateHandler} />
+                                }
 
-                        {!editDateModal
-                            ?
-                            <button onClick={toogleEditDateModal} className='new-transaction__btn'>
-                                <img className='new-transaction__icon' src={penSvg} alt='' />
+                                {!editDateModal
+                                    ?
+                                    <button onClick={toogleEditDateModal} className='new-transaction__btn'>
+                                        <img className='new-transaction__icon' src={penSvg} alt='' />
+                                    </button>
+                                    :
+                                    <button onClick={toogleEditDateModal} className='new-transaction__btn'>
+                                        ok
                             </button>
-                            :
-                            <button onClick={toogleEditDateModal} className='new-transaction__btn'>
-                                ok
-                            </button>
-                        }
-                    </div>
-                </div>
+                                }
+                            </div>
+                        </div>
 
 
-                <div className='new-transaction__row'>
-                    <h4 className='new-transaction__title'>Комментарий</h4>
-                    <textarea onChange={commentChangeHadler} placeholder='Описание' value={comment} />
-                </div>
+                        <div className='new-transaction__row'>
+                            <h4 className='new-transaction__title'>Комментарий</h4>
+                            <textarea onChange={commentChangeHadler} placeholder='Описание' value={comment} />
+                        </div>
 
 
-                <div className='new-transaction__row'>
-                    <h4 className='new-transaction__title'>Сумма:</h4>
-                    <div className='new-transaction__col'>
-                        <input onChange={sumChangeHadler} type='text' placeholder='сумма' value={sum} />
-                        <button onClick={createTransactionHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
+                        <div className='new-transaction__row'>
+                            <h4 className='new-transaction__title'>Сумма:</h4>
+                            <div className='new-transaction__col'>
+                                <input onChange={sumChangeHadler} type='text' placeholder='сумма' value={sum} />
+                                <button onClick={createTransactionHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

@@ -6,8 +6,12 @@ import CategoriesList from './../components/Categories/CategoriesList';
 
 const CategoriesPage = () => {
     return (
-        <div className='categoriesPage  page'>
-            <CategoriesList />
+        <div className='page  categoriesPage'>
+            <div className='container'>
+                <div className='page__inner'>
+                    <CategoriesList />
+                </div>
+            </div>
         </div>
     );
 };

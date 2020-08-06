@@ -16,9 +16,9 @@ const SourcesList = () => {
 
     return (
         <div className='sources'>
-            <div className='transaction__title-wrap'>
-                <h2 className='transaction__title'>Ваши счета</h2>
-                <NavLink className='sources__btn-add' to="/create-source">+</NavLink>
+            <div className='title-wrap'>
+                <h2>Ваши счета</h2>
+                <NavLink className='btn-add' to="/create-source">+</NavLink>
             </div>
 
             <ul className='sources__list'>

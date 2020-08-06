@@ -30,19 +30,20 @@ const CreateSource = () => {
     }
 
     return (
-        <div className='create-sources'>
+        <div className='page  create-sources'>
+            <div className='container'>
+                <div className='title-wrap'>
+                    <h2 className='page__title'>Новый счет</h2>
+                    <img className='sources-item__icon' src={sourcesSvg} alt="" />
+                </div>
 
-            <div className='transaction__title-wrap'>
-                <h2 className='transaction__title'>Новый счет</h2>
-                <img className='sources-item__icon' src={sourcesSvg} alt="" />
-            </div>
-
-            <div className='new-transaction'>
-                <div className='new-transaction__row'>
-                    <div className='new-transaction__col'>
-                        <input onChange={changeHandler} type='text' placeholder='Название счёта' name='title' />
-                        <input onChange={changeHandler} type='text' placeholder='Стартовая сумма на счету' name='total' />
-                        <button onClick={addSourceHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
+                <div className='new-transaction'>
+                    <div className='new-transaction__row'>
+                        <div className='new-transaction__col'>
+                            <input onChange={changeHandler} type='text' placeholder='Название счёта' name='title' />
+                            <input onChange={changeHandler} type='text' placeholder='Стартовая сумма на счету' name='total' />
+                            <button onClick={addSourceHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
+                        </div>
                     </div>
                 </div>
             </div>

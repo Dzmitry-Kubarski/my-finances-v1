@@ -1,0 +1,49 @@
+/*-----------------------
+        SOURCES
+-----------------------*/
+
+.sources {
+    width: 100%;
+
+    button {
+        cursor: pointer;
+    }  
+}
+
+.sources__list {
+    width: 100%;    
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    max-height: 585px;
+    overflow: hidden;
+    overflow-y: scroll;  
+}
+
+.sources-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 89px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.sources-item__icon {
+    width: 50px;
+    height: 50px;
+}
+
+.sources__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

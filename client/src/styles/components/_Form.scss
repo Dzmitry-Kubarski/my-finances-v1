@@ -1,0 +1,47 @@
+/*--------------
+    2. FORM
+--------------*/
+
+.form-box {
+    position: relative;  
+    width: 485px;
+    padding: 64px;
+    border-radius: 12px;
+    background-color: $color-box-background;
+    box-shadow: $shadow-dark-alt-3;
+}
+
+.form-box__title {
+    font-size: $fs-26;
+    text-align: center;
+    margin-bottom: 75px;
+}
+
+.form__row {
+    width: 100%;
+    margin-top: 25px;
+
+    &:first-child {
+        margin-top: 0;
+    }  
+}
+
+/*----------------------
+    8. FORM TEXTAREA
+----------------------*/
+.form-textarea {
+    position: relative;
+
+    textarea {
+        font-size: $fs-14;
+        padding: 26px 28px 0;
+    }
+
+    .form-textarea-limit-text {
+        padding: 0 28px;
+        font-size: $fs-12;
+        font-weight: $weight-medium;
+        opacity: .6;
+        text-align: right;
+    }
+}

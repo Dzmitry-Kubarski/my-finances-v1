@@ -29,16 +29,18 @@ function App() {
             <AuthContext.Provider value={{
                 token, login, logout, userId, isAuthenticated, email
             }}>
+
                 <Router>
                     {isAuthenticated && <Header />}
 
                     <div className='app'>
-                        <div className="container">
-                            {routes}
-                        </div>
+                        {/* <div className="container">
+                            
+                        </div> */}
+                        {routes}
                     </div>
 
-                    <Footer />
+                    {isAuthenticated && <Footer />}
                 </Router>
 
                 {/* <ReactQueryDevtools initialIsOpen={false} /> */}
