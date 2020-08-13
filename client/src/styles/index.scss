@@ -35,6 +35,7 @@
 @import '../styles/components/TransactionsList';
 @import '../styles/components/Transaction';
 @import '../styles/components/SourcesList';
+@import '../styles/components/Сarousel';
 @import '../styles/components/Footer';
 
 
@@ -42,6 +43,7 @@
     PAGES
 -----------------------*/
 @import '../styles/pages/authPage';
+@import '../styles/pages/home-page';
 @import '../styles/pages/allTransactionsPage';
 @import '../styles/pages/create-sources';
 @import '../styles/pages/createPage';

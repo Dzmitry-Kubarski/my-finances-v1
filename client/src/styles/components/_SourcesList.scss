@@ -4,10 +4,16 @@
 
 .sources {
     width: 100%;
+    max-width: 600px;
 
     button {
         cursor: pointer;
-    }  
+    } 
+    
+    .swiper-button-prev,
+    .swiper-button-next {
+        top: 80%;
+    }
 }
 
 .sources__list {
@@ -22,19 +28,47 @@
 
 .sources-item {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 89px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    // min-height: 89px;
+    min-height: 300px;
     border-radius: 12px;
     box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
     background-color: #fff;
+    // background: url('../../images/finance.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     margin-bottom: 15px;
-    padding: 15px;
+    padding: 25px;
 
     &:last-child {
         margin-bottom: 0;
     }
+
+    .logo__text {
+        color: $black-dark
+    }
+}
+
+.sources-item__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.sources-item__title {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.sources-item__total {
+    font-size: 24px;
+    font-family: $font-secondary;
+    font-weight: bold;
+    color: #23d2e2;
 }
 
 .sources-item__icon {
@@ -42,8 +76,8 @@
     height: 50px;
 }
 
-.sources__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+// .sources__row {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+// }
