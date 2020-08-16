@@ -4,6 +4,8 @@
 
 .sources {
     width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
 
     button {
         cursor: pointer;
@@ -16,11 +18,17 @@
     display: flex;
     justify-content: space-between;
     max-height: 585px;
-    overflow: hidden;
-    overflow-y: scroll;  
+    // overflow: hidden;
+    // overflow-y: scroll;  
+
+    &.scroll {
+        overflow: hidden;
+        overflow-y: scroll; 
+    }
 }
 
 .sources-item {
+    position: relative;
     width: 100%;
     display: flex;
     align-items: center;

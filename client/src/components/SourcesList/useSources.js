@@ -2,6 +2,8 @@
 import React from 'react';
 import { useQuery } from 'react-query'
 import axios from 'axios'
+import { queryCache } from 'react-query'
+
 
 //context
 import { AuthContext } from '../../context/AuthContext'
@@ -18,4 +20,3 @@ export default function useSources() {
             })
     )
 }
-

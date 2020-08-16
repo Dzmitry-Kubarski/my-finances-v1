@@ -1,5 +1,6 @@
 //core
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 //hooks
 import { useHttp } from '../hooks/http.hook';
@@ -9,6 +10,7 @@ import { AuthContext } from '../context/AuthContext';
 
 //images
 import sourcesSvg from '../images/money2.svg';
+import arrowLeftSvg from '../images/arrow-left.svg';
 
 
 const CreateSource = () => {
@@ -33,9 +35,13 @@ const CreateSource = () => {
         <div className='page  create-sources'>
             <div className='container'>
                 <div className='title-wrap'>
-                    <h2 className='page__title'>Новый счет</h2>
-                    <img className='sources-item__icon' src={sourcesSvg} alt="" />
+                    <h2>Новый счет</h2>
+                    <NavLink className='btn-add' to="/home">
+                        <img className='btn-add__icon' src={arrowLeftSvg} alt="" />
+                    </NavLink>
                 </div>
+
+                <img className='page__icon' src={sourcesSvg} alt="" />
 
                 <div className='new-transaction'>
                     <div className='new-transaction__row'>

@@ -2,7 +2,13 @@
     new-transaction
 -----------------------*/
 .createPage {
-    width: 100%;       
+    width: 100%;   
+    
+    .title-wrap {
+        max-width: 500px;
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
 }
 
 .createPage__title {
@@ -250,12 +256,13 @@ new-transaction__popup
     top: 100%;
     width: 100%;
     max-width: 230px;
-    max-height: 320px;
+    max-height: 250px;
     overflow: hidden;
     overflow-y: scroll;
     box-shadow: 0 0 40px 0 rgba(94,92,154,.12);
     border-radius: 12px;
-    background: #fff;      
+    background: #fff;     
+    
 }
 
 .new-transaction__popup-btn {

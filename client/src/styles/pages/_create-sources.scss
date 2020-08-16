@@ -3,6 +3,9 @@
 -----------------------*/
 
 .create-sources {
+    max-width: 500px;
+    margin: 0 auto;
+
     .new-transaction__col {
         flex-direction: column;
         align-items: flex-end;
@@ -18,16 +21,16 @@
         }
     }
 
-    .title-wrap {
-        justify-content: center;
-        flex-direction: column;
-    }
+    // .title-wrap {
+    //     justify-content: center;
+    //     flex-direction: column;
+    // }
 
     .transaction__title {
         margin-bottom: 20px;
     }
 
-    .sources-item__icon {
+    .page__icon {
         width: 100px;
         height: 100px;
         text-align: center;

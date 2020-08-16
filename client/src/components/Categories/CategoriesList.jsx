@@ -1,6 +1,7 @@
 //core
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import classnames from 'classnames';
 
 //hooks
 import useCategories from './useCategories';
@@ -15,6 +16,8 @@ const CategoriesList = () => {
     if (isLoading) return 'Loading...'
     if (error) return 'Ошибка при получении счетов: ' + error.message
 
+    const isScroll = data.length > 5
+
     return (
         <div className='sources'>
             <div className='title-wrap'>
@@ -22,7 +25,7 @@ const CategoriesList = () => {
                 <NavLink className='btn-add' to="/create-category">+</NavLink>
             </div>
 
-            <ul className='sources__list'>
+            <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
                 <CategoriesItem categories={data} />
             </ul>
         </div>

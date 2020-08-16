@@ -1,5 +1,6 @@
 //core
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 //hooks
 import { useHttp } from '../hooks/http.hook';
@@ -10,6 +11,7 @@ import { AuthContext } from '../context/AuthContext';
 //images
 import tagSvg from '../images/tag.svg';
 import chevronDownSvg from '../images/chevron-down.svg';
+import arrowLeftSvg from '../images/arrow-left.svg';
 
 
 const CreateCategories = () => {
@@ -43,22 +45,26 @@ const CreateCategories = () => {
 
     const selectOperations = (name) => {
         setOperation(name)
+        setPopupType(!popupType)
     }
 
     return (
         <div className='page  create-sources'>
 
-            <div className='contsiner'>
+            <div className='container'>
                 <div className='title-wrap'>
-                    <h2 className='page__title'>Новая категория</h2>
-                    <img className='sources-item__icon' src={tagSvg} alt="" />
+                    <h2>Новая категория</h2>
+                    <NavLink className='btn-add' to="/categories">
+                        <img className='btn-add__icon' src={arrowLeftSvg} alt="" />
+                    </NavLink>
                 </div>
+
+                <img className='page__icon' src={tagSvg} alt="" />
 
                 <div className='new-transaction'>
                     <div className='new-transaction__row'>
                         <div className='new-transaction__col'>
                             <input onChange={changeHandler} type='text' placeholder='Название категории' name='title' />
-
 
                             <div className='create-sources__row'>
                                 <h4 className='new-transaction__title'>Тип операции:</h4>

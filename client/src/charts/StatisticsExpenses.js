@@ -1,7 +1,5 @@
-// STEP 1 - Include Dependencies
-// Include react
+
 import React from "react";
-import ReactDOM from "react-dom";
 
 // Include the react-fusioncharts component
 import ReactFC from "react-fusioncharts";
@@ -18,33 +16,33 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 // Adding the chart and theme as dependency to the core fusioncharts
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
-
-const ChartComponent = ({ data }) => {
+const ChartComponent = ({ data = [] }) => {
   const newArr = data.map(i => ({ label: i._id, value: i.sum }));
 
   const chartConfigs = {
-    type: "column3d", // The chart type
-    width: "700", // Width of the chart
-    height: "400", // Height of the chart
-    dataFormat: "json", // Data type
+    type: "column3d",
+    width: "600",
+    height: "400",
+    dataFormat: "json",
     dataSource: {
       // Chart Configuration
       chart: {
-        //Set the chart caption
         caption: "Расходы по категориям",
-        //Set the chart subcaption
-        // subCaption: "In MMbbl = One Million barrels",
-        //Set the x-axis name
+        // subCaption: "In MMbbl = One Million barrels",        
         xAxisName: "Категории",
-        //Set the y-axis name
         yAxisName: "Сумма расходов",
         numberSuffix: "руб",
-        //Set the theme for your chart
-        theme: "fusion"
+        theme: "fusion",
+        // palettecolors: "#23d2e2",
+        useplotgradientcolor: "0",
+        // "showBorder": "1",
+        // "borderColor": "#666666",
+        // "borderThickness": "4",
+        // "borderAlpha": "80",
+        // "bgImage": "http://upload.wikimedia.org/wikipedia/commons/7/79/Misc_fruit.jpg",
       },
       // Chart Data
       data: newArr
-      // newArr
     }
   };
 

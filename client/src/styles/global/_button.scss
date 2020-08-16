@@ -172,7 +172,9 @@
 }
 
 
-// ====================
+/*-----------------------
+    btn-add
+-----------------------*/
 
 .btn-add {
   display: flex;
@@ -185,4 +187,9 @@
   height: 50px;
   width: 50px;
   border-radius: 12px;
+}
+
+.btn-add__icon {
+  width: 35px;
+  height: 35px;
 }

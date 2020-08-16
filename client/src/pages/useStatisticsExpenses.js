@@ -4,14 +4,14 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 //context
-import { AuthContext } from '../../src/context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
-export default function useStatistics() {
+export default function useStatisticsExpenses() {
     const { token, logout } = React.useContext(AuthContext);
 
-    return useQuery('statistics', () =>
+    return useQuery('expenses', () =>
 
-        axios.get('/api/link/statistics', { headers: { Authorization: `Bearer ${token}` } })
+        axios.get('/api/link/expenses', { headers: { Authorization: `Bearer ${token}` } })
             .then((res) => res.data)
 
             .catch(e => {

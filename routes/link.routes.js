@@ -4,6 +4,9 @@ const Transaction = require('../models/Transaction')
 const auth = require('../middleware/auth.middleware')
 const router = Router()
 
+const { Schema, model, Types, ObjectId } = require('mongoose')
+
+
 
 // новая транзакция
 router.post('/add', auth, async (req, res) => {
@@ -27,7 +30,7 @@ router.post('/add', auth, async (req, res) => {
 router.get('/', auth, async (req, res) => {
 
   try {
-    const transactions = await Transaction.find({ owner: req.user.userId }).limit(5).lean()
+    const transactions = await Transaction.find({ owner: req.user.userId }).sort({ $natural: -1 }).limit(5).lean()
     res.json(transactions)
 
   } catch (e) {
@@ -40,10 +43,10 @@ router.get('/', auth, async (req, res) => {
 router.get('/all/', auth, async (req, res) => {
 
   try {
-    const queryObj = { ...req.query }
+    // const queryObj = { ...req.query }
 
-    const transactionsFiltres = await Transaction.find(queryObj).limit(50).lean()
-    res.json(transactionsFiltres)
+    const transactionsAll = await Transaction.find({ owner: req.user.userId }).sort({ $natural: -1 }).limit(50).lean()
+    res.json(transactionsAll)
 
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так...' })
@@ -55,10 +58,10 @@ router.get('/all/', auth, async (req, res) => {
 router.get('/category/', auth, async (req, res) => {
 
   try {
-    const queryObj = { ...req.query }
+    const queryObj = { owner: req.user.userId, ...req.query }
 
-    const transactionsCategory = await Transaction.find(queryObj).limit(50).lean()
-    res.json(transactionsCategory)
+    const transactionsFiltres = await Transaction.find(queryObj).sort({ $natural: -1 }).limit(50).lean()
+    res.json(transactionsFiltres)
 
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так...' })
@@ -66,15 +69,18 @@ router.get('/category/', auth, async (req, res) => {
 })
 
 
-// транзакции для статистики (тест)
-router.get('/statistics/', auth, async (req, res) => {
+// транзакции для статистики (расходы)
+router.get('/expenses', auth, async (req, res) => {
 
   try {
-    const transactionsStatistics = await Transaction.aggregate([
-      { $match: { operation: 'расходы' } },
-      { $group: { _id: '$category', sum: { $sum: '$sum' } } }
-    ]).limit(50)
-    res.json(transactionsStatistics)
+    const user = req.user.userId
+
+    const transactionsExpenses = await Transaction.aggregate([
+      { $match: { owner: Types.ObjectId(user), operation: 'расходы' } },
+      { $group: { _id: '$category', sum: { $sum: '$sum' } } },
+    ])
+
+    res.json(transactionsExpenses)
 
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так...' })
@@ -82,6 +88,23 @@ router.get('/statistics/', auth, async (req, res) => {
 })
 
 
+// транзакции для статистики (доходы)
+router.get('/revenue', auth, async (req, res) => {
+
+  try {
+    const user = req.user.userId
+
+    const transactionsRevenue = await Transaction.aggregate([
+      { $match: { owner: Types.ObjectId(user), operation: 'доходы' } },
+      { $group: { _id: '$category', sum: { $sum: '$sum' } } },
+    ])
+
+    res.json(transactionsRevenue)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
 
 
 

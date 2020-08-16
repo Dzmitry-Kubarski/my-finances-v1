@@ -3,17 +3,22 @@ import React from 'react';
 
 //charts
 import ExampleChart from './../charts/ExampleChart';
-import CategoryStatistics from './../charts/CategoryStatistics';
+import StatisticsExpenses from '../charts/StatisticsExpenses';
+import StatisticsRevenue from '../charts/StatisticsRevenue';
 
 //hooks
-import useStatistics from './useStatistics';
+import useStatisticsExpenses from './useStatisticsExpenses';
+import useStatisticsRevenue from './useStatisticsRevenue';
 
 
 const StatisticsPage = () => {
-    const { data, isLoading, error } = useStatistics()
+    const { data, isLoading, error } = useStatisticsExpenses()
+    const { data: revenue, isLoading: revenueIsLoading, error: errorrEvenue } = useStatisticsRevenue()
 
     if (isLoading) return 'Loading...'
     if (error) return 'Ошибка при получении всех транзакций: ' + error.message
+
+    console.log(data)
 
     return (
         <div className='page  statisticsPage'>
@@ -22,7 +27,8 @@ const StatisticsPage = () => {
 
                 <div className='page__inner'>
                     {/* <ExampleChart /> */}
-                    <CategoryStatistics data={data} />
+                    <StatisticsExpenses data={data} />
+                    <StatisticsRevenue data={revenue} />
                 </div>
             </div>
         </div>

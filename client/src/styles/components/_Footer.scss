@@ -29,12 +29,23 @@
     justify-content: center;
     width: 70px;
     height: 70px;
-    background: $yellow;
+    // background: $yellow;
+    background: #fff;
+    // border-radius: 12px;
     margin-right: 5px;
+
+    &.active {
+        background: $yellow;
+    }
 }
 
 .footer__create-btn {
     font-size: 3rem;
     color: $white;
     font-weight: 700;
+}
+
+.footer__btn-icon {
+    width: 40px;
+    height: 40px;
 }
