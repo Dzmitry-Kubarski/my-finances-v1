@@ -4,10 +4,13 @@
    }
 
     .transactions__list {
-        padding-left: 0;
-        overflow: hidden;
-        overflow-y: scroll;
+        padding-left: 0;        
         padding-top: 0;  
+
+        &.scroll {
+            overflow: hidden;
+            overflow-y: scroll;
+        }
     }
 
     .new-transaction {
@@ -21,4 +24,5 @@
 
 .allTransactionsPage__filter-wrap {
     width: 48%;
+    max-width: 500px;
 }

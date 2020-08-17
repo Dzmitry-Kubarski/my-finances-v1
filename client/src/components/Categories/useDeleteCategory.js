@@ -6,11 +6,11 @@ import { useMutation, queryCache } from 'react-query'
 // context
 import { AuthContext } from '../../context/AuthContext'
 
-export default function useDeleteSource() {
+export default function useDeleteCategory() {
     const { token } = React.useContext(AuthContext)
 
     return useMutation(
-        (sourceId) => axios.delete(`/api/sources/delete/${sourceId}`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => res.data),
+        (categoryId) => axios.delete(`/api/categories/delete/${categoryId}`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => res.data),
 
     )
 }

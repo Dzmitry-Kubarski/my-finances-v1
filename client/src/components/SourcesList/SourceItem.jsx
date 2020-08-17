@@ -1,41 +1,18 @@
 // core
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 // hooks
 import useDeleteSource from './useDeleteSource';
 
 // images
 import sourcesSvg from '../../images/money2.svg';
-import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg'
+import arrowBigRightSvg from '../../images/arrow-big-right.svg'
 
 
-const SourceItem = ({ sources }) => {
-    const [deleteSource, { status: deleteSourceStatus }] = useDeleteSource();
-    const [itemsSources, setItemsSources] = React.useState(sources);
+const SourceItem = ({ sources = [] }) => {
 
-    const deleteSourceHandler = async (_id) => {
-        deleteSource(_id)
-    }
-
-    const tooglePopup = (_id) => {
-        const newItemsList = itemsSources.map((item) => {
-            const newItem = { ...item, isModal: false }
-
-            if (item._id === _id) {
-                newItem.isModal = !item.isModal;
-            }
-            return newItem;
-        });
-
-        setItemsSources(newItemsList)
-    };
-
-    React.useEffect(() => {
-        setItemsSources(sources)
-    }, [sources])
-
-
-    const sourcesJsx = itemsSources && itemsSources.map(({ title, total, _id, isModal }) => (
+    const sourcesJsx = sources && sources.map(({ title, total, _id }) => (
         <li key={_id} className='sources-item'>
             <img className='sources-item__icon' src={sourcesSvg} alt="" />
 
@@ -43,24 +20,11 @@ const SourceItem = ({ sources }) => {
 
             <div className='sources-item__total'>{total} руб</div>
 
-            <button onClick={() => { tooglePopup(_id) }} className='new-transaction__btn'>
-                <img className='new-transaction__icon' src={ellipsisHorizontalSvg} alt='' />
-            </button>
-
-            {isModal &&
-                <ul className='new-transaction__popup-list'>
-                    <li className='new-transaction__popup-item'>
-                        <button onClick={() => { deleteSourceHandler(_id) }} className='new-transaction__popup-btn'>Удалить</button>
-                    </li>
-
-                    <li className='new-transaction__popup-item'>
-                        <button className='new-transaction__popup-btn'>Редактировать</button>
-                    </li>
-                </ul>
-            }
+            <NavLink to={`/sources/${_id}`} className='new-transaction__btn'>
+                <img className='new-transaction__icon' src={arrowBigRightSvg} alt='' />
+            </NavLink>
         </li>
     ))
-
 
 
     if (!sources) {
@@ -68,7 +32,6 @@ const SourceItem = ({ sources }) => {
             <p>ничего нет</p>
         )
     }
-
 
     return (
         <>

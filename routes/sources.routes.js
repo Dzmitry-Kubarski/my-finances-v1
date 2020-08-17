@@ -36,6 +36,20 @@ router.get('/', auth, async (req, res) => {
 })
 
 
+// переход на индивидуальный счёт
+router.get('/:sourceId', auth, async (req, res) => {
+  try {
+    const { sourceId } = req.params
+    const source = await Source.findById(sourceId)
+
+    res.json(source)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+  }
+})
+
+
 // удаление счёта (работает)
 // router.post('/delete', auth, async (req, res) => {
 //   try {
@@ -54,8 +68,8 @@ router.get('/', auth, async (req, res) => {
 // })
 
 
-// удаление счёта (тест query)
-router.delete('/:sourceId', auth, async (req, res) => {
+// удаление счёта (тест query) - работает
+router.delete('/delete/:sourceId', auth, async (req, res) => {
   try {
     const { sourceId } = req.params
     const transaction = await Source.findById(sourceId).remove()

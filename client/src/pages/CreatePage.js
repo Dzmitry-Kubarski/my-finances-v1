@@ -1,6 +1,6 @@
 //core
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 //hooks
 import { useHttp } from '../hooks/http.hook';
@@ -21,6 +21,7 @@ import arrowLeftSvg from '../images/arrow-left.svg';
 export const CreatePage = () => {
     const auth = useContext(AuthContext)
     const { request, error } = useHttp()
+    const history = useHistory()
 
     const [popupType, setPopupType] = useState(false);
     const [popupSources, setPopupSources] = useState(false);
@@ -48,10 +49,11 @@ export const CreatePage = () => {
         comment,
     }
 
-    const createTransactionHandler = () => {
-        const data = request('/api/link/add', 'POST', { ...newTransaction }, {
+    const createTransactionHandler = async () => {
+        const data = await request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
+        history.push(`/home/`)
     }
 
     const tooglePopupType = () => {

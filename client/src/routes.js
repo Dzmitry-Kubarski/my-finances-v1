@@ -1,14 +1,19 @@
+// core
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+
+// pages
 import { HomePage } from './pages/HomePage'
 import { CreatePage } from './pages/CreatePage'
-import { DetailPage } from './pages/DetailPage'
 import { AuthPage } from './pages/AuthPage'
 import CreateSource from './pages/CreateSource';
 import CategoriesPage from './pages/CategoriesPage';
 import CreateCategories from './pages/CreateCategories';
 import StatisticsPage from './pages/StatisticsPage';
 import AllTransactionsPage from './pages/AllTransactionsPage';
+import DetailSourcePage from './pages/DetailSourcePage';
+import DetailCategoriesPage from './pages/DetailCategoriesPage';
+
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -38,12 +43,16 @@ export const useRoutes = isAuthenticated => {
                     <AllTransactionsPage />
                 </Route>
 
-                <Route path="/categories">
+                <Route path="/categories" exact>
                     <CategoriesPage />
                 </Route>
 
-                <Route path="/detail/:id">
-                    <DetailPage />
+                <Route path="/sources/:id">
+                    <DetailSourcePage />
+                </Route>
+
+                <Route path="/categories/:id" exact>
+                    <DetailCategoriesPage />
                 </Route>
 
                 <Redirect to="/home" />

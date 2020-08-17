@@ -1,6 +1,7 @@
 //core
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 //hooks
 import { useHttp } from '../hooks/http.hook';
@@ -15,6 +16,7 @@ import arrowLeftSvg from '../images/arrow-left.svg';
 
 
 const CreateCategories = () => {
+    const history = useHistory()
     const auth = React.useContext(AuthContext);
     const { loading, request, error, clearError } = useHttp();
 
@@ -31,10 +33,11 @@ const CreateCategories = () => {
         setTitle(event.target.value);
     }
 
-    const addOperationHandler = () => {
-        const data = request('/api/categories/add', 'POST', { ...newCategory }, {
+    const addOperationHandler = async () => {
+        const data = await request('/api/categories/add', 'POST', { ...newCategory }, {
             Authorization: `Bearer ${auth.token}`
         })
+        history.push(`/categories/`)
     }
 
     const operations = ['расходы', 'доходы'];

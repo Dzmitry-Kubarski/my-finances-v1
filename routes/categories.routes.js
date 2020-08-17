@@ -35,7 +35,34 @@ router.get('/', auth, async (req, res) => {
 })
 
 
+// переход на индивидуальную категорию
+router.get('/:categoryId', auth, async (req, res) => {
+  try {
+    const { categoryId } = req.params
+    const category = await Category.findById(categoryId)
+
+    console.log(category)
+
+    res.json(category)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+  }
+})
+
+
+// удаление категории
+router.delete('/delete/:categoryId', auth, async (req, res) => {
+  try {
+    const { categoryId } = req.params
+    const category = await Category.findById(categoryId).remove()
+
+    res.status(201).json({ category })
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
+
+
 module.exports = router
-
-
-// categories

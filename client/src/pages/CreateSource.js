@@ -1,6 +1,6 @@
 //core
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 //hooks
 import { useHttp } from '../hooks/http.hook';
@@ -14,6 +14,8 @@ import arrowLeftSvg from '../images/arrow-left.svg';
 
 
 const CreateSource = () => {
+    const history = useHistory()
+
     const auth = React.useContext(AuthContext);
     const { request, } = useHttp();
 
@@ -25,10 +27,11 @@ const CreateSource = () => {
         setForm({ ...form, [event.target.name]: event.target.value });
     }
 
-    const addSourceHandler = () => {
-        const data = request('/api/sources/add', 'POST', { ...form }, {
+    const addSourceHandler = async () => {
+        const data = await request('/api/sources/add', 'POST', { ...form }, {
             Authorization: `Bearer ${auth.token}`
         })
+        history.push(`/home/`)
     }
 
     return (

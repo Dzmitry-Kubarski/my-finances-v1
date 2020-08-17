@@ -1,6 +1,7 @@
 //core
 import React from 'react';
 import axios from 'axios';
+import classnames from 'classnames';
 
 //components
 import Transaction from '../components/TransactionsList/Transaction';
@@ -12,7 +13,7 @@ import useAllTransactions from './useAllTransactions'
 //context
 import { AuthContext } from '../../src/context/AuthContext'
 
-
+// className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}
 const AllTransactionsPage = () => {
     const [isOpenFilterList, setIsOpenFilterList] = React.useState(false)
     const [filtres, setFiltres] = React.useState([])
@@ -21,7 +22,6 @@ const AllTransactionsPage = () => {
 
     const fetchLinks = async (params) => {
         try {
-
             const entries = Object.entries(params).filter(([key, value]) => value !== '')
             const newParams = Object.fromEntries(entries)
 
@@ -52,14 +52,12 @@ const AllTransactionsPage = () => {
 
                         {!isOpenFilterList
                             ?
-                            <ul className='transactions__list'>
+                            <ul className={classnames({ ['transactions__list']: true, ['scroll']: data.length > 5 })}>
                                 <Transaction transactions={data} />
                             </ul>
                             :
                             <div>
-                                <h2>Отфильтрованный список</h2>
-
-                                <ul className='transactions__list'>
+                                <ul className={classnames({ ['transactions__list']: true, ['scroll']: filtres.length > 5 })}>
                                     <Transaction transactions={filtres} />
                                 </ul>
                             </div>

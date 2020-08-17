@@ -1,9 +1,11 @@
 //core
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 //images
 import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg';
 import tagSvg from '../../images/tag.svg';
+import arrowBigRightSvg from '../../images/arrow-big-right.svg'
 
 
 const CategoriesItem = ({ categories }) => {
@@ -13,9 +15,9 @@ const CategoriesItem = ({ categories }) => {
 
             <h4 className='sources-item__title'>{title}</h4>
 
-            <button className='new-transaction__btn'>
-                <img className='new-transaction__icon' src={ellipsisHorizontalSvg} alt='' />
-            </button>
+            <NavLink to={`/categories/${_id}`} className='new-transaction__btn'>
+                <img className='new-transaction__icon' src={arrowBigRightSvg} alt='' />
+            </NavLink>
         </li>
     ))
 

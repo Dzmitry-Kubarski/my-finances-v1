@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 //components
-import Form from './../components/Form';
+import Form from '../components/Form/Form';
 
 //images
 import logoSvg from '../images/logo.svg';
@@ -10,13 +10,12 @@ import logoSvg from '../images/logo.svg';
 
 export const AuthPage = () => {
     const [activeForm, setActiveForm] = useState('loginForm');
+    const [activeTab, setActiveTab] = useState(0);
 
-    const [tabs, setTabs] = useState([
+    const tabs = [
         { name: 'Login' },
         { name: 'Register' }
-    ])
-
-    const [activeTab, setActiveTab] = useState(0);
+    ]
 
     const selectForm = (name, index) => {
         if (name === 'Login') {
@@ -51,10 +50,8 @@ export const AuthPage = () => {
                         <div className="auth__tabs">
                             {
                                 tabs.map((tab, index) => (
-                                    <p key={`${tab.name}-${index}`}
-                                        className={activeTab === index
-                                            ? 'auth__tab active'
-                                            : 'auth__tab'}
+                                    <p key={tab.name}
+                                        className={activeTab === index ? 'auth__tab active' : 'auth__tab'}
                                         onClick={() => { selectForm(tab.name, index) }}
                                     >
                                         {tab.name}

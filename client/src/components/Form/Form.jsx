@@ -2,11 +2,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 //hooks
-import { useHttp } from '../hooks/http.hook';
-import { useMessage } from '../hooks/message.hook';
+import { useHttp } from '../../hooks/http.hook';
+import { useMessage } from '../../hooks/message.hook';
 
 //context
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 
 const Form = ({ activeForm }) => {
@@ -78,7 +78,7 @@ const Form = ({ activeForm }) => {
 
 
             {activeForm === 'registerForm' && (
-                <div className="form-box" style={{ display: 'block' }}>
+                <div className="form-box">
                     <h2 className="form-box__title">Регистрация</h2>
 
                     <div className="form">

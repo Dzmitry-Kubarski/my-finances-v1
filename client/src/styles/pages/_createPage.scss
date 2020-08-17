@@ -218,6 +218,13 @@
     box-shadow: 3px 5px 20px 0 rgba(94,92,154,.1);
     z-index: 99;
     color: #23d2e2;
+    border-radius: 10px;
+    transition: background .2s linear, box-shadow .2s linear;
+
+    &:hover {
+        background: #f9f9f9;
+        box-shadow: none;        
+    }
 }
 
 .new-transaction__icon {
