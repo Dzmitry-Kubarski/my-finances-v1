@@ -8,8 +8,6 @@ const router = Router()
 router.post('/add', auth, async (req, res) => {
   try {
     const { title, total } = req.body
-    console.log('title', title)
-    console.log('total', total)
 
     const source = new Source({
       title, total, owner: req.user.userId
@@ -78,6 +76,23 @@ router.delete('/delete/:sourceId', auth, async (req, res) => {
 
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
+
+
+// редактирование счёта
+router.post('/edit', auth, async (req, res) => {
+  try {
+    const { newTitleSource, sourceId } = req.body
+
+    const source = await Source.findById(sourceId)
+    source.title = newTitleSource
+
+    await source.save()
+    res.status(201).json({ source })
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
   }
 })
 

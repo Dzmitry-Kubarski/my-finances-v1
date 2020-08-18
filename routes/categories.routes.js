@@ -41,8 +41,6 @@ router.get('/:categoryId', auth, async (req, res) => {
     const { categoryId } = req.params
     const category = await Category.findById(categoryId)
 
-    console.log(category)
-
     res.json(category)
 
   } catch (e) {
@@ -61,6 +59,23 @@ router.delete('/delete/:categoryId', auth, async (req, res) => {
 
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так...' })
+  }
+})
+
+
+// редактирование категории
+router.post('/edit', auth, async (req, res) => {
+  try {
+    const { newTitleCategory, categoryId } = req.body
+
+    const сategory = await Category.findById(categoryId)
+    сategory.title = newTitleCategory
+
+    await сategory.save()
+    res.status(201).json({ сategory })
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
   }
 })
 
