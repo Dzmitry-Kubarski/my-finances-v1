@@ -97,4 +97,27 @@ router.post('/edit', auth, async (req, res) => {
 })
 
 
+// редактирование суммы счёта
+router.post('/edit-total', auth, async (req, res) => {
+  try {
+    const { source, sum, operation } = req.body
+
+    const currentSource = await Source.findOne({ title: source, owner: req.user.userId })
+
+    if (operation === 'расходы') {
+      currentSource.total = currentSource.total - +sum
+    }
+    else if (operation === 'доходы') {
+      currentSource.total = currentSource.total + +sum
+    }
+
+    await currentSource.save()
+    res.status(201).json(currentSource)
+
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+  }
+})
+
+
 module.exports = router

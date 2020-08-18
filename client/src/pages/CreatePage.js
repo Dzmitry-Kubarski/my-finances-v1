@@ -60,6 +60,12 @@ export const CreatePage = () => {
         const data = await request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
+
+
+        const data2 = await request('/api/sources/edit-total', 'POST', { ...newTransaction }, {
+            Authorization: `Bearer ${auth.token}`
+        })
+
         history.push(`/home/`)
     }
 

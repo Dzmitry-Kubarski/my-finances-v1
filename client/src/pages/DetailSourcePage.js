@@ -46,13 +46,14 @@ const DetailSourcePage = () => {
         setNewTitleSource(e.target.value)
     }
 
-    const saveSource = async () => {
+    const saveSource = async (e) => {
+        e.preventDefault();
+
         const data = await request('/api/sources/edit', 'POST', { newTitleSource, sourceId }, {
             Authorization: `Bearer ${auth.token}`
         })
         history.push(`/home/`)
     }
-
 
     if (isLoading) return 'Loading...'
     if (error) return 'Ошибка при получении счетов: ' + error.message
@@ -61,23 +62,28 @@ const DetailSourcePage = () => {
         <div className='page  detailSourcePage'>
             <div className='container'>
                 <div className='page__inner'>
-                    <div className='sources-item'>
+                    <form className='sources-item' onSubmit={saveSource}>
                         <img className='sources-item__icon' src={sourcesSvg} alt="" />
 
                         {!editMode
                             ? <h4 className='sources-item__title'>{data.title}</h4>
-                            : <input onChange={(e) => { changeNewTitleSource(e) }} className='sources-item__input' type='text' placeholder={data.title} value={newTitleSource} />
+                            : <input onChange={(e) => { changeNewTitleSource(e) }}
+                                className='sources-item__input'
+                                type='text' placeholder={data.title}
+                                value={newTitleSource}
+                                required
+                            />
                         }
 
                         <div className='sources-item__total'>{data.total} руб</div>
 
                         {!editMode
                             ?
-                            <button onClick={tooglePopup} className='new-transaction__btn'>
+                            <button onClick={tooglePopup} className='new-transaction__btn' type='button'>
                                 <img className='new-transaction__icon' src={ellipsisHorizontalSvg} alt='' />
                             </button>
                             :
-                            <button onClick={saveSource} className='new-transaction__btn'>
+                            <button className='new-transaction__btn' type='submit'>
                                 ок
                             </button>
                         }
@@ -93,7 +99,7 @@ const DetailSourcePage = () => {
                                 </li>
                             </ul>
                         }
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

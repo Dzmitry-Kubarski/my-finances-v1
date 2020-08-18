@@ -47,7 +47,9 @@ const DetailCategoriesPage = () => {
         setNewTitleCategory(e.target.value)
     }
 
-    const saveCategory = async () => {
+    const saveCategory = async (e) => {
+        e.preventDefault();
+
         const data = await request('/api/categories/edit', 'POST', { newTitleCategory, categoryId }, {
             Authorization: `Bearer ${auth.token}`
         })
@@ -64,21 +66,27 @@ const DetailCategoriesPage = () => {
         <div className='page  detailCategoryPage'>
             <div className='container'>
                 <div className='page__inner'>
-                    <div className='sources-item'>
+                    <form className='sources-item' onSubmit={saveCategory}>
                         <img className='sources-item__icon' src={tagSvg} alt="" />
 
                         {!editMode
                             ? <h4 className='sources-item__title'>{data.title}</h4>
-                            : <input onChange={(e) => { changeNewTitleCategory(e) }} className='sources-item__input' type='text' placeholder={data.title} value={newTitleCategory} />
+                            : <input onChange={(e) => { changeNewTitleCategory(e) }}
+                                className='sources-item__input'
+                                type='text'
+                                placeholder={data.title}
+                                value={newTitleCategory}
+                                required
+                            />
                         }
 
                         {!editMode
                             ?
-                            <button onClick={tooglePopup} className='new-transaction__btn'>
+                            <button onClick={tooglePopup} className='new-transaction__btn' type='button'>
                                 <img className='new-transaction__icon' src={ellipsisHorizontalSvg} alt='' />
                             </button>
                             :
-                            <button onClick={saveCategory} className='new-transaction__btn'>
+                            <button className='new-transaction__btn' type='submit'>
                                 ок
                             </button>
                         }
@@ -94,7 +102,7 @@ const DetailCategoriesPage = () => {
                                 </li>
                             </ul>
                         }
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

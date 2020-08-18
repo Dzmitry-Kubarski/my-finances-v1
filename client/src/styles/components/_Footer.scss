@@ -25,27 +25,31 @@
 
 .footer__btn {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 70px;
     height: 70px;
-    // background: $yellow;
     background: #fff;
-    // border-radius: 12px;
     margin-right: 5px;
+    transition: background .2s linear;
 
     &.active {
         background: $yellow;
-    }
+    }      
 }
 
 .footer__create-btn {
-    font-size: 3rem;
-    color: $white;
-    font-weight: 700;
+    font-size: 50px;
+    color: #3e3f5e;
 }
 
 .footer__btn-icon {
     width: 40px;
     height: 40px;
+    margin-bottom: 5px;
+}
+
+.footer__btn-title {
+    font-size: 12px;
 }
