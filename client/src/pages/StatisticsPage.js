@@ -2,7 +2,6 @@
 import React from 'react';
 
 //charts
-import ExampleChart from './../charts/ExampleChart';
 import StatisticsExpenses from '../charts/StatisticsExpenses';
 import StatisticsRevenue from '../charts/StatisticsRevenue';
 
@@ -15,10 +14,14 @@ const StatisticsPage = () => {
     const { data, isLoading, error } = useStatisticsExpenses()
     const { data: revenue, isLoading: revenueIsLoading, error: errorrEvenue } = useStatisticsRevenue()
 
-    if (isLoading) return 'Loading...'
-    if (error) return 'Ошибка при получении всех транзакций: ' + error.message
+    if (isLoading) return <p className='load-statistics'>Загрузка...</p>
+    if (error) return 'Ошибка при получении данных'
 
-    console.log(data)
+    if (revenueIsLoading) return <p className='load-statistics'>Загрузка...</p>
+    if (errorrEvenue) return 'Ошибка при получении данных'
+
+    const isEmptyExpenses = data.length === 0
+    const isEmptyRevenue = revenue.length === 0
 
     return (
         <div className='page  statisticsPage'>
@@ -26,9 +29,8 @@ const StatisticsPage = () => {
                 <h1 className='page__title'>Статистика</h1>
 
                 <div className='page__inner'>
-                    {/* <ExampleChart /> */}
-                    <StatisticsExpenses data={data} />
-                    <StatisticsRevenue data={revenue} />
+                    {!isEmptyExpenses ? <StatisticsExpenses data={data} /> : <p>Ещё нет данных о расходах</p>}
+                    {!isEmptyRevenue ? <StatisticsRevenue data={revenue} /> : <p>Ещё нет данных о доходах</p>}
                 </div>
             </div>
         </div>

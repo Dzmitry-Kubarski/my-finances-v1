@@ -17,6 +17,8 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const ChartComponent = ({ data = [] }) => {
+  const isEmptyExpenses = data.length === 0
+
   const newArr = data.map(i => ({ label: i._id, value: i.sum }));
 
   const chartConfigs = {
@@ -46,7 +48,7 @@ const ChartComponent = ({ data = [] }) => {
     }
   };
 
-  return <ReactFC {...chartConfigs} />;
+  return <ReactFC {...chartConfigs} />
 };
 
 export default ChartComponent;

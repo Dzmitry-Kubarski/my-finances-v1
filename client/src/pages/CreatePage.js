@@ -33,7 +33,8 @@ export const CreatePage = () => {
     const [sum, setSum] = useState('');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState(new Date().toLocaleDateString());
-    const [comment, setComment] = useState(' ');
+    const [comment, setComment] = useState('');
+    const [errorForm, setErrorForm] = useState(false);
 
     const { data: categories, isLoading, error: errorCategories } = useCategories();
     const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources();
@@ -49,7 +50,13 @@ export const CreatePage = () => {
         comment,
     }
 
+    const isEmptyFields = Object.entries(newTransaction).filter(([key, value]) => value === '')
+
     const createTransactionHandler = async () => {
+        if (isEmptyFields.length > 0) {
+            return setErrorForm(true)
+        }
+
         const data = await request('/api/link/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
@@ -71,16 +78,19 @@ export const CreatePage = () => {
     const selectPperations = (name) => {
         setOperation(name)
         setPopupType(!popupType)
+        setErrorForm(false)
     }
 
     const selectSources = (name) => {
         setSource(name)
         setPopupSources(!popupSources)
+        setErrorForm(false)
     }
 
     const selectCategory = (title) => {
         setCategory(title)
         setPopupCategory(!popupCategory)
+        setErrorForm(false)
     }
 
     const sumChangeHadler = (event) => {
@@ -102,8 +112,8 @@ export const CreatePage = () => {
     if (isLoading) return 'Loading...'
     if (sourcesLoading) return 'Loading...'
 
-    if (errorCategories) return 'Ошибка при получении счетов: ' + errorCategories.message
-    if (errorSources) return 'Ошибка при получении счетов: ' + errorSources.message
+    if (errorCategories) return 'Ошибка при получении счетов'
+    if (errorSources) return 'Ошибка при получении счетов'
 
 
     return (
@@ -116,6 +126,8 @@ export const CreatePage = () => {
                         <img className='btn-add__icon' src={arrowLeftSvg} alt="" />
                     </NavLink>
                 </div>
+
+                {errorForm && <p className='error'>Заполните все поля</p>}
 
                 <div className='new-transaction'>
                     <div className='new-transaction__row'>
@@ -151,15 +163,20 @@ export const CreatePage = () => {
                             </button>
                         </div>
 
-                        {popupSources && <ul className='new-transaction__popup-list'>
+                        {popupSources &&
+                            <ul className='new-transaction__popup-list'>
+                                {sources.length === 0
+                                    ? <li className='new-transaction__popup-item'>
+                                        <NavLink to='create-source' exact className='new-transaction__popup-btn'>Создать</NavLink>
+                                    </li>
 
-                            {sources.map(({ title }, index) => (
-                                <li key={`${title}_${index}`} className='new-transaction__popup-item'>
-                                    <button onClick={() => { selectSources(title) }} className='new-transaction__popup-btn'>{title}</button>
-                                </li>
-                            ))}
-
-                        </ul>}
+                                    : sources.map(({ title }, index) => (
+                                        <li key={`${title}_${index}`} className='new-transaction__popup-item'>
+                                            <button onClick={() => { selectSources(title) }} className='new-transaction__popup-btn'>{title}</button>
+                                        </li>
+                                    ))}
+                            </ul>
+                        }
                     </div>
 
                     <div className='new-transaction__row'>
@@ -172,14 +189,20 @@ export const CreatePage = () => {
                             </button>
                         </div>
 
-                        {popupCategory && <ul className='new-transaction__popup-list'>
+                        {popupCategory &&
+                            <ul className='new-transaction__popup-list'>
+                                {categories.length === 0
+                                    ? <li className='new-transaction__popup-item'>
+                                        <NavLink to='create-category' exact className='new-transaction__popup-btn'>Создать</NavLink>
+                                    </li>
 
-                            {categories.map((item, index) => (
-                                <li key={`${item.title}_${index}`} className='new-transaction__popup-item'>
-                                    <button onClick={() => { selectCategory(item.title) }} className='new-transaction__popup-btn'>{item.title}</button>
-                                </li>
-                            ))}
-                        </ul>}
+                                    : categories.map((item, index) => (
+                                        <li key={`${item.title}_${index}`} className='new-transaction__popup-item'>
+                                            <button onClick={() => { selectCategory(item.title) }} className='new-transaction__popup-btn'>{item.title}</button>
+                                        </li>
+                                    ))}
+                            </ul>
+                        }
                     </div>
 
 
@@ -215,7 +238,7 @@ export const CreatePage = () => {
                     <div className='new-transaction__row'>
                         <h4 className='new-transaction__title'>Сумма:</h4>
                         <div className='new-transaction__col'>
-                            <input onChange={sumChangeHadler} type='text' placeholder='сумма' value={sum} />
+                            <input onChange={sumChangeHadler} type='number' placeholder='сумма' value={sum} />
                             <button onClick={createTransactionHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
                         </div>
                     </div>

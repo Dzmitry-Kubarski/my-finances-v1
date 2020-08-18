@@ -19,16 +19,18 @@ const CreateSource = () => {
     const auth = React.useContext(AuthContext);
     const { request, } = useHttp();
 
-    const [form, setForm] = React.useState({
-        title: '', total: ''
+    const [newSource, setNewSource] = React.useState({
+        title: '', total: 0
     })
 
     const changeHandler = event => {
-        setForm({ ...form, [event.target.name]: event.target.value });
+        setNewSource({ ...newSource, [event.target.name]: event.target.value });
     }
 
-    const addSourceHandler = async () => {
-        const data = await request('/api/sources/add', 'POST', { ...form }, {
+    const addSourceHandler = async (e) => {
+        e.preventDefault();
+
+        const data = await request('/api/sources/add', 'POST', { ...newSource }, {
             Authorization: `Bearer ${auth.token}`
         })
         history.push(`/home/`)
@@ -48,11 +50,11 @@ const CreateSource = () => {
 
                 <div className='new-transaction'>
                     <div className='new-transaction__row'>
-                        <div className='new-transaction__col'>
-                            <input onChange={changeHandler} type='text' placeholder='Название счёта' name='title' />
-                            <input onChange={changeHandler} type='text' placeholder='Стартовая сумма на счету' name='total' />
-                            <button onClick={addSourceHandler} className='new-transaction__submit' type='button'>Подтвердить</button>
-                        </div>
+                        <form onSubmit={addSourceHandler} className='new-transaction__col'>
+                            <input onChange={changeHandler} type='text' placeholder='Название счёта' name='title' required />
+                            <input onChange={changeHandler} type='number' placeholder='Стартовая сумма на счету' name='total' required />
+                            <button type='submit' className='new-transaction__submit'>Подтвердить</button>
+                        </form>
                     </div>
                 </div>
             </div>

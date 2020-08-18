@@ -8,7 +8,7 @@ import tagSvg from '../../images/tag.svg';
 import arrowBigRightSvg from '../../images/arrow-big-right.svg'
 
 
-const CategoriesItem = ({ categories }) => {
+const CategoriesItem = ({ categories = [] }) => {
     const categoriesJsx = categories.map(({ title, _id }) => (
         <li key={_id} className='sources-item'>
             <img className='sources-item__icon' src={tagSvg} alt="" />
@@ -20,12 +20,6 @@ const CategoriesItem = ({ categories }) => {
             </NavLink>
         </li>
     ))
-
-    if (categories.length === 0) {
-        return (
-            <p>ничего нет</p>
-        )
-    }
 
     return (
         <>

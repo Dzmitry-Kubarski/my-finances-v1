@@ -1,21 +1,25 @@
-//core
+// core
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 
-//components
+// components
 import SourceItem from './SourceItem';
 
-//hooks
+// hooks
 import useSources from './useSources'
+
+// images
+import noListJPG from '../../images/credit-card.png'
 
 const SourcesList = () => {
     const { data, isLoading, error } = useSources()
 
     if (isLoading) return 'Loading...'
-    if (error) return 'Ошибка при получении счетов: ' + error.message
+    if (error) return 'Ошибка при получении счетов'
 
     const isScroll = data.length > 5
+    const isEmpty = data.length === 0
 
     return (
         <div className='sources'>
@@ -24,9 +28,17 @@ const SourcesList = () => {
                 <NavLink className='btn-add' to="/create-source">+</NavLink>
             </div>
 
-            <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
-                <SourceItem sources={data} />
-            </ul>
+
+            {!isEmpty ?
+                <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
+                    <SourceItem sources={data} />
+                </ul>
+                :
+                <>
+                    <p>Вы не создали ещё ни одного счёта</p>
+                    <img className='no-list' src={noListJPG} alt="" />
+                </>
+            }
         </div >
     );
 };

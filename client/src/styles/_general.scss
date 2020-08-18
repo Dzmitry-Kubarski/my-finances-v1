@@ -1,6 +1,7 @@
 label,
 input[type="text"],
 input[type="password"],
+input[type="number"],
 textarea,
 select,
 button {
@@ -16,6 +17,7 @@ label {
 
 input[type="text"],
 input[type="password"],
+input[type="number"],
 textarea,
 select,
 button {
@@ -27,6 +29,7 @@ button {
 
 input[type="text"],
 input[type="password"],
+input[type="number"],
 textarea,
 select {
   background-color: $color-box-background;
@@ -40,6 +43,7 @@ select {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="password"] {
   height: 54px;
   padding: 0 18px;
@@ -105,7 +109,6 @@ a {
   }
 }
 
-
 .container {
   width: 100%;
   max-width: 1280px;
@@ -115,6 +118,17 @@ a {
 
 .app {
   min-height: calc(100vh - 160px);
+
+    .load-statistics {
+        text-align: center;
+        margin-top: 50px;
+    }
+}
+
+.error {
+  color: tomato;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .title-wrap {

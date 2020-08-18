@@ -18,11 +18,12 @@ import arrowLeftSvg from '../images/arrow-left.svg';
 const CreateCategories = () => {
     const history = useHistory()
     const auth = React.useContext(AuthContext);
-    const { loading, request, error, clearError } = useHttp();
+    const { loading, request } = useHttp();
 
     const [popupType, setPopupType] = useState(false);
     const [operation, setOperation] = useState('');
     const [title, setTitle] = useState('');
+    const [error, setError] = useState(false);
 
     const newCategory = {
         title,
@@ -33,7 +34,13 @@ const CreateCategories = () => {
         setTitle(event.target.value);
     }
 
-    const addOperationHandler = async () => {
+    const addOperationHandler = async (e) => {
+        e.preventDefault();
+
+        if (operation === '') {
+            return setError(true)
+        }
+
         const data = await request('/api/categories/add', 'POST', { ...newCategory }, {
             Authorization: `Bearer ${auth.token}`
         })
@@ -66,8 +73,8 @@ const CreateCategories = () => {
 
                 <div className='new-transaction'>
                     <div className='new-transaction__row'>
-                        <div className='new-transaction__col'>
-                            <input onChange={changeHandler} type='text' placeholder='Название категории' name='title' />
+                        <form onSubmit={addOperationHandler} className='new-transaction__col'>
+                            <input onChange={changeHandler} type='text' placeholder='Название категории' name='title' required />
 
                             <div className='create-sources__row'>
                                 <h4 className='new-transaction__title'>Тип операции:</h4>
@@ -75,7 +82,7 @@ const CreateCategories = () => {
                                 <div className='create-sources__col'>
                                     <span className='new-transaction__value'>{operation}</span>
 
-                                    <button onClick={tooglePopupType} className='new-transaction__btn'>
+                                    <button type='button' onClick={tooglePopupType} className='new-transaction__btn' >
                                         <img className='new-transaction__icon' src={chevronDownSvg} alt='' />
                                     </button>
                                 </div>
@@ -91,8 +98,10 @@ const CreateCategories = () => {
                                 </ul>}
                             </div>
 
-                            <button onClick={addOperationHandler} className='new-transaction__submit' type='button'>Добавить категорию</button>
-                        </div>
+                            <button className='new-transaction__submit' type='submit'>Добавить категорию</button>
+                        </form>
+
+                        {error && <p className='error'>Заполните все поля</p>}
                     </div>
                 </div>
             </div>

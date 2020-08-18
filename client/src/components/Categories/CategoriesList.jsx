@@ -17,6 +17,7 @@ const CategoriesList = () => {
     if (error) return 'Ошибка при получении счетов: ' + error.message
 
     const isScroll = data.length > 5
+    const isEmpty = data.length === 0
 
     return (
         <div className='sources'>
@@ -25,9 +26,13 @@ const CategoriesList = () => {
                 <NavLink className='btn-add' to="/create-category">+</NavLink>
             </div>
 
-            <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
-                <CategoriesItem categories={data} />
-            </ul>
+            {!isEmpty ?
+                <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
+                    <CategoriesItem categories={data} />
+                </ul>
+                :
+                <p>Вы ещё не создали ни одной категории</p>
+            }
         </div>
     );
 };
