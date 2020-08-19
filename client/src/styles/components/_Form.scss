@@ -9,12 +9,21 @@
     border-radius: 12px;
     background-color: $color-box-background;
     box-shadow: $shadow-dark-alt-3;
+
+    @media (max-width: 460px) {
+        padding: 15px;   
+        padding-top: 30px;
+    }
 }
 
 .form-box__title {
     font-size: $fs-26;
     text-align: center;
     margin-bottom: 75px;
+
+    @media (max-width: 460px) {
+        margin-bottom: 30px;   
+    }
 }
 
 .form__row {

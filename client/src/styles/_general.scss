@@ -136,6 +136,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 420px) {
+    h2 {
+      font-size: 18px;
+    } 
+  }
 }
 
 ::-webkit-scrollbar-button {

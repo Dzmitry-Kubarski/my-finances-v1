@@ -19,6 +19,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 960px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px 0;
+    }
 }
 
 .auth__decoration {
@@ -36,7 +42,15 @@
     2. auth INFO
 ----------------------*/
 .auth__content {
-    width: 585px;     
+    width: 585px;    
+    
+    @media (max-width: 960px) {
+        margin-bottom: 50px;   
+    }
+
+    @media (max-width: 460px) {
+        margin-bottom: 0;   
+    }
 }
 
 .auth__subtitle,
@@ -62,7 +76,14 @@
     font-size: $fs-104;
     font-weight: $weight-black;
     position: relative;
-    top: -10px;
+    
+    @media (max-width: 460px) {
+        font-size: 80px;   
+    }
+
+    @media (max-width: 320px) {
+        font-size: 74px;   
+    }
 }
 
 .auth__text {
@@ -70,12 +91,26 @@
     margin: 30px auto 0;
     @include paragraph(medium);
     font-weight: $weight-medium;
+
+    @media (max-width: 460px) {
+        width: 100%;   
+    }
 }
 
 .auth__tabs {
     display: flex;
     justify-content: center;
     margin-top: 90px;
+
+    @media (max-width: 960px) {
+        margin-top: 50px;   
+    }
+
+    @media (max-width: 460px) {
+        flex-direction: column;  
+        align-items: center; 
+        margin-bottom: 15px;
+    }
 }
 
 
@@ -93,6 +128,7 @@
 }
   
 .auth__tab {
+    z-index: 100;
 
     &.active {
         color: #3e3f5e;
@@ -103,11 +139,20 @@
     &:first-child {
         border-top-left-radius: 12px;
         border-bottom-left-radius: 12px;
+
+        @media (max-width: 460px) {
+            border-radius: 12px;   
+            margin-bottom: 15px;
+        }
     }
 
     &:last-child {
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
+
+        @media (max-width: 460px) {
+            border-radius: 12px;   
+        }
     }
 }
 

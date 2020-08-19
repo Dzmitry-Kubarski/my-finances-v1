@@ -16,12 +16,14 @@
     .no-list {
         margin-top: 40px;
     }
+
+    @media (max-width: 950px) {
+        margin-right: 0;
+        margin-bottom: 50px;   
+    }
 }
 
 .transactions__list {
     max-height: 585px;
-    max-height: 640px;
-    // overflow: hidden;
-    // overflow-y: scroll;
-    // padding-top: 0;    
+    max-height: 640px;     
 }

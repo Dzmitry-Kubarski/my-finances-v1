@@ -21,9 +21,7 @@
     flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
-    max-height: 585px;
-    // overflow: hidden;
-    // overflow-y: scroll;  
+    max-height: 585px;   
 
     &.scroll {
         overflow: hidden;
@@ -47,11 +45,43 @@
     &:last-child {
         margin-bottom: 0;
     }
+
+    @media (max-width: 380px) {
+        .new-transaction__btn {
+            margin-left: auto;
+        }   
+    }
+}
+
+.sources-item__title {
+    margin: 0 10px;
+    min-width: 110px;
+
+    @media (max-width: 380px) {
+        font-size: 14px;  
+        min-width: 80px;
+        max-width: 80px; 
+    }
+}
+
+.sources-item__total {
+    margin-right: 5px;
+
+    @media (max-width: 380px) {
+        font-weight: 700;
+        color: #3e3f5e;
+        font-family: "Rajdhani", sans-serif;   
+    }
 }
 
 .sources-item__icon {
     width: 50px;
     height: 50px;
+
+    @media (max-width: 380px) {
+        width: 40px;
+        height: 40px;   
+    }
 }
 
 .sources__row {

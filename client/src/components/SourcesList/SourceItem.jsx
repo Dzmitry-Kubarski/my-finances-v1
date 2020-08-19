@@ -16,7 +16,7 @@ const SourceItem = ({ sources = [] }) => {
         <li key={_id} className='sources-item'>
             <img className='sources-item__icon' src={sourcesSvg} alt="" />
 
-            <h4 className='sources-item__title'>{title}</h4>
+            <p className='sources-item__title'>{title}</p>
 
             <div className='sources-item__total'>{total} руб</div>
 

@@ -9,7 +9,7 @@ import arrowUpSvg from '../../images/arrow-up.png';
 const Transaction = ({ transactions = [] }) => {
     const transactionsJsx = transactions.map(({ sum, comment, operation, category, source, date, _id }) => (
         <li key={_id} className='transaction-item'>
-            <div>
+            <div className='transaction-item__arrow-wrap'>
                 {operation === 'расходы' ?
                     <img className='transaction-item__arrow' src={arrowDownSvg} alt="" />
                     :

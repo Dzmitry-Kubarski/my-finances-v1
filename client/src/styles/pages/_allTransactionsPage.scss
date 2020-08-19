@@ -19,10 +19,23 @@
 }
 
 .all-transactions {
-    width: 48%;
+    margin-right: 30px;
+
+    @media (max-width: 950px) {
+        width: 100%;
+        max-width: 500px;
+        margin-right: 0;
+        // order: -1;
+    }
 }
 
 .allTransactionsPage__filter-wrap {
-    width: 48%;
+    width: 50%;
     max-width: 500px;
+
+    @media (max-width: 950px) {
+        width: 100%;   
+        margin-bottom: 50px;   
+        order: -1;
+    }
 }

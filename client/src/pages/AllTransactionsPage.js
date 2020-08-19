@@ -46,9 +46,9 @@ const AllTransactionsPage = () => {
             <div className='container'>
                 <div className='page__inner'>
                     <div className='all-transactions'>
-                        <div className='title-wrap'>
+                        {/* <div className='title-wrap'>
                             <h2>Все транзакции</h2>
-                        </div>
+                        </div> */}
 
                         {!isOpenFilterList
                             ?
@@ -67,7 +67,7 @@ const AllTransactionsPage = () => {
 
                     <div className='allTransactionsPage__filter-wrap'>
                         <div className="title-wrap">
-                            <h2>Фильтры</h2>
+                            <h2>Фильтр</h2>
                         </div>
 
                         <Filter setIsOpenFilterList={setIsOpenFilterList} fetchLinks={fetchLinks} />

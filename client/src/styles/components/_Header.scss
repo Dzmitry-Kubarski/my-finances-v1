@@ -27,3 +27,11 @@
     font-family: $font-primary;
     color: $white;
 }
+
+.header__logo {
+    @media (max-width: 420px) {
+        .logo__text {
+            display: none;
+        }   
+    }
+}
