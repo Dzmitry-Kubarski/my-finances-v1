@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "jwtSecret": "dzmitry-kubarski-budgettracking",
+  "mongoUri": "mongodb+srv://dima:LekSur5fUJuhhTpx@cluster0.wql9j.mongodb.net/finance?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000"
+}

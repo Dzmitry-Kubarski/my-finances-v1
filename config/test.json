@@ -1,0 +1,18 @@
+{
+    "port": 5000,
+    "mongoUri": "mongodb+srv://dima:LekSur5fUJuhhTpx@cluster0.wql9j.mongodb.net/finance?retryWrites=true&w=majority",
+    "baseUrl": "http://localhost:5000",
+    "jwt": {
+        "secret": "dzmitry-kubarski-budgettracking",
+        "tokens": {
+            "access": {
+                "type": "access",
+                "expiresIn": "5m"
+            },
+            "refresh": {
+                "type": "refresh",
+                "expiresIn": "10m"
+            }
+        }
+    }
+}
