@@ -1,0 +1,43 @@
+.allTransactionsPage {
+   .page__inner {
+       justify-content: space-between;
+   }
+
+    .transactions__list {
+        padding-left: 0;        
+        padding-top: 0;  
+
+        &.scroll {
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+    }
+
+    .new-transaction {
+        margin: 0;
+    }
+}
+
+.all-transactions {
+    width: 100%;
+    max-width: 580px;
+    margin-right: 30px;
+
+    @media (max-width: 950px) {
+        width: 100%;
+        max-width: 500px;
+        margin-right: 0;
+        // order: -1;
+    }
+}
+
+.allTransactionsPage__filter-wrap {
+    width: 50%;
+    max-width: 500px;
+
+    @media (max-width: 950px) {
+        width: 100%;   
+        margin-bottom: 50px;   
+        order: -1;
+    }
+}

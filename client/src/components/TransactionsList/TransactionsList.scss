@@ -1,0 +1,41 @@
+/*-----------------------
+    VARIABLES
+-----------------------*/
+@import '../../styles/variables/font';
+@import '../../styles/variables/color';
+@import '../../styles/variables/color-theme';
+
+/*-----------------------
+    GENERAL
+-----------------------*/
+@import '../../styles/general';
+
+.transactions {
+    width: 100%;
+    max-width: 580px;
+    margin-right: 100px;
+
+    .form__item {
+        width: 100%;
+
+        a {
+            width: 100%;
+            display: block;
+            height: 60px;
+        }
+    }
+    
+    .no-list {
+        margin-top: 40px;
+    }
+
+    @media (max-width: 950px) {
+        margin-right: 0;
+        margin-bottom: 50px;   
+    }
+}
+
+.transactions__list {
+    max-height: 585px;
+    max-height: 640px;     
+}

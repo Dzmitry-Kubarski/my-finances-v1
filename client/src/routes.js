@@ -3,16 +3,16 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 // pages
-import { HomePage } from './pages/HomePage'
-import { CreatePage } from './pages/CreatePage'
-import { AuthPage } from './pages/AuthPage'
-import CreateSource from './pages/CreateSource';
-import CategoriesPage from './pages/CategoriesPage';
-import CreateCategories from './pages/CreateCategories';
-import StatisticsPage from './pages/StatisticsPage';
-import AllTransactionsPage from './pages/AllTransactionsPage';
-import DetailSourcePage from './pages/DetailSourcePage';
-import DetailCategoriesPage from './pages/DetailCategoriesPage';
+import { HomePage } from './pages/HomePage/HomePage'
+import { CreateTransactionPage } from './pages/CreateTransactionPage/CreateTransactionPage'
+import AuthPage from './pages/AuthPage/AuthPage'
+import CreateSource from './pages/CreateSource/CreateSource';
+import CategoriesPage from './pages/CategoriesPage/CategoriesPage';
+import CreateCategories from './pages/CreateCategories/CreateCategories';
+import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
+import AllTransactionsPage from './pages/AllTransactionsPage/AllTransactionsPage';
+import DetailSourcePage from './pages/DetailSourcePage/DetailSourcePage';
+import DetailCategoriesPage from './pages/DetailCategoriesPage/DetailCategoriesPage';
 
 
 export const useRoutes = isAuthenticated => {
@@ -24,7 +24,7 @@ export const useRoutes = isAuthenticated => {
                 </Route>
 
                 <Route path="/create">
-                    <CreatePage />
+                    <CreateTransactionPage />
                 </Route>
 
                 <Route path="/create-source">

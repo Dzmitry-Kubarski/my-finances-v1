@@ -8,6 +8,9 @@ import { AuthContext } from '../../context/AuthContext';
 //image
 import logoSvg from '../../images/logo.svg';
 
+// styles
+import './Header.scss'
+
 
 export const Header = () => {
     const history = useHistory()

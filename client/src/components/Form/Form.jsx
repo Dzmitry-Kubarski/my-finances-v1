@@ -8,6 +8,9 @@ import { useMessage } from '../../hooks/message.hook';
 //context
 import { AuthContext } from '../../context/AuthContext';
 
+// styles
+import './Form.scss'
+
 
 const Form = ({ activeForm }) => {
     const auth = useContext(AuthContext);

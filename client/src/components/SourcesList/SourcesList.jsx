@@ -12,6 +12,9 @@ import useSources from './useSources'
 // images
 import noListJPG from '../../images/credit-card.png'
 
+// styles
+import './SourcesList.scss'
+
 const SourcesList = () => {
     const { data, isLoading, error } = useSources()
 

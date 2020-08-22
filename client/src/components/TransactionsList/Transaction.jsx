@@ -5,6 +5,9 @@ import React from 'react';
 import arrowDownSvg from '../../images/arrow-down.png';
 import arrowUpSvg from '../../images/arrow-up.png';
 
+// styles
+import './Transaction.scss'
+
 
 const Transaction = ({ transactions = [] }) => {
     const transactionsJsx = transactions.map(({ sum, comment, operation, category, source, date, _id }) => (

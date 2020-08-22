@@ -128,24 +128,6 @@
     }
   }
 
-  &.twitch {
-    background-color: $color-twitch;
-    box-shadow: $color-twitch-shadow;
-
-    &:hover {
-      background-color: $color-twitch-hover;
-    }
-  }
-
-  &.twitter {
-    background-color: $color-twitter;
-    box-shadow: $color-twitter-shadow;
-
-    &:hover {
-      background-color: $color-twitter-hover;
-    }
-  }
-
   &.add-field-button {
     width: 128px;
     margin-top: 40px;

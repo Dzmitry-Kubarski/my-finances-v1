@@ -2,6 +2,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// styles
+import './Footer.scss'
+
 // images
 import homeSvg from '../../images/home.svg'
 import chartSvg from '../../images/chart.svg'

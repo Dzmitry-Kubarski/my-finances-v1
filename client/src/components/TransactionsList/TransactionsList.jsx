@@ -11,6 +11,9 @@ import useTransactions from './useTransactions'
 // images
 import noListGPG from '../../images/no-transactions.png';
 
+// styles
+import './TransactionsList.scss'
+
 
 const TransactionsList = () => {
     const { data, isLoading, error } = useTransactions()

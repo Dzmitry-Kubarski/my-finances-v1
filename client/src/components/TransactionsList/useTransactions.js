@@ -11,7 +11,7 @@ export default function useTransactions() {
     const { token, logout } = React.useContext(AuthContext)
 
     return useQuery('transactions', () =>
-        axios.get('/api/link', { headers: { Authorization: `Bearer ${token}` } })
+        axios.get('/api/transaction', { headers: { Authorization: `Bearer ${token}` } })
             .then((res) => res.data)
 
             .catch(e => {

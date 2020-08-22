@@ -25,24 +25,3 @@
 @import '../styles/global/button';
 @import '../styles/global/logo';
 @import '../styles/global/page';
-
-
-/*-----------------------
-    COMPONENTS
------------------------*/
-@import '../styles/components/Header';
-@import '../styles/components/Form';
-@import '../styles/components/TransactionsList';
-@import '../styles/components/Transaction';
-@import '../styles/components/SourcesList';
-@import '../styles/components/Footer';
-
-
-/*-----------------------
-    PAGES
------------------------*/
-@import '../styles/pages/authPage';
-@import '../styles/pages/allTransactionsPage';
-@import '../styles/pages/create-sources';
-@import '../styles/pages/createPage';
-@import '../styles/pages/statisticsPage';
