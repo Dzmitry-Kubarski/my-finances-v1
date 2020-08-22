@@ -10,7 +10,7 @@ import chevronDownSvg from '../../images/chevron-down.svg';
 import penSvg from '../../images/pen.svg';
 
 
-export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
+export const Filter = ({ setIsOpenFilterList, fetchLinks, setIsNotFound }) => {
     const [popupType, setPopupType] = useState(false);
     const [popupSources, setPopupSources] = useState(false);
     const [popupCategory, setPopupCategory] = useState(false);
@@ -44,6 +44,7 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
         setSource('')
         setCategory('')
         setDate('')
+        setIsNotFound(false)
     }
 
     const tooglePopupType = () => {
@@ -156,7 +157,7 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
             </div>
 
 
-            <div className='new-transaction__row'>
+            {/* <div className='new-transaction__row'>
                 <h4 className='new-transaction__title'>Дата:</h4>
                 <div className='new-transaction__col'>
 
@@ -176,7 +177,7 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks }) => {
                         </button>
                     }
                 </div>
-            </div>
+            </div> */}
 
 
             <div className='new-transaction__row  filter-btns'>

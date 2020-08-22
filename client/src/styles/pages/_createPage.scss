@@ -30,6 +30,9 @@
     margin: 0 auto;
     margin-bottom: 15px;
     
+    @media (max-width: 420px) {
+        padding: 10px;   
+    }
 }
 
 .new-transaction__row {
@@ -203,10 +206,17 @@
     position: relative;
     min-width: 100px;    
     padding-left: 50px;
+
+    @media (max-width: 420px) {
+        font-weight: 500;
+        padding-left: 40px;  
+        font-size: 14px; 
+    }
 }
 
 .new-transaction__value {
     font-family: $font-secondary;
+    font-size: 14px;
 }
 
 .new-transaction__btn {

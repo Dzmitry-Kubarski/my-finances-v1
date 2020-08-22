@@ -19,6 +19,8 @@
 }
 
 .all-transactions {
+    width: 100%;
+    max-width: 580px;
     margin-right: 30px;
 
     @media (max-width: 950px) {

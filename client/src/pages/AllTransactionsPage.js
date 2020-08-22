@@ -13,15 +13,19 @@ import useAllTransactions from './useAllTransactions'
 //context
 import { AuthContext } from '../../src/context/AuthContext'
 
-// className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}
+
 const AllTransactionsPage = () => {
     const [isOpenFilterList, setIsOpenFilterList] = React.useState(false)
+    const [isNotFound, setIsNotFound] = React.useState(false)
     const [filtres, setFiltres] = React.useState([])
     const { data, isLoading, error } = useAllTransactions()
     const { token } = React.useContext(AuthContext);
+    const [isLoadingFiltres, setIsLoadingFiltres] = React.useState(false)
 
     const fetchLinks = async (params) => {
         try {
+            // setIsLoadingFiltres(true)
+
             const entries = Object.entries(params).filter(([key, value]) => value !== '')
             const newParams = Object.fromEntries(entries)
 
@@ -30,25 +34,30 @@ const AllTransactionsPage = () => {
             const response = await axios.get('/api/link/category/?' + paramsUrl, { headers: { Authorization: `Bearer ${token}` } })
 
             const data = await response.data
-            setFiltres(data)
+
+            // setIsLoadingFiltres(false)
+
+            if (data.length === 0) {
+                setIsNotFound(true)
+            } else {
+                setFiltres(data)
+            }
 
         } catch (e) {
-
+            // setIsLoadingFiltres(false)
             throw new Error(e)
         }
     }
 
-    if (isLoading) return 'Loading...'
-    if (error) return 'Ошибка при получении всех транзакций: ' + error.message
+    if (isLoading) return <p className='load-statistics'>Загрузка...</p>
+    // if (isLoadingFiltres) return <p className='load-statistics'>Загрузка фильтра...</p>
+    if (error) return 'Ошибка при получении всех транзакций'
 
     return (
         <div className='page  allTransactionsPage'>
             <div className='container'>
                 <div className='page__inner'>
                     <div className='all-transactions'>
-                        {/* <div className='title-wrap'>
-                            <h2>Все транзакции</h2>
-                        </div> */}
 
                         {!isOpenFilterList
                             ?
@@ -56,11 +65,18 @@ const AllTransactionsPage = () => {
                                 <Transaction transactions={data} />
                             </ul>
                             :
-                            <div>
-                                <ul className={classnames({ ['transactions__list']: true, ['scroll']: filtres.length > 5 })}>
-                                    <Transaction transactions={filtres} />
-                                </ul>
-                            </div>
+                            <>
+                                {!isNotFound
+                                    ?
+                                    <div>
+                                        <ul className={classnames({ ['transactions__list']: true, ['scroll']: filtres.length > 5 })}>
+                                            <Transaction transactions={filtres} />
+                                        </ul>
+                                    </div>
+                                    :
+                                    <p>Ничего не найдено</p>
+                                }
+                            </>
                         }
                     </div>
 
@@ -70,7 +86,7 @@ const AllTransactionsPage = () => {
                             <h2>Фильтр</h2>
                         </div>
 
-                        <Filter setIsOpenFilterList={setIsOpenFilterList} fetchLinks={fetchLinks} />
+                        <Filter setIsOpenFilterList={setIsOpenFilterList} fetchLinks={fetchLinks} setIsNotFound={setIsNotFound} />
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@ const DetailCategoriesPage = () => {
 
 
 
-    if (isLoading) return 'Loading...'
+    if (isLoading) return <p className='load-statistics'>Загрузка...</p>
     if (error) return 'Ошибка при получении счетов: ' + error.message
 
 

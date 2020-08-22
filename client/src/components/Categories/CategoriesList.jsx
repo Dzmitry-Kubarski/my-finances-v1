@@ -13,7 +13,7 @@ import CategoriesItem from './CategoriesItem';
 const CategoriesList = () => {
     const { data, isLoading, error } = useCategories()
 
-    if (isLoading) return 'Loading...'
+    if (isLoading) return <p className='load-statistics'>Загрузка...</p>
     if (error) return 'Ошибка при получении счетов: ' + error.message
 
     const isScroll = data.length > 5

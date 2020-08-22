@@ -15,7 +15,7 @@ import noListJPG from '../../images/credit-card.png'
 const SourcesList = () => {
     const { data, isLoading, error } = useSources()
 
-    if (isLoading) return 'Loading...'
+    if (isLoading) return <p className='load-statistics'>Загрузка...</p>
     if (error) return 'Ошибка при получении счетов'
 
     const isScroll = data.length > 5
@@ -27,7 +27,6 @@ const SourcesList = () => {
                 <h2>Ваши счета</h2>
                 <NavLink className='btn-add' to="/create-source">+</NavLink>
             </div>
-
 
             {!isEmpty ?
                 <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>

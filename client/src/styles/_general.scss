@@ -5,14 +5,14 @@ input[type="number"],
 textarea,
 select,
 button {
-  font-family: $font-primary;
+    font-family: $font-primary;
 }
 
 label {
-  display: block;
-  margin: 0;
-  color: $color-text;
-  line-height: 1em;
+    display: block;
+    margin: 0;
+    color: $color-text;
+    line-height: 1em;
 }
 
 input[type="text"],
@@ -21,10 +21,10 @@ input[type="number"],
 textarea,
 select,
 button {
-  width: 100%;
-  border-radius: 12px;
-  font-size: $fs-16;
-  font-weight: $weight-bold;
+    width: 100%;
+    border-radius: 12px;
+    font-size: $fs-16;
+    font-weight: $weight-bold;
 }
 
 input[type="text"],
@@ -32,88 +32,91 @@ input[type="password"],
 input[type="number"],
 textarea,
 select {
-  background-color: $color-box-background;
-  border: 1px solid $color-border;
-  color: $color-text;
-  transition: border-color .2s ease-in-out;
+    background-color: $color-box-background;
+    border: 1px solid $color-border;
+    color: $color-text;
+    transition: border-color .2s ease-in-out;
 
-  &:focus {
-    border-color: $color-secondary;
-  }
+    &:focus {
+        border-color: $color-secondary;
+    }
 }
 
 input[type="text"],
 input[type="number"],
 input[type="password"] {
-  height: 54px;
-  padding: 0 18px;
+    height: 54px;
+    padding: 0 18px;
 
-  &::placeholder {
-    color: $color-input-placeholder;
-    font-size: $fs-14;
-    font-weight: $weight-medium;
-  }
+    &::placeholder {
+        color: $color-input-placeholder;
+        font-size: $fs-14;
+        font-weight: $weight-medium;
+    }
 }
 
 textarea {
-  padding: 14px 18px;
-  resize: none;
+    padding: 14px 18px;
+    resize: none;
 
-  &::placeholder {
-    color: $color-input-placeholder;
-    font-weight: $weight-semibold;
-  }
+    &::placeholder {
+        color: $color-input-placeholder;
+        font-weight: $weight-semibold;
+    }
 }
 
 body {
-  font-size: 16px;
-  background-color: $color-body;
-  overflow-x: hidden;
+    font-size: 16px;
+    background-color: $color-body;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4,
 h5, h6, a, p {
-  color: $color-text;
-  font-family: $font-primary;
-  line-height: 1em;
+    color: $color-text;
+    font-family: $font-primary;
+    line-height: 1em;
 }
 
 h1, h2, h3, h4,
 h5, h6 {
-  font-weight: $weight-bold;
+    font-weight: $weight-bold;
 }
 
 p {
-  a {
-    color: $color-text-link;
-    font-weight: $weight-semibold;
-  }
-
-  .reaction {
-    width: 20px;
-    height: 20px;
-    margin: 0 2px;
-    position: relative;
-    top: -2px;
-
-    &:first-child {
-      margin-left: 0;
+    a {
+        color: $color-text-link;
+        font-weight: $weight-semibold;
     }
-  }
+
+    .reaction {
+        width: 20px;
+        height: 20px;
+        margin: 0 2px;
+        position: relative;
+        top: -2px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
 }
 
 a {
-  &:hover {
-    // color: $color-text-link;
-    text-decoration: none;
-  }
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 25px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 25px;
+
+    @media (max-width: 420px) {
+        padding: 0 10px; 
+    }
 }
 
 .app {
@@ -126,50 +129,50 @@ a {
 }
 
 .error {
-  color: tomato;
-  text-align: center;
-  margin-top: 20px;
+    color: tomato;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .title-wrap {
-  margin-bottom: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  @media (max-width: 420px) {
-    h2 {
-      font-size: 18px;
-    } 
-  }
+    @media (max-width: 420px) {
+        h2 {
+            font-size: 18px;
+        } 
+    }
 }
 
 ::-webkit-scrollbar-button {
-  background-repeat:no-repeat;
-  width:5px;
-  height:0px
+    background-repeat:no-repeat;
+    width:5px;
+    height:0px
 }
   
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+    background-color: transparent;
 }
   
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 0px;
-  border-radius: 6px;
-  background-color:#23d2e2;
+-webkit-border-radius: 0px;
+    border-radius: 6px;
+    background-color:#23d2e2;
 }
   
 ::-webkit-scrollbar-thumb:hover {
-  background-color:#23d2e2;
+    background-color:#23d2e2;
 }
   
 ::-webkit-resizer {
-  background-repeat:no-repeat;
-  width:4px;
-  height:0px
+    background-repeat:no-repeat;
+    width:4px;
+    height:0px
 }
   
 ::-webkit-scrollbar {
-  width: 6px;
+    width: 6px;
 }

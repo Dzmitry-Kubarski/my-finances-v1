@@ -22,7 +22,7 @@ const ChartComponent = ({ data = [] }) => {
   const newArr = data.map(i => ({ label: i._id, value: i.sum }));
 
   const chartConfigs = {
-    type: "column3d",
+    type: "bar3d",
     width: "100%",
     height: "400",
     dataFormat: "json",
@@ -32,8 +32,8 @@ const ChartComponent = ({ data = [] }) => {
         caption: "Расходы по категориям",
         // subCaption: "In MMbbl = One Million barrels",        
         xAxisName: "Категории",
-        yAxisName: "Сумма расходов",
-        numberSuffix: "руб",
+        yAxisName: "Сумма в бел.руб",
+        // numberSuffix: "руб",
         theme: "fusion",
         // palettecolors: "#23d2e2",
         useplotgradientcolor: "0",
