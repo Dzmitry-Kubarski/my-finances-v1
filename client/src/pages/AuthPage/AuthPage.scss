@@ -44,6 +44,10 @@
     top: -20%;
     right: -32%;
     pointer-events: none;
+
+    @media (max-width: 960px) {
+        display: none;   
+    }
 }
 
 /*----------------------
