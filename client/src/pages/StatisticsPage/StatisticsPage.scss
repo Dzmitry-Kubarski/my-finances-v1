@@ -6,6 +6,8 @@
         div {
             width: 100% !important;
             max-width: 600px;
+            pointer-events: none;      
+            
 
             &:first-child {
                 margin-bottom: 50px;
@@ -13,11 +15,12 @@
         }
 
         .fusioncharts-container {
-            width: 100% !important;           
+            width: 100% !important;    
         }
 
         svg {
             width: 100% !important;
+            pointer-events:  auto !important; 
         }        
 
         @media (max-width: 1280px) {
