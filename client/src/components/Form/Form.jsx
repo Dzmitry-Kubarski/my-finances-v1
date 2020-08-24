@@ -1,5 +1,7 @@
 //core
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
+
+// libs
 import cogoToast from 'cogo-toast';
 
 //hooks
@@ -81,42 +83,37 @@ const Form = ({ activeForm }) => {
                 <div className="form-box">
                     <h2 className="form-box__title">Регистрация</h2>
 
-                    {!loading ?
-                        <div className="form">
-                            <div className="form__row">
-                                <div className="form__item">
-                                    <div className="form__input">
-                                        <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form__row">
-                                <div className="form__item">
-                                    <div className="form__input">
-                                        <input type="text" id="register-username" name="username" placeholder='Ваше имя' onChange={changeHandler} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form__row">
-                                <div className="form__item">
-                                    <div className="form__input">
-                                        <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form__row">
-                                <div className="form__item">
-                                    <button onClick={registerHandler} className="button medium secondary">Зарегестрироваться</button>
+                    <div className="form">
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
                                 </div>
                             </div>
                         </div>
-                        :
-                        <p>обработка формы...</p>
-                    }
 
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="text" id="register-username" name="username" placeholder='Ваше имя' onChange={changeHandler} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="form__row">
+                            <div className="form__item">
+                                <div className="form__input">
+                                    <input type="password" id="login-password" name="password" placeholder='Password' onChange={changeHandler} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="form__row">
+                            <div className="form__item">
+                                <button onClick={registerHandler} className="button medium secondary">Зарегестрироваться</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </>

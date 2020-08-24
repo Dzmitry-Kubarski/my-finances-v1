@@ -26,6 +26,7 @@
 
     @media (max-width: 420px) {
         flex-wrap: wrap;   
+        position: relative;
     }
 }
 
@@ -171,7 +172,10 @@
 
 .transaction-item__arrow-wrap {
     @media (max-width: 420px) {
-        display: none;   
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);       
     }
 }
 

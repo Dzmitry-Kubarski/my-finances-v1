@@ -47,6 +47,7 @@ const TransactionsList = () => {
                     <img className='no-list' src={noListGPG} alt="" />
                 </>
             }
+
         </div>
     );
 };

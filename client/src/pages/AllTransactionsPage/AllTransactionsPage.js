@@ -1,6 +1,5 @@
 //core
 import React from 'react';
-import axios from 'axios';
 import classnames from 'classnames';
 
 //components
@@ -23,22 +22,18 @@ const AllTransactionsPage = () => {
     const [filtres, setFiltres] = React.useState([])
     const { data, isLoading, error } = useAllTransactions()
     const { token } = React.useContext(AuthContext);
-    const [isLoadingFiltres, setIsLoadingFiltres] = React.useState(false)
 
     const fetchLinks = async (params) => {
         try {
-            // setIsLoadingFiltres(true)
 
             const entries = Object.entries(params).filter(([key, value]) => value !== '')
             const newParams = Object.fromEntries(entries)
 
             const paramsUrl = Object.keys(newParams).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(newParams[key])}`).join('&')
 
-            const response = await axios.get('/api/transaction/category/?' + paramsUrl, { headers: { Authorization: `Bearer ${token}` } })
+            const response = await fetch('/api/transaction/category/?' + paramsUrl, { headers: { Authorization: `Bearer ${token}` } })
 
-            const data = await response.data
-
-            // setIsLoadingFiltres(false)
+            const data = await response.json()
 
             if (data.length === 0) {
                 setIsNotFound(true)
@@ -47,13 +42,11 @@ const AllTransactionsPage = () => {
             }
 
         } catch (e) {
-            // setIsLoadingFiltres(false)
             throw new Error(e)
         }
     }
 
     if (isLoading) return <p className='load-statistics'>Загрузка...</p>
-    // if (isLoadingFiltres) return <p className='load-statistics'>Загрузка фильтра...</p>
     if (error) return 'Ошибка при получении всех транзакций'
 
     return (
