@@ -6,8 +6,7 @@
         div {
             width: 100% !important;
             max-width: 600px;
-            pointer-events: none;      
-            
+            pointer-events: none !important;            
 
             &:first-child {
                 margin-bottom: 50px;
@@ -19,8 +18,7 @@
         }
 
         svg {
-            width: 100% !important;
-            pointer-events:  auto !important; 
+            width: 100% !important;            
         }        
 
         @media (max-width: 1280px) {
