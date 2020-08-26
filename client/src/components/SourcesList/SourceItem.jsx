@@ -2,9 +2,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-// hooks
-import useDeleteSource from './useDeleteSource';
-
 // images
 import sourcesSvg from '../../images/money2.svg';
 import arrowBigRightSvg from '../../images/arrow-big-right.svg'

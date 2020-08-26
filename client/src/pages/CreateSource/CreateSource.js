@@ -33,7 +33,7 @@ const CreateSource = () => {
     const addSourceHandler = async (e) => {
         e.preventDefault();
 
-        const data = await request('/api/sources/add', 'POST', { ...newSource }, {
+        await request('/api/sources/add', 'POST', { ...newSource }, {
             Authorization: `Bearer ${auth.token}`
         })
         history.push(`/home/`)

@@ -2,6 +2,9 @@
 import React, { useContext, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
+// libs
+import cogoToast from 'cogo-toast';
+
 //hooks
 import { useHttp } from '../../hooks/http.hook';
 
@@ -23,7 +26,7 @@ import './CreateTransactionPage.scss'
 
 export const CreateTransactionPage = () => {
     const auth = useContext(AuthContext)
-    const { request, error } = useHttp()
+    const { request } = useHttp()
     const history = useHistory()
 
     const [popupType, setPopupType] = useState(false);
@@ -37,7 +40,6 @@ export const CreateTransactionPage = () => {
     const [category, setCategory] = useState('');
     const [date, setDate] = useState(new Date().toLocaleDateString());
     const [comment, setComment] = useState('');
-    const [errorForm, setErrorForm] = useState(false);
 
     const { data: categories, isLoading, error: errorCategories } = useCategories();
     const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources();
@@ -57,15 +59,15 @@ export const CreateTransactionPage = () => {
 
     const createTransactionHandler = async () => {
         if (isEmptyFields.length > 0) {
-            return setErrorForm(true)
+            return cogoToast.error('Заполните все поля');
         }
 
-        const data = await request('/api/transaction/add', 'POST', { ...newTransaction }, {
+        await request('/api/transaction/add', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
 
 
-        const data2 = await request('/api/sources/edit-total', 'POST', { ...newTransaction }, {
+        await request('/api/sources/edit-total', 'POST', { ...newTransaction }, {
             Authorization: `Bearer ${auth.token}`
         })
 
@@ -87,19 +89,16 @@ export const CreateTransactionPage = () => {
     const selectPperations = (name) => {
         setOperation(name)
         setPopupType(!popupType)
-        setErrorForm(false)
     }
 
     const selectSources = (name) => {
         setSource(name)
         setPopupSources(!popupSources)
-        setErrorForm(false)
     }
 
     const selectCategory = (title) => {
         setCategory(title)
         setPopupCategory(!popupCategory)
-        setErrorForm(false)
     }
 
     const sumChangeHadler = (event) => {
@@ -135,8 +134,6 @@ export const CreateTransactionPage = () => {
                         <img className='btn-add__icon' src={arrowLeftSvg} alt="" />
                     </NavLink>
                 </div>
-
-                {errorForm && <p className='error'>Заполните все поля</p>}
 
                 <div className='new-transaction'>
                     <div className='new-transaction__row'>

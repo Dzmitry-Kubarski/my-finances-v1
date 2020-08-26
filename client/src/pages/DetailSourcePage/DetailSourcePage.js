@@ -26,7 +26,7 @@ const DetailSourcePage = () => {
     const [editMode, setEditMode] = React.useState(false)
     const [newTitleSource, setNewTitleSource] = React.useState('')
 
-    const [deleteSource, { status: deleteSourceStatus }] = useDeleteSource();
+    const [deleteSource] = useDeleteSource();
 
     const deleteSourceHandler = async (sourceId) => {
         deleteSource(sourceId)
@@ -49,7 +49,7 @@ const DetailSourcePage = () => {
     const saveSource = async (e) => {
         e.preventDefault();
 
-        const data = await request('/api/sources/edit', 'POST', { newTitleSource, sourceId }, {
+        await request('/api/sources/edit', 'POST', { newTitleSource, sourceId }, {
             Authorization: `Bearer ${auth.token}`
         })
         history.push(`/home/`)
@@ -91,7 +91,7 @@ const DetailSourcePage = () => {
                         {isPopup &&
                             <ul className='new-transaction__popup-list'>
                                 <li className='new-transaction__popup-item'>
-                                    <button onClick={() => { deleteSourceHandler(sourceId) }} className='new-transaction__popup-btn'>Удалить</button>
+                                    <button onClick={() => { deleteSourceHandler(sourceId) }} className='new-transaction__popup-btn' type='button'>Удалить</button>
                                 </li>
 
                                 <li className='new-transaction__popup-item'>

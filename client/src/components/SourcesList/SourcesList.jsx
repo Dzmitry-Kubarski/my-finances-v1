@@ -32,7 +32,7 @@ const SourcesList = () => {
             </div>
 
             {!isEmpty ?
-                <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
+                <ul className={classnames({ 'sources__list': true, 'scroll': isScroll })}>
                     <SourceItem sources={data} />
                 </ul>
                 :

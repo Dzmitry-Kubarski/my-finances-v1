@@ -27,7 +27,7 @@ const CategoriesList = () => {
             </div>
 
             {!isEmpty ?
-                <ul className={classnames({ ['sources__list']: true, ['scroll']: isScroll })}>
+                <ul className={classnames({ 'scroll': isScroll, 'sources__list': true, })}>
                     <CategoriesItem categories={data} />
                 </ul>
                 :

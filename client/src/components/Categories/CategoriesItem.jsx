@@ -3,7 +3,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 //images
-import ellipsisHorizontalSvg from '../../images/ellipsis-horizontal.svg';
 import tagSvg from '../../images/tag.svg';
 import arrowBigRightSvg from '../../images/arrow-big-right.svg'
 

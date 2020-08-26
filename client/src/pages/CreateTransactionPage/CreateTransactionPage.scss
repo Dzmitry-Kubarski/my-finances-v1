@@ -252,6 +252,10 @@
 .new-transaction__col {
     display: flex;
     align-items: center;
+
+    input[type="text"] {
+        height: 50px;
+    }
 }
 
 .new-transaction__submit {

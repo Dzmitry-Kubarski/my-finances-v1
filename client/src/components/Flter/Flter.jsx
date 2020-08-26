@@ -7,19 +7,16 @@ import useSources from './../SourcesList/useSources';
 
 //images
 import chevronDownSvg from '../../images/chevron-down.svg';
-import penSvg from '../../images/pen.svg';
 
 
 export const Filter = ({ setIsOpenFilterList, fetchLinks, setIsNotFound }) => {
     const [popupType, setPopupType] = useState(false);
     const [popupSources, setPopupSources] = useState(false);
     const [popupCategory, setPopupCategory] = useState(false);
-    const [editDateModal, setEditDateModal] = useState(false);
 
     const [operation, setOperation] = useState('');
     const [source, setSource] = useState('');
     const [category, setCategory] = useState('');
-    const [date, setDate] = useState('');
 
     const query = {
         operation,
@@ -43,7 +40,6 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks, setIsNotFound }) => {
         setOperation('')
         setSource('')
         setCategory('')
-        setDate('')
         setIsNotFound(false)
     }
 
@@ -73,14 +69,6 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks, setIsNotFound }) => {
     const selectCategory = (title) => {
         setCategory(title)
         setPopupCategory(!popupCategory)
-    }
-
-    const toogleEditDateModal = () => {
-        setEditDateModal(!editDateModal)
-    }
-
-    const changeDateHandler = event => {
-        setDate(event.target.value);
     }
 
     if (isLoading) return 'Loading...'
@@ -155,29 +143,6 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks, setIsNotFound }) => {
                     ))}
                 </ul>}
             </div>
-
-
-            {/* <div className='new-transaction__row'>
-                <h4 className='new-transaction__title'>Дата:</h4>
-                <div className='new-transaction__col'>
-
-                    {!editDateModal
-                        ? <span className='new-transaction__value'>{date} </span>
-                        : <input type='text' placeholder='11.11.2020' value={date} onChange={changeDateHandler} />
-                    }
-
-                    {!editDateModal
-                        ?
-                        <button onClick={toogleEditDateModal} className='new-transaction__btn'>
-                            <img className='new-transaction__icon' src={penSvg} alt='' />
-                        </button>
-                        :
-                        <button onClick={toogleEditDateModal} className='new-transaction__btn'>
-                            ok
-                        </button>
-                    }
-                </div>
-            </div> */}
 
 
             <div className='new-transaction__row  filter-btns'>

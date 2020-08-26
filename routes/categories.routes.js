@@ -53,7 +53,7 @@ router.get('/:categoryId', auth, async (req, res) => {
 router.delete('/delete/:categoryId', auth, async (req, res) => {
   try {
     const { categoryId } = req.params
-    const category = await Category.findById(categoryId).remove()
+    const category = await Category.findById(categoryId).deleteMany()
 
     res.status(201).json({ category })
 

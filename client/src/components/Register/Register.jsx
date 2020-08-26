@@ -1,5 +1,5 @@
 // core
-import React, { useContext, useState } from 'react';
+import React from 'react';
 
 // libs
 import cogoToast from 'cogo-toast';
@@ -18,7 +18,7 @@ const Register = () => {
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = async (values) => {
         try {
-            const data = await request('/api/auth/register', 'POST', { ...values });
+            await request('/api/auth/register', 'POST', { ...values });
             cogoToast.success("Регистрация прошла успешно");
 
         } catch (e) {
@@ -29,7 +29,6 @@ const Register = () => {
     return (
         <div className="form-box">
             <h2 className="form-box__title">Регистрация</h2>
-
 
             <form onSubmit={handleSubmit(onSubmit)} className='form'>
                 <div className='form__row'>

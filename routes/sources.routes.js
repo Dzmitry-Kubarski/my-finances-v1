@@ -70,7 +70,7 @@ router.get('/:sourceId', auth, async (req, res) => {
 router.delete('/delete/:sourceId', auth, async (req, res) => {
   try {
     const { sourceId } = req.params
-    const transaction = await Source.findById(sourceId).remove()
+    const transaction = await Source.findById(sourceId).deleteMany()
 
     res.status(201).json({ transaction })
 

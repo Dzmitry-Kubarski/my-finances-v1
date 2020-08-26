@@ -18,7 +18,7 @@ import arrowLeftSvg from '../../images/arrow-left.svg';
 const CreateCategories = () => {
     const history = useHistory()
     const auth = React.useContext(AuthContext);
-    const { loading, request } = useHttp();
+    const { request } = useHttp();
 
     const [popupType, setPopupType] = useState(false);
     const [operation, setOperation] = useState('');
@@ -41,7 +41,7 @@ const CreateCategories = () => {
             return setError(true)
         }
 
-        const data = await request('/api/categories/add', 'POST', { ...newCategory }, {
+        await request('/api/categories/add', 'POST', { ...newCategory }, {
             Authorization: `Bearer ${auth.token}`
         })
         history.push(`/categories/`)

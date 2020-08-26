@@ -26,7 +26,7 @@ const DetailCategoriesPage = () => {
     const [editMode, setEditMode] = React.useState(false)
     const [newTitleCategory, setNewTitleCategory] = React.useState('')
 
-    const [deleteCategory, { status: deleteCategoryStatus }] = useDeleteCategory();
+    const [deleteCategory] = useDeleteCategory();
 
     const deleteCategoryHandler = async (categoryId) => {
         deleteCategory(categoryId)
@@ -49,7 +49,7 @@ const DetailCategoriesPage = () => {
     const saveCategory = async (e) => {
         e.preventDefault();
 
-        const data = await request('/api/categories/edit', 'POST', { newTitleCategory, categoryId }, {
+        await request('/api/categories/edit', 'POST', { newTitleCategory, categoryId }, {
             Authorization: `Bearer ${auth.token}`
         })
         history.push(`/categories/`)
@@ -93,7 +93,7 @@ const DetailCategoriesPage = () => {
                         {isPopup &&
                             <ul className='new-transaction__popup-list'>
                                 <li className='new-transaction__popup-item'>
-                                    <button onClick={() => { deleteCategoryHandler(categoryId) }} className='new-transaction__popup-btn'>Удалить</button>
+                                    <button onClick={() => { deleteCategoryHandler(categoryId) }} className='new-transaction__popup-btn' type='button'>Удалить</button>
                                 </li>
 
                                 <li className='new-transaction__popup-item'>

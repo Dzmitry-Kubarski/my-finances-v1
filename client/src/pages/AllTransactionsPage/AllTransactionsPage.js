@@ -57,7 +57,7 @@ const AllTransactionsPage = () => {
 
                         {!isOpenFilterList
                             ?
-                            <ul className={classnames({ ['transactions__list']: true, ['scroll']: data.length > 5 })}>
+                            <ul className={classnames({ 'transactions__list': true, 'scroll': data.length > 5 })}>
                                 <Transaction transactions={data} />
                             </ul>
                             :
@@ -65,7 +65,7 @@ const AllTransactionsPage = () => {
                                 {!isNotFound
                                     ?
                                     <div>
-                                        <ul className={classnames({ ['transactions__list']: true, ['scroll']: filtres.length > 5 })}>
+                                        <ul className={classnames({ 'transactions__list': true, 'scroll': filtres.length > 5 })}>
                                             <Transaction transactions={filtres} />
                                         </ul>
                                     </div>
