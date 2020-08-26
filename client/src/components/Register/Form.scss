@@ -1,0 +1,64 @@
+/*-----------------------
+    VARIABLES
+-----------------------*/
+@import '../../styles/variables/font';
+@import '../../styles/variables/color';
+@import '../../styles/variables/color-theme';
+
+/*-----------------------
+    GENERAL
+-----------------------*/
+@import '../../styles/general';
+
+.form-box {
+    position: relative;  
+    width: 485px;
+    padding: 64px;
+    border-radius: 12px;
+    background-color: $color-box-background;
+    box-shadow: $shadow-dark-alt-3;
+
+    @media (max-width: 460px) {
+        padding: 15px;   
+        padding-top: 30px;
+    }
+}
+
+.form-box__title {
+    font-size: $fs-26;
+    text-align: center;
+    margin-bottom: 75px;
+
+    @media (max-width: 460px) {
+        margin-bottom: 30px;   
+    }
+}
+
+.form__row {
+    width: 100%;
+    margin-top: 25px;
+
+    &:first-child {
+        margin-top: 0;
+    }  
+}
+
+/*----------------------
+    8. FORM TEXTAREA
+----------------------*/
+.form-textarea {
+    position: relative;
+
+    textarea {
+        font-size: $fs-14;
+        padding: 26px 28px 0;
+    }
+
+    .form-textarea-limit-text {
+        padding: 0 28px;
+        font-size: $fs-12;
+        font-weight: $weight-medium;
+        opacity: .6;
+        text-align: right;
+    }
+}
