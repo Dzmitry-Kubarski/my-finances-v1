@@ -1,8 +1,9 @@
 //core
 import React, { useState } from 'react';
 
-//components
-import Form from '../../components/Form/Form';
+// components
+import Login from '../../components/Login/Login';
+import Register from '../../components/Register/Register';
 
 //images
 import logoSvg from '../../images/logo.svg';
@@ -64,7 +65,15 @@ const AuthPage = () => {
                         </div>
                     </div>
 
-                    <Form activeForm={activeForm} />
+
+                    {activeForm === 'loginForm' && (
+                        <Login />
+                    )}
+
+                    {activeForm === 'registerForm' && (
+                        <Register />
+                    )}
+
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ router.post(
 
   [
     check('email', 'Некорректный email').isEmail(),
-    check('username', 'Минимальная длина имени 6 символов')
+    check('username', 'Минимальная длина имени 4 символов')
       .isLength({ min: 6 }),
     check('password', 'Минимальная длина пароля 6 символов')
       .isLength({ min: 6 })
