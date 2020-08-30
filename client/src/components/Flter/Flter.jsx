@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 //hooks
 import useCategories from '../Categories/useCategories';
-import useSources from './../SourcesList/useSources';
+import useSources from '../SourcesList/useSources';
 
 //images
 import chevronDownSvg from '../../images/chevron-down.svg';
@@ -55,7 +55,7 @@ export const Filter = ({ setIsOpenFilterList, fetchLinks, setIsNotFound }) => {
         setPopupCategory(!popupCategory)
     }
 
-    const operations = ['расходы', 'доходы', 'перевод между счетами'];
+    const operations = ['расходы', 'доходы'];
     const selectPperations = (name) => {
         setOperation(name)
         setPopupType(!popupType)

@@ -7,13 +7,13 @@ import cogoToast from 'cogo-toast';
 
 //hooks
 import { useHttp } from '../../hooks/http.hook';
+import useSources from '../../components/SourcesList/useSources';
 
 //context
 import { AuthContext } from '../../context/AuthContext';
 
 //components
 import useCategories from '../../components/Categories/useCategories';
-import useSources from '../../components/SourcesList/useSources';
 
 //images
 import chevronDownSvg from '../../images/chevron-down.svg';
@@ -44,7 +44,7 @@ export const CreateTransactionPage = () => {
     const { data: categories, isLoading, error: errorCategories } = useCategories();
     const { data: sources, isLoading: sourcesLoading, error: errorSources } = useSources();
 
-    const operations = ['расходы', 'доходы', 'перевод между счетами'];
+    const operations = ['расходы', 'доходы'];
 
     const newTransaction = {
         operation,

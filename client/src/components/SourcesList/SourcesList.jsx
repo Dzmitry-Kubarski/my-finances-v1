@@ -6,20 +6,13 @@ import classnames from 'classnames';
 // components
 import SourceItem from './SourceItem';
 
-// hooks
-import useSources from './useSources'
-
 // images
 import noListJPG from '../../images/credit-card.png'
 
 // styles
 import './SourcesList.scss'
 
-const SourcesList = () => {
-    const { data, isLoading, error } = useSources()
-
-    if (isLoading) return <p className='load-statistics'>Загрузка...</p>
-    if (error) return 'Ошибка при получении счетов'
+const SourcesList = ({ data }) => {
 
     const isScroll = data.length > 5
     const isEmpty = data.length === 0

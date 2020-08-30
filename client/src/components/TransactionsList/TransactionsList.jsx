@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 // components
 import Transaction from './Transaction';
 
-// hooks
-import useTransactions from './useTransactions'
+
 
 // images
 import noListGPG from '../../images/no-transactions.png';
@@ -14,11 +13,8 @@ import noListGPG from '../../images/no-transactions.png';
 // styles
 import './TransactionsList.scss'
 
-const TransactionsList = () => {
-    const { data, isLoading, error } = useTransactions()
+const TransactionsList = ({ data }) => {
 
-    if (isLoading) return 'Loading...'
-    if (error) return 'Ошибка при получении транзакций: ' + error.message
 
     const isEmpty = data.length === 0
 
