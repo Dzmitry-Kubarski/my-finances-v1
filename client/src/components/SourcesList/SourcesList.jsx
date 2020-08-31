@@ -12,7 +12,7 @@ import noListJPG from '../../images/credit-card.png'
 // styles
 import './SourcesList.scss'
 
-const SourcesList = ({ data }) => {
+const SourcesList = ({ data = [] }) => {
 
     const isScroll = data.length > 5
     const isEmpty = data.length === 0

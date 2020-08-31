@@ -12,12 +12,14 @@ export default function useTransactionsCategory() {
     return useQuery('transactions-all', () =>
 
         fetch('/api/transaction/all', { headers: { Authorization: `Bearer ${token}` } })
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return logout()
+            })
 
             .catch(e => {
-
-                if (e.response.status === 401) logout();
-
                 throw new Error(e)
             })
     )

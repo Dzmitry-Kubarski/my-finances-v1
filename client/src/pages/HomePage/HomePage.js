@@ -15,8 +15,9 @@ export const HomePage = () => {
     const { data: transactions, isLoading: isLoadingTransactions, error: errorTransactions } = useTransactions();
 
     if (isLoadingTransactions || isLoading) return <p className='loading'>Загрузка данных...</p>
-    if (errorTransactions) return 'Ошибка при получении транзакций'
-    if (error) return 'Ошибка при получении счетов'
+
+    if (errorTransactions) return <p>Ошибка при получении транзакций</p>
+    if (error) return <p>Ошибка при получении счетов</p>
 
     return (
         <div className='page  home-page'>

@@ -7,14 +7,26 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 export default function useSources() {
-    const { token } = React.useContext(AuthContext);
+    const { token, logout } = React.useContext(AuthContext);
 
-    return useQuery('sources', () =>
-        fetch('/api/sources', { headers: { Authorization: `Bearer ${token}` } })
-            .then((res) => res.json())
+    return useQuery('sources', async () =>
+        await fetch('/api/sources', { headers: { Authorization: `Bearer ${token}` } })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return logout()
+            })
 
             .catch(e => {
                 throw new Error(e)
             })
     )
 }
+
+
+
+
+
+
+

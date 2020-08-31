@@ -9,16 +9,25 @@ import { AuthContext } from '../../context/AuthContext';
 export default function useTransactions() {
     const { token, logout } = React.useContext(AuthContext)
 
-    return useQuery('transactions', () =>
-        fetch('/api/transaction', { headers: { Authorization: `Bearer ${token}` } })
-            .then((res) => res.json())
+    return useQuery('transactions', async () =>
+        await fetch('/api/transaction', { headers: { Authorization: `Bearer ${token}` } })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return logout()
+            })
 
             .catch(e => {
-
-                if (e.response.status === 401) logout();
-
                 throw new Error(e)
             })
     )
 }
+
+
+
+
+
+
+
 

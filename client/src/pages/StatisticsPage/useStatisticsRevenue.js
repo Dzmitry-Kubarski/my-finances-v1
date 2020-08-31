@@ -11,12 +11,14 @@ export default function useStatisticsRevenue() {
     return useQuery('revenue', () =>
 
         fetch('/api/transaction/revenue', { headers: { Authorization: `Bearer ${token}` } })
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return logout()
+            })
 
             .catch(e => {
-
-                if (e.response.status === 401) logout();
-
                 throw new Error(e)
             })
     )

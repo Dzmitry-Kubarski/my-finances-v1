@@ -13,8 +13,7 @@ import noListGPG from '../../images/no-transactions.png';
 // styles
 import './TransactionsList.scss'
 
-const TransactionsList = ({ data }) => {
-
+const TransactionsList = ({ data = [] }) => {
 
     const isEmpty = data.length === 0
 

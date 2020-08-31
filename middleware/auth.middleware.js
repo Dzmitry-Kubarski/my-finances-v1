@@ -17,14 +17,15 @@ module.exports = (req, res, next) => {
     // req.user = decoded
     // next()
 
-
     jwt.verify(token, config.get('jwtSecret'), function (err, decoded) {
       if (err) throw new Error(err) // Manage different errors here (Expired, untrusted...)
+
       req.user = decoded // If no error, token info is returned in 'decoded'
       next()
     });
 
   } catch (e) {
     res.status(401).json({ message: 'Нет авторизации' })
+
   }
 }
