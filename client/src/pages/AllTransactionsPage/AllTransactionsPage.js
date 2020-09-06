@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 //components
-import Transaction from '../../components/TransactionsList/Transaction';
+import Transaction from '../../components/Transaction/Transaction';
 import { Filter } from '../../components/Flter/Flter';
 
 //hooks

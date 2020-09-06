@@ -3,9 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // components
-import Transaction from './Transaction';
-
-
+import Transaction from '../Transaction/Transaction';
 
 // images
 import noListGPG from '../../images/no-transactions.png';
