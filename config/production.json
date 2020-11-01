@@ -1,6 +1,0 @@
-{
-  "port": 80,
-  "jwtSecret": "dzmitry-kubarski-budgettracking",
-  "mongoUri": "mongodb+srv://dima:LekSur5fUJuhhTpx@cluster0.wql9j.mongodb.net/finance?retryWrites=true&w=majority",
-  "baseUrl": "http://kubarski-web-dev.ru"
-}

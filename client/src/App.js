@@ -1,6 +1,6 @@
 //core
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { useRoutes } from './routes';
 
 //hooks
@@ -13,39 +13,27 @@ import { AuthContext } from './context/AuthContext';
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
-//ReactQueryDevtools
-// import { ReactQueryDevtools } from 'react-query-devtools'
-import { ReactQueryConfigProvider } from 'react-query';
-const queryConfig = { queries: { refetchOnWindowFocus: false } };
-
-
 function App() {
     const { token, login, logout, userId, email } = useAuth();
     const isAuthenticated = !!token;
     const routes = useRoutes(isAuthenticated);
 
     return (
-        <ReactQueryConfigProvider config={queryConfig}>
-            <AuthContext.Provider value={{
-                token, login, logout, userId, isAuthenticated, email
-            }}>
+        <AuthContext.Provider value={{
+            token, login, logout, userId, isAuthenticated, email
+        }}>
 
-                <Router>
-                    {isAuthenticated && <Header />}
+            <BrowserRouter>
+                {isAuthenticated && <Header />}
 
-                    <div className='app'>
-                        {/* <div className="container">
-                            
-                        </div> */}
-                        {routes}
-                    </div>
+                <div className='app'>
+                    {routes}
+                </div>
 
-                    {isAuthenticated && <Footer />}
-                </Router>
+                {isAuthenticated && <Footer />}
+            </BrowserRouter>
 
-                {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-            </AuthContext.Provider>
-        </ReactQueryConfigProvider>
+        </AuthContext.Provider>
     )
 }
 

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const config = require('config')
 
 module.exports = (req, res, next) => {
   if (req.method === 'OPTIONS') {
@@ -17,7 +16,7 @@ module.exports = (req, res, next) => {
     // req.user = decoded
     // next()
 
-    jwt.verify(token, config.get('jwtSecret'), function (err, decoded) {
+    jwt.verify(token, process.env.jwtSecret, function (err, decoded) {
       if (err) throw new Error(err) // Manage different errors here (Expired, untrusted...)
 
       req.user = decoded // If no error, token info is returned in 'decoded'

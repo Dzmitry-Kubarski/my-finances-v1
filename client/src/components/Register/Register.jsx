@@ -14,8 +14,8 @@ import './Form.scss';
 
 const Register = () => {
     const { loading, request } = useHttp();
-
     const { handleSubmit, register, errors } = useForm();
+
     const onSubmit = async (values) => {
         try {
             await request('/api/auth/register', 'POST', { ...values });
@@ -25,6 +25,10 @@ const Register = () => {
             cogoToast.error(e.message);
         }
     }
+
+    React.useEffect(() => {
+        console.log('errors.email', errors.email);
+    }, [])
 
     return (
         <div className="form-box">
@@ -36,6 +40,7 @@ const Register = () => {
                         <input
                             name="email"
                             placeholder='Email'
+                            autoFocus={true}
                             type='text'
                             ref={register({
                                 required: "Обязательное поле",

@@ -1,5 +1,12 @@
 //core
-import React, { useState } from 'react';
+import React from 'react';
+
+// redux
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+// actions
+import { selectActiveRegisterForm, selectActiveLoginForm } from '../../redux/auth/actions';
 
 // components
 import Login from '../../components/Login/Login';
@@ -9,28 +16,19 @@ import Register from '../../components/Register/Register';
 import logoSvg from '../../images/logo.svg';
 
 // styles
-import './AuthPage.scss'
+import './AuthPage.scss';
 
 
 const AuthPage = () => {
-    const [activeForm, setActiveForm] = useState('loginForm');
-    const [activeTab, setActiveTab] = useState(0);
+    const activeForm = useSelector(state => state.auth.activeForm);
+    const dispatch = useDispatch()
 
-    const tabs = [
-        { name: 'Login' },
-        { name: 'Register' }
-    ]
+    const selectActiveRegisterFormHandler = () => {
+        dispatch(selectActiveRegisterForm())
+    }
 
-    const selectForm = (name, index) => {
-        if (name === 'Login') {
-            setActiveForm('loginForm')
-            setActiveTab(index)
-        }
-
-        else if (name === 'Register') {
-            setActiveForm('registerForm');
-            setActiveTab(index)
-        }
+    const selectActiveLoginFormHandler = () => {
+        dispatch(selectActiveLoginForm())
     }
 
     return (
@@ -52,16 +50,18 @@ const AuthPage = () => {
                         </p>
 
                         <div className="auth__tabs">
-                            {
-                                tabs.map((tab, index) => (
-                                    <p key={tab.name}
-                                        className={activeTab === index ? 'auth__tab active' : 'auth__tab'}
-                                        onClick={() => { selectForm(tab.name, index) }}
-                                    >
-                                        {tab.name}
-                                    </p>
-                                ))
-                            }
+                            <p className={activeForm === 'loginForm' ? 'auth__tab active' : 'auth__tab'}
+                                onClick={selectActiveLoginFormHandler}
+                            >
+                                Login
+                            </p>
+
+
+                            <p className={activeForm === 'registerForm' ? 'auth__tab active' : 'auth__tab'}
+                                onClick={selectActiveRegisterFormHandler}
+                            >
+                                Register
+                            </p>
                         </div>
                     </div>
 

@@ -45,7 +45,7 @@ const Login = () => {
                 <div className="form__row">
                     <div className="form__item">
                         <div className="form__input">
-                            <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} />
+                            <input type="text" id="login-username" name="email" placeholder='Email' onChange={changeHandler} autoFocus={true} />
                         </div>
                     </div>
                 </div>
