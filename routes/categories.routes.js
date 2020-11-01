@@ -1,5 +1,4 @@
 const { Router } = require('express')
-const config = require('config')
 const Source = require('../models/Source')
 const Category = require('../models/Category')
 const auth = require('../middleware/auth.middleware')
