@@ -75,7 +75,7 @@ const DetailSourcePage = () => {
                             />
                         }
 
-                        <div className='sources-item__total'>{data.total} руб</div>
+                        <div className='sources-item__total'>{data.total.toFixed(2)} руб</div>
 
                         {!editMode
                             ?

@@ -15,7 +15,7 @@ const SourceItem = ({ sources = [] }) => {
 
             <p className='sources-item__title'>{title}</p>
 
-            <div className='sources-item__total'>{total} руб</div>
+            <div className='sources-item__total'>{total.toFixed(2)} руб</div>
 
             <NavLink to={`/sources/${_id}`} className='new-transaction__btn'>
                 <img className='new-transaction__icon' src={arrowBigRightSvg} alt='' />
